@@ -1,0 +1,185 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>@ViewData["Title"] - it-car.by</title>		
+        <meta name="description" content="@ViewData["Description"]">	
+        @RenderSection("Headers",false)
+        <link rel="shortcut icon" href="https://it-car.by/favicon.ico" type="image/x-icon">
+	    <link rel="icon" href="https://it-car.by/favicon.ico" type="image/x-icon">
+	    <link rel="stylesheet" href="../css/styles.css">
+	    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200&display=swap" rel="stylesheet">
+	    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@500&display=swap" rel="stylesheet">
+	    <script src="https://kit.fontawesome.com/71471d07af.js" crossorigin="anonymous"></script>	  
+		@RenderSection("styles")
+	</head>
+	<body alink="red">
+		<div id="all-body">
+			<div class="header_top">			
+				<div class="header_contacts">			 
+					<a href="../index"><img id="logotype" src= "../images/logo/IntelligentTrading5.png" alt="no image"></a>	
+					
+					<ul id="center_up_list">
+					<li class="center_contacts"><a class="container_1 header_phone transition2" href="tel:375296349842"> <i class="fas fa-phone-alt"></i> +375 (29) 63-49-842 </a></li>
+					<li class="center_contacts"><a class="container_1 header_email transition2" href="mailto:info.itcar@gmail.com"><i class="fas fa-at"></i> info.itcar@gmail.com </a></li>
+				</ul>
+					<i class="fas fa-bars" id="open_list"></i>		
+				</div>
+			</div>
+			<div id= "main_menu">
+				<ul class="topmenu">
+					<li id="main" class="new_back"><a href="../index" class="new_color"><i class="fa fa-home"></i> Главная</a></li>
+					<li id="commercial" class="new_back"><a href="../commercial" class="new_color"><i class="fas fa-truck-moving"></i> Промышленные авто</a></li>
+					<li id="passenger" class="new_back active"><a href="../passenger" class="new_color"><i class="fa fa-car"></i> Легковые автомобили</a>
+						<!--<i class="fas fa-chevron-down show_options" style="left: 280px;"></i>
+						<i class="fas fa-chevron-up hide_options" style="left: 280px;"></i>
+						<ul class="submenu">
+							<li><a href="#" class="new_color">Электрокары</a></li>
+							<li><a href="#" class="new_color">Авто ДВС Новые</a></li>
+							<li><a href="#" class="new_color">Авто ДВС Б/У</a></li>
+						</ul>-->
+					</li>	
+					<li id="dealers" class="new_back"><a href="../news" class="new_color"><i class="fas fa-industry"></i> Новости</a></li>
+					<li id="contacts"  class="new_back"><a href="../contact_us" class="new_color"><i class="fas fa-envelope"></i> Свяжитесь с нами</a></li>
+				</ul>
+			</div>	
+			<div id="water_div"></div>
+			<div class="panel commercial">	
+				<h1>@ViewData["panelName"]</h1>
+			</div>
+			<div>
+				
+				@RenderBody()
+
+				<div id="result_sum">						
+					<div id="header_info_price">
+						<div class= "backgr_name">
+							<div id="name_same">СКОЛЬКО В КОНЕЧНОМ СЧЕТЕ БУДЕТ СТОИТЬ АВТО</div>
+						</div>		
+						<div style="margin: auto; width: 80%; margin-top: 20px; font-size: 17px;">
+							Цены, которые Вы видите, это цена автомобиля по факту прибытия  в Беларусь.
+						</div>	
+						<div id="hide_price_info">
+							<ol class="square" style="margin-top: 20px;">
+								<li>На сайте указаны цены CPT. *Цена CPT включает в себя конечную стоимость автомобиля с учётом экспортного оформления, а также затраты на доставку, погрузку/разгрузку и склад </li>
+								<li>Растаможка авто: оплатить пошлину (в зависимости от типа авто: электрокары - 0%, авто ДВС - рассчитывается на каждый автомобиль индивидуально), оплатить таможенный сбор, оплатить утилизационный сбор, поставить на учет в ГАИ, либо воспользоваться дополнительной услугой IT-CAR. BY авто под ключ - 500$)</li>
+							</ol>
+						</div>
+											
+									
+						<div id="more_price">
+							<div id="box_more_price">
+								<div id="more_price_button">
+									Развернуть
+									<img src="../images/icons/vnis_new.svg" alt="">
+								</div>
+								<div id="less_price_button">
+									Свернуть
+									<img src="../images/icons/vverh_new.svg" alt="">
+								</div>
+							</div>						
+						</div>
+					</div>	
+				</div>
+                <div id="call_us">
+					<div style="margin: auto; width: 80%; margin-top: 20px; margin-bottom: 20px; font-size: 23px; line-height: 32px ;" >
+						Для уточнения деталей и заказа авто свяжитесь с нами
+						<a href="tel:375296349842"><b id="mynumber">+375296349842</b></a>
+							<div class="tooltip"> 
+								<div onclick="myFunction()" onmouseout="outFunc()">
+								<span class="tooltiptext" id="myTooltip">Копировать</span>
+								<img style="width: 20px;" src="../images/icons/copy.png" alt="">
+								</div>
+							</div>
+							(все мессенджеры), либо заходите в наш телеграм-канал <a style="text-decoration: underline; font-style: italic;" href="https://t.me/it_car_by_channel">https://t.me/it_car_by_channel</a> 
+					</div>						
+				</div>
+                <div style="background-color: #DEDEDE; width: 100%; padding-bottom: 40px;">
+					<div id="same_cars">
+						<div class= "backgr_name">
+							<div id="name_same">ПОХОЖИЕ АВТО</div>
+						</div>		
+						
+						<div id="box_same_cars">
+							@RenderSection("Same_cars");												
+						</div>		
+
+					</div>
+				</div>
+				<div style="background-color: #DEDEDE; width: 100%; padding-bottom: 40px; margin-top: 40px;">
+					<div class="same_cars">
+						<div class= "backgr_name">
+							<div id="name_same">НАШ ТЕЛЕГРАМ-КАНАЛ</div>
+						</div>
+						<div id="our_telegram_chanel">
+							Еще больше авто в нашем телеграм-канале
+						</div>
+						<div id="link_telchanel">
+							<a href="https://t.me/it_car_by_channel">https://t.me/it_car_by_channel</a>
+						</div>
+						
+					</div>
+				</div>
+				<div id="arrow_up">
+					<i class="fas fa-arrow-up" id="arrow_id"></i>
+				</div>
+			</div>
+			<div id="end_box">
+				<div class="end_menu" id="left_end_block">
+					<img id="end_logotype" src= "../images/logo/logo.png" alt="no image">
+					<br>УНП 693156318  
+					<br>Общество с ограниченной ответственностью "Интеллект Трейдинг", 2021г.
+					<br>
+					<br>Сопровождение сделки по покупке и доставке электромобилей из Китая.
+				</div>
+				<div class="end_menu">	
+					Юридический адрес:  223049, Беларусь, Минская область, Минский район, с/с Щомыслицкий, д. 16, ком. 12/1<br>
+					Телефон: <a href="tel:375296349842">+375 (29) 634-98-42</a><br>
+					Email: <a href="mailto:info.itcar@gmail.com"> info.itcar@gmail.com</a>
+					<br><br>
+					  Указанные на сайте цены являются ориентировочными. Окончательную стоимость уточняйте у менеджера.				
+				</div>
+			</div>
+			<div class="last_box">
+				<div class="last_line">
+					ООО "Интеллект Трейдинг" © 2022 — все права защищены
+				</div>
+				<div class="contact_line">				
+					<a href="https://telegram.me/it_car_by"><i class="fab fa-telegram"></i></a>
+					
+					<a href="tel:375296349842"><i class="fas fa-phone-alt"></i></a>
+					<a href="mailto:info.itcar@gmail.com"><i class="fas fa-at"></i></a>
+					<a href="../contact_us"><i class="fas fa-envelope"></i></a>
+				</div>
+			</div>
+		</div>
+		<div id="pop-order">
+			
+			<div class="order-all" id="order-all">												
+			</div>
+			<div id="add_place">
+				<div class="external_order">					
+					<form id= "order-form" class="order" method="POST" action="../php/handler.php">			
+						<i id="icon-close" class="fas fa-times"></i>	
+						<div class="form-group" id="span">
+							Оставить заявку
+						</div>
+						<div class="form-group">						
+							<input type="text" name="name" class="order-control" placeholder="Имя *" required>
+							<input type="email" name="email" class="order-control" placeholder="Электронная почта *" required>
+						</div>
+						<div class="form-group">
+							<input type="tel" name="phone" class="order-control" placeholder="Телефон">
+						</div>
+						<button type="submit" style="cursor: pointer;">Отправить</button>
+					</form>	
+				</div>
+			</div>	
+		</div>
+		<script src="../js/make_order.js"></script>
+		<script src="../js/up_panel.js"></script>
+		<script src="../js/car_parameters.js"></script>
+	</body>
+</html>

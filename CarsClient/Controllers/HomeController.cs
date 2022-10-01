@@ -1,8 +1,8 @@
-﻿using CarsClient.Models;
+﻿using CarsServer.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace CarsClient.Controllers
+namespace CarsServer.Controllers
 {
     public class HomeController : Controller
     {
@@ -13,12 +13,33 @@ namespace CarsClient.Controllers
             _logger = logger;
         }
 
+        [Route("")]
+        [Route("index")]
         public IActionResult Index()
         {
             return View();
         }
 
-        public IActionResult Privacy()
+        [Route("commercial")]
+        public IActionResult Commercial()
+        {
+            return View();
+        }
+
+        [Route("passenger")]
+        public IActionResult Passenger()
+        {
+            return View();
+        }
+
+        [Route("news")]
+        public IActionResult News()
+        {
+            return View();
+        }
+
+        [Route("contact_us")]
+        public IActionResult Contact_us()
         {
             return View();
         }
