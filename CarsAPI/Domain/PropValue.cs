@@ -1,9 +1,9 @@
-﻿namespace CarsServer.Models
+﻿namespace Domain
 {
     public class PropValue
     {
-        public int Id { get; set; }
-        public string? Value { get; set; }
+        public Guid Id { get; set; }
+        public string Value { get; set; } = string.Empty;
 
         public virtual List<Property_PropertyValue>? Property_PropertyValues { get; set; }
     }

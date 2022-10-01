@@ -1,44 +1,44 @@
 ﻿
-using CarsServer.Models;
+using Applicaton.Interfaces;
+using Domain;
 using Microsoft.EntityFrameworkCore;
+using Persistence.EntityTypeConfiguration;
 
 namespace CarsServer.Data
 {
-    public class DataContext : DbContext
+    public class DataContext : DbContext, IDataContext
     {
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
-            //Database.EnsureDeleted();   // удаляем бд со старой схемой
+            //Database.EnsureDeleted(); 
             Database.EnsureCreated();
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-           /* modelBuilder.Entity<Fridge_Product>()
-            .HasOne(f => f.Fridge)
-            .WithMany(fp => fp.Fridge_Products)
-            .HasForeignKey(fi => fi.FridgeId);
+            var dbConfiguration = new CarsDbConfiguration();
 
-            modelBuilder.Entity<Fridge_Product>()
-            .HasOne(p => p.Product)
-            .WithMany(fp => fp.Fridge_Products)
-            .HasForeignKey(pi => pi.ProductId);
+            modelBuilder.ApplyConfiguration<Car>(dbConfiguration);
+            modelBuilder.ApplyConfiguration<Car_Color>(dbConfiguration);
+            modelBuilder.ApplyConfiguration<Car_Prop_Value>(dbConfiguration);
+            modelBuilder.ApplyConfiguration<Color>(dbConfiguration);
+            modelBuilder.ApplyConfiguration<Company>(dbConfiguration);
+            modelBuilder.ApplyConfiguration<Model>(dbConfiguration);
+            modelBuilder.ApplyConfiguration<Property>(dbConfiguration);
+            modelBuilder.ApplyConfiguration<Property_PropertyValue>(dbConfiguration);
+            modelBuilder.ApplyConfiguration<PropValue>(dbConfiguration);
 
-            modelBuilder.Entity<Fridge>()
-            .HasOne(m => m.FridgeModel)
-            .WithMany(fm => fm.Fridges)
-            .HasForeignKey(fk => fk.FridgeModelId);*/
+            base.OnModelCreating(modelBuilder);
         }
 
         public DbSet<Car> Cars { get; set; }
         public DbSet<Car_Color> Car_Colors { get; set; }
         public DbSet<Car_Prop_Value> Car_Prop_Values { get; set; }
         public DbSet<Color> Colors { get; set; }
-        public DbSet<Company> Componies { get; set; }
+        public DbSet<Company> Companies { get; set; }
         public DbSet<Model> Models { get; set; }
         public DbSet<Property> Properties { get; set; }
         public DbSet<Property_PropertyValue> Property_PropertyValues { get; set; }
         public DbSet<PropValue> PropValues { get; set; }
-
     }
 }

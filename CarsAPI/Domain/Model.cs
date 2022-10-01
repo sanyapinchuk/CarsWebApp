@@ -1,12 +1,12 @@
-﻿namespace CarsServer.Models
+﻿namespace Domain
 {
     public class Model
     {
-        public int Id { get; set; }
-        public string? Name { get; set; }
+        public Guid Id { get; set; }
+        public string Name { get; set; } = String.Empty;
 
 
-        public int ComponyId { get; set; }
+        public Guid ComponyId { get; set; }
         public virtual Company? Company { get; set; }
 
         public virtual List<Car>? Cars { get; set; }
