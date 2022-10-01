@@ -10,7 +10,8 @@
         public virtual Model? Model { get; set; }
 
         public virtual List<Car_Color>? Car_Colors { get; set; }
-        public virtual List<Car_Prop_Value>? Car_Prop_Values { get; set; }
+        public virtual List<Car__Property_PropValue>? Car_Prop_Values { get; set; }
+        public virtual List<Image>? Images { get; set; }
 
     }
 }
