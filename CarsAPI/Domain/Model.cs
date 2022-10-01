@@ -9,6 +9,6 @@
         public Guid ComponyId { get; set; }
         public virtual Company? Company { get; set; }
 
-        public virtual List<Car>? Cars { get; set; }
+        public virtual Car? Car { get; set; }
     }
 }

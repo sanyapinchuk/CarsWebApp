@@ -19,7 +19,7 @@ namespace Persistence.EntityTypeConfiguration
         {
             builder.HasKey(c => c.Id);
             builder.HasIndex(c=>c.Id).IsUnique();
-            builder.HasOne(c=>c.Model).WithMany(m=>m.Cars).HasForeignKey(c=>c.ModelId);
+            
             ////
         }
 
@@ -62,6 +62,7 @@ namespace Persistence.EntityTypeConfiguration
             builder.HasIndex(m => m.Id).IsUnique();
             builder.Property(m => m.Name).HasMaxLength(100);
 
+            builder.HasOne(m => m.Car).WithOne(c => c.Model).HasForeignKey<Car>(c => c.ModelId);
             builder.HasOne(m => m.Company).WithMany(c=>c.Models).HasForeignKey(c=>c.ComponyId);
 
         }
