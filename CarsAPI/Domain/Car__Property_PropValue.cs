@@ -5,10 +5,10 @@
         public Guid Id { get; set; }
 
         public Guid CarId { get; set; }
-        public virtual Car? Car { get; set; }
+        public virtual Car Car { get; set; }
 
         public Guid Property_PropValueId { get; set; }
-        public virtual Property_PropValue? Prop_Value { get; set; }
+        public virtual Property_PropValue Property_PropValue { get; set; }
 
     }
 }

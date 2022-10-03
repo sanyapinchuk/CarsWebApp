@@ -26,7 +26,7 @@ namespace Persistence.EntityTypeConfiguration
             builder.HasKey(cc => cc.Id);
             builder.HasIndex(cc=>cc.Id).IsUnique();
 
-            builder.HasOne(cc=>cc.Car).WithMany(c=>c.Car_Colors).HasForeignKey(cc=>cc.CarId);
+            builder.HasOne(cc=>cc.Car).WithMany(c=>c.Car_Colors).HasForeignKey(cc=>cc.CarId).OnDelete(DeleteBehavior.Cascade);
             builder.HasOne(cc => cc.Color).WithMany(c => c.Car_Colors).HasForeignKey(cc => cc.ColorId);
             
         }
