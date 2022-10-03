@@ -26,7 +26,7 @@ namespace Applicaton.Cars.Queries.GetCarShortInfo
         public string TitleImagePath { get; set; } 
         public List<(string propName, string propValue)> properties { get; set; }
 
-        public async void MappingAsync(Profile profile)
+        public void Mapping(Profile profile)
         {
             profile.CreateMap<Car, CarShortInfoDto>()
                 .ForMember(carDto => carDto.Id,
