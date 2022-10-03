@@ -37,7 +37,7 @@ namespace Persistence.EntityTypeConfiguration
             builder.HasIndex(cpv => cpv.Id).IsUnique();
 
             builder.HasOne(cpv => cpv.Car).WithMany(c=>c.Car_Prop_Values).HasForeignKey(cpv => cpv.CarId);
-            builder.HasOne(cpv => cpv.Prop_Value).WithMany(c => c.Car__Property_PropValues).HasForeignKey(cpv => cpv.Property_PropValueId);
+            builder.HasOne(cpv => cpv.Property_PropValue).WithMany(c => c.Car__Property_PropValues).HasForeignKey(cpv => cpv.Property_PropValueId);
         }
 
         public void Configure(EntityTypeBuilder<Color> builder)
