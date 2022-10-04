@@ -24,6 +24,9 @@ namespace Applicaton.Cars.Queries.GetCarShortInfo
         //public int Price { get; set; }
         public string ModelName { get; set; }
         public string TitleImagePath { get; set; } 
+
+        public List<string> Colors { get; set; }
+
         public List<(string propName, string propValue)> properties { get; set; }
 
         public void Mapping(Profile profile)
@@ -69,49 +72,48 @@ namespace Applicaton.Cars.Queries.GetCarShortInfo
 
                     List<(string propName, string propValue)> listProperties = new();
 
-                    var allprop_propValue = _dataContext.Property_PropValues.ToList();
-                    var allPropeties = _dataContext.Properties.ToList();
-                    var allPropValues = _dataContext.PropValues.ToList();
-                    car__prop_propValues.ForEach(cppv =>
+
+                    var allCar__prop_propValues = _dataContext.Car__Property_PropValues
+                    .Where(cppv => cppv.CarId == src.Id)
+                    .ToList();
+                    var prop_values = from cppv in _dataContext.Car__Property_PropValues
+                               where cppv.CarId == src.Id
+                               join ppv in _dataContext.Property_PropValues
+                               on cppv.Property_PropValueId equals ppv.Id
+                               join p in _dataContext.Properties
+                               on ppv.PropertyId equals p.Id
+                               join pv in _dataContext.PropValues
+                               on ppv.PropValueId equals pv.Id
+                               where p.Name == "Запас хода" // all short info properties
+                               select new { propertyName = p.Name, propertyValue = pv.Value };
+
+                    foreach(var propValue in prop_values)
                     {
-                        //all prop_propValue for this car
-                        var prop_propValue = allprop_propValue
-                            .Where(all => all.Id == cppv.Property_PropValueId)
-                            .FirstOrDefault();
-
-                        if (prop_propValue == null)
-                            throw new DamagedEntityException(nameof(Car__Property_PropValue),
-                                "Property_PropValue",
-                                cppv.Property_PropValueId);
-
-                        var property = allPropeties
-                        .Where(all => all.Id == prop_propValue.PropertyId)
-                        .FirstOrDefault();
-
-                        if (property == null)
-                            throw new DamagedEntityException(nameof(Property_PropValue),
-                                "Property",
-                                prop_propValue.PropertyId);
-
-                        var propValue = allPropValues
-                        .Where(all => all.Id == prop_propValue.PropValueId)
-                        .FirstOrDefault();
-
-                        if (propValue == null)
-                            throw new DamagedEntityException(nameof(Property_PropValue),
-                                "Value",
-                                prop_propValue.PropertyId);
-
-                        listProperties.Add(new()
-                        {
-                            propName = property.Name,
-                            propValue = propValue.Value
-                        });
-
-                    });
-
+                        listProperties.Add((propValue.propertyName, propValue.propertyValue));
+                    }
                     return listProperties;
-                }));
+                }))
+                .ForMember(carDto => carDto.Colors,
+                mem => mem.MapFrom((src, dst) =>
+                  {
+                      var car_colors = _dataContext.Car_Colors
+                      .Where(cc => cc.CarId == src.Id)
+                      .ToList();
+                      var allColors = _dataContext.Colors.ToList();
+                      List<string> colorsResult = new();
+                      car_colors.ForEach(cc =>
+                      {
+                          var color = allColors.FirstOrDefault(all => all.Id == cc.ColorId);
+                          if (color == null)
+                              throw new DamagedEntityException(nameof(Car_Color),
+                                  "Color",
+                                  cc.ColorId);
+
+                          colorsResult.Add(color.Name);
+                      });
+
+                      return colorsResult;
+                  }));
         }
 
     }
