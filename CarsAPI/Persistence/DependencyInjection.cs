@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
-using CarsServer.Data;
+using Persistence.Data;
 using Applicaton.Interfaces;
 
 namespace Persistence
@@ -18,6 +18,7 @@ namespace Persistence
                 options.UseSqlServer(connectionString);
                 //options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
             });
+
 
             services.AddScoped<IDataContext>(provider =>
                 provider.GetService<DataContext>());

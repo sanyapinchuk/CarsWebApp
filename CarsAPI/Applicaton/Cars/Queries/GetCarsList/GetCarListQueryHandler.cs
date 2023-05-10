@@ -9,22 +9,24 @@ using Applicaton.Interfaces;
 namespace Applicaton.Cars.Queries.GetCarsList
 {
     public class GetCarListQueryHandler
-        : IRequestHandler<GetCarListQuery, CarListDto>
+        : IRequestHandler<GetCarListQuery, CarListVm>
     {
         private readonly IMapper _mapper;
-        private readonly IDataContext _dataContext;
-        public GetCarListQueryHandler(IDataContext dataContext, IMapper mapper)
+        private readonly IRepositoryManager _repositoryManager;
+
+        public GetCarListQueryHandler(IRepositoryManager repositoryManager, IMapper mapper)
         {
             _mapper = mapper;
-            _dataContext = dataContext;
+            
+            _repositoryManager = repositoryManager;
         }
-        public async Task<CarListDto> Handle(GetCarListQuery request, 
+        public async Task<CarListVm> Handle(GetCarListQuery request,
             CancellationToken cancellationToken)
         {
-            var cars = await _dataContext.Cars
-                .ProjectTo<CarLookupVm>(_mapper.ConfigurationProvider)
-                .ToListAsync(cancellationToken);
-            return new CarListDto() { Cars = cars };
+            var cars = (await _repositoryManager.CarRepository.GetAllCarsAsync()).AsQueryable()
+                .ProjectTo<CarListDto>(_mapper.ConfigurationProvider, new { repositoryManager  = _repositoryManager})
+                .ToList();
+            return new CarListVm() { Cars = cars };
         }
     }
 }

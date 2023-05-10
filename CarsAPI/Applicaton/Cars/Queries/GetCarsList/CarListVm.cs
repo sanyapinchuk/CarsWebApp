@@ -1,5 +1,4 @@
-﻿ using MediatR;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Applicaton.Cars.Queries.GetCarsList
 {
-    public class GetCarListQuery:IRequest<CarListVm>
+    public class CarListVm
     {
-        public Guid UserId { get; set; }
+        public IList<CarListDto> Cars { get; set; }
     }
 }

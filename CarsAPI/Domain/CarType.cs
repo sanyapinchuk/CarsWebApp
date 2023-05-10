@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MediatR;
 
-namespace Applicaton.Cars.Queries.GetCarShortInfo
+namespace Domain
 {
-    public class GetCarShortInfoQuery : IRequest<CarShortInfoDto>
+    public class CarType
     {
         public Guid Id { get; set; }
+        public string Name { get; set; } = String.Empty;
+
+        public virtual List<Model>? Models { get; set; }
     }
 }

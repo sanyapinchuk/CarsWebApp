@@ -12,20 +12,16 @@ namespace Applicaton.Cars.Commands.DeleteCar
 {
     public class DeleteCarCommandHadnler : IRequestHandler<DeleteCarCommand>
     {
-        private readonly IDataContext _dataContext;
-        public DeleteCarCommandHadnler(IDataContext dataContext)
+        private readonly IRepositoryManager _repositoryManager;
+
+        public DeleteCarCommandHadnler(IDataContext dataContext, IRepositoryManager repositoryManager)
         {
-            this._dataContext = dataContext;
+            _repositoryManager = repositoryManager;
         }
-        public async Task<Unit> Handle(DeleteCarCommand request, 
+        public async Task<Unit> Handle(DeleteCarCommand request,
             CancellationToken cancellationToken)
         {
-            var entity = await _dataContext.Cars.FindAsync(new Car() { Id = request.Id });
-            if (entity == null)
-                throw new EntityNotFoundException(nameof(Car),request.Id);
-
-            _dataContext.Cars.Remove(entity);
-            await _dataContext.SaveChangesAsync(cancellationToken);
+            await _repositoryManager.CarRepository.Delete(request.Id);
 
             return Unit.Value;
         }

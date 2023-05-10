@@ -5,6 +5,10 @@
         public Guid Id { get; set; }
         public string Value { get; set; } = string.Empty;
 
-        public virtual List<Property_PropValue>? Property_PropertyValues { get; set; }
+
+        public Guid PropertyId { get; set; }
+        public Property? Property { get; set; }
+
+        public virtual List<Car_PropValue>? Car_PropValues { get; set; }
     }
 }

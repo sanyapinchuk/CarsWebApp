@@ -1,4 +1,5 @@
-﻿using Applicaton.Common.Exceptions;
+﻿using Applicaton.Cars.Queries.GetCarsList;
+using Applicaton.Common.Exceptions;
 using Applicaton.Common.Mappings;
 using Applicaton.Interfaces;
 using AutoMapper;
@@ -13,102 +14,103 @@ using System.Threading.Tasks;
 
 namespace Applicaton.Cars.Queries.GetCarFullInfo
 {
-    public class CarFullInfoDto:IMapWith<Car>
+    public class CarFullInfoDto : IMapWith<Car>
     {
-        private readonly IDataContext _dataContext;
-        public CarFullInfoDto(IDataContext dataContext)
-        {
-            _dataContext = dataContext;
-        }
-        public Guid Id { get; set; }
-        //public int Price { get; set; }
-        public string ModelName { get; set; }
-        public List<string> PathImages{ get; set; } 
-        public List<(string propName, string propValue)> properties { get; set; }
+        private readonly IRepositoryManager repositoryManager;
 
+        public CarFullInfoDto(IRepositoryManager repositoryManager)
+        {
+            this.repositoryManager = repositoryManager;
+        }
+
+        public Guid Id;
+        public int Price { get; set; }
+        public string ModelName { get; set; }
+        public string CarType { get; set; }
+        public int ProductionYear { get; set; }
+        public string CompanyName { get; set; }
+        public string Color { get; set; }
+        public List<(string propertyName, bool isKeyProperty, string value)> Properties { get; set; }
+        public List<(string path, bool isMainImage)> Images { get; set; }
         public void Mapping(Profile profile)
         {
+            IRepositoryManager repositoryManager = null;
+
             profile.CreateMap<Car, CarFullInfoDto>()
+                .ConstructUsing(m => new CarFullInfoDto(repositoryManager))
                 .ForMember(carDto => carDto.Id,
                 mem => mem.MapFrom(car => car.Id))
-                .ForMember(carDto => carDto.ModelName,
-                mem => mem.MapFrom((src, dst) =>
+                .ForMember(carDto => carDto.Price,
+                mem => mem.MapFrom(car => car.Price))
+                .ForMember(carDto => carDto.ProductionYear,
+                mem => mem.MapFrom(car => car.ProductionYear))
+                .ForMember(carDto => carDto.CarType,
+                mem => mem.MapFrom(async (src, dst) =>
                 {
-                    var modelName = _dataContext.Models.Where(m => m.Id == src.ModelId)
-                                     .FirstOrDefault();
+                    var model = await repositoryManager.ModelRepository.GetByCondition(m => m.Id == src.ModelId);
+
+                    if (model == null)
+                        throw new DamagedEntityException(nameof(Car), "Model", new object());
+
+                    return model.CarType.Name;
+                }))
+                .ForMember(carDto => carDto.ModelName,
+                mem => mem.MapFrom(async (src, dst) =>
+                {
+                    var modelName = (await repositoryManager.ModelRepository.GetByCondition(m => m.Id == src.ModelId)).Name;
+
                     if (modelName == null)
                         throw new DamagedEntityException(nameof(Car), "Model", new object());
 
-                    return modelName.Name;
+                    return modelName;
                 }))
-                .ForMember(carDto => carDto.PathImages,
-                mem => mem.MapFrom((src, dst) =>
+                .ForMember(carDto => carDto.CompanyName,
+                mem => mem.MapFrom(async (src, dst) =>
                 {
-                    var images = _dataContext.Images
-                    .Where(i => i.CarId == src.Id)
-                    .ToList();
+                    var model = await repositoryManager.ModelRepository.GetByCondition(c => c.Id == src.ModelId);
 
-                    if (images == null)
-                        throw new DamagedEntityException(nameof(Car), "Image", src.Id);
-                    var resultList = new List<string>();
-                    foreach (var image in images)
-                        resultList.Add(image.Path);
+                    if (model == null)
+                        throw new DamagedEntityException(nameof(Car), "Model", new object());
+                    var companyName = model.Company.Name;
 
-                    return resultList;
+                    return companyName;
                 }))
-                .ForMember(carDto => carDto.properties,
-                mem => mem.MapFrom((src, dst) =>
+                .ForMember(carDto => carDto.Images,
+                mem => mem.MapFrom(async (src, dst) =>
                 {
-                    var car__prop_propValues = _dataContext.Car__Property_PropValues
-                        .Where(cppv => cppv.CarId == src.Id).ToList();
+                    var car_images = (await repositoryManager.CarImageRepository
+                      .GetAllByCondition(ci => ci.IsMainImage && ci.CarId == src.Id));
 
-                    if (car__prop_propValues == null)
+                    var imageList = new List<(string path, bool isMainImage)>();
+                    foreach(var c_i in car_images)
+                    {
+                        imageList.Add((c_i.Image.Path, c_i.IsMainImage));
+                    }
+                }))
+                .ForMember(carDto => carDto.Properties,
+                mem => mem.MapFrom(async (src, dst) =>
+                {
+                    var car_propValues = await repositoryManager.CarPropValueRepository
+                        .GetAllByCondition(cpv => cpv.CarId == src.Id);
+                    if (car_propValues == null)
                         throw new DamagedEntityException(nameof(Car), "Properties", src.Id);
 
-                    List<(string propName, string propValue)> listProperties = new();
+                    List<(string propName, bool isKeyProperty, string propValue)> listProperties = new();
 
-                    var allprop_propValue = _dataContext.Property_PropValues.ToList();
-                    var allPropeties = _dataContext.Properties.ToList();
-                    var allPropValues = _dataContext.PropValues.ToList();
-                    car__prop_propValues.ForEach(cppv =>
+                    foreach (var car_propValue in car_propValues)
                     {
-                        //all prop_propValue for this car
-                        var prop_propValue = allprop_propValue
-                            .Where(all => all.Id == cppv.Property_PropValueId)
-                            .FirstOrDefault();
-
-                        if (prop_propValue == null)
-                            throw new DamagedEntityException(nameof(Car__Property_PropValue),
-                                "Property_PropValue",
-                                cppv.Property_PropValueId);
-
-                        var property = allPropeties
-                        .Where(all => all.Id == prop_propValue.PropertyId)
-                        .FirstOrDefault();
-
-                        if (property == null)
-                            throw new DamagedEntityException(nameof(Property_PropValue),
-                                "Property",
-                                prop_propValue.PropertyId);
-
-                        var propValue = allPropValues
-                        .Where(all => all.Id == prop_propValue.PropValueId)
-                        .FirstOrDefault();
-
-                        if (propValue == null)
-                            throw new DamagedEntityException(nameof(Property_PropValue),
-                                "Value",
-                                prop_propValue.PropertyId);
-
-                        listProperties.Add(new()
-                        {
-                            propName = property.Name,
-                            propValue = propValue.Value
-                        });
-
-                    });
+                        var value = car_propValue.PropValue.Value;
+                        var property = car_propValue.PropValue.Property;
+                        listProperties.Add((property.Name, property.IsKeyProperty, value));
+                    }
 
                     return listProperties;
+                }))
+                .ForMember(carDto => carDto.Color,
+                mem => mem.MapFrom(async (src, dst) =>
+                {
+                    var color = (await repositoryManager.ColorRepository.GetByCondition(c => c.Id == src.ColorId)).Name;
+                    return color;
                 }));
         }
 

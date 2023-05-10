@@ -11,7 +11,6 @@ namespace Domain
         public Guid Id { get; set; }
         public String Path { get; set; } = String.Empty;
 
-        public Guid CarId { get; set; }
-        public virtual Car? Car { get; set; }
+        public virtual List<Car_Image>? Car_Images { get; set; }
     }
 }

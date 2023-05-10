@@ -4,7 +4,7 @@ using Domain;
 using Microsoft.EntityFrameworkCore;
 using Persistence.EntityTypeConfiguration;
 
-namespace CarsServer.Data
+namespace Persistence.Data
 {
     public class DataContext : DbContext, IDataContext
     {

@@ -2,11 +2,100 @@
 using Domain;
 using Applicaton.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using AutoMapper;
+using Shared.Dto;
+using System.ComponentModel.Design;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Applicaton.Cars.Commands.CreateCar
 {
     public class CreateCarCommandHandler : IRequestHandler<CreateCarCommand, Guid>
     {
+
+
+        private readonly IRepositoryManager _repositoryManager;
+        private readonly IMapper _mapper;
+
+        public CreateCarCommandHandler(IRepositoryManager repositoryManager, IMapper mapper)
+        {
+            _repositoryManager = repositoryManager;
+            _mapper = mapper;
+        }
+
+        public async Task<Guid> Handle(CreateCarCommand request, CancellationToken cancellationToken)
+        {
+            var car = new Car()
+            {
+                Id = new Guid(),
+                Price = request.CreateCarDto.Price,
+                ProductionYear = request.CreateCarDto.ProductionYear,
+            };
+            //set model
+            var modelId = (await _repositoryManager.ModelRepository.GetByCondition(m => m.Name == request.CreateCarDto.ModelName))?.Id;
+            if(modelId == null || modelId == Guid.Empty)
+            {
+                var carTypeId = (await _repositoryManager.CarTypeRepository.GetByCondition(ct => ct.Name == request.CreateCarDto.CarType))?.Id;
+                if(carTypeId == null || carTypeId == Guid.Empty)
+                {
+                    carTypeId = await _repositoryManager.CarTypeRepository.Create(request.CreateCarDto.CarType);
+                }
+                var companyId = (await _repositoryManager.CompanyRepository.GetByCondition(c=>c.Name==request.CreateCarDto.CompanyName))?.Id;
+                if (companyId == null || companyId == Guid.Empty)
+                {
+                    companyId = await _repositoryManager.CompanyRepository.Create(request.CreateCarDto.CompanyName);
+                }
+
+                modelId = await _repositoryManager.ModelRepository.Create(request.CreateCarDto.ModelName, (Guid)companyId, (Guid)carTypeId);
+            }
+            car.ModelId = (Guid)modelId;
+
+            //set images
+            foreach (var image in request.CreateCarDto.Images)
+            {
+                var imageId = (await _repositoryManager.ImageRepository.GetByCondition(i => i.Path == image.Item1))?.Id;
+                if (imageId == null || imageId == Guid.Empty)
+                {
+                    imageId = await _repositoryManager.ImageRepository.Create(image.path);
+                }
+                await _repositoryManager.CarImageRepository.Create(car.Id, (Guid)imageId, image.isMainImage);
+            }
+
+            //set properties
+
+            foreach (var props in request.CreateCarDto.Properties)
+            {
+                var propertyId = (await _repositoryManager.PropertyRepository.GetByCondition(p=> p.Name== props.propertyName))?.Id;
+                if (propertyId == null || propertyId == Guid.Empty)
+                {
+                    propertyId = await _repositoryManager.PropertyRepository.Create(props.propertyName, props.isKeyProperty);
+                }
+                var valueId = (await _repositoryManager.PropValueRepository.GetByCondition(p => p.Value == props.value))?.Id;
+                if (valueId == null || valueId == Guid.Empty)
+                {
+                    valueId = await _repositoryManager.PropValueRepository.Create(props.value, (Guid)propertyId);
+                }
+
+                await _repositoryManager.CarPropValueRepository.Create(car.Id, (Guid)valueId);
+            }
+
+            //set color
+
+            var colorId = (await _repositoryManager.ColorRepository.GetByCondition(c=>c.Name == request.CreateCarDto.Color))?.Id;
+            if (colorId == null || colorId == Guid.Empty)
+            {
+                colorId = await _repositoryManager.ColorRepository.Create(request.CreateCarDto.Color);
+            }
+            car.ColorId = (Guid)colorId;
+
+            await _repositoryManager.SaveAsync();
+            return car.Id;
+        }
+
+
+        /*
+
+
+
         private readonly IDataContext _dataContext;
 
         public CreateCarCommandHandler(IDataContext dataContext)
@@ -123,6 +212,6 @@ namespace Applicaton.Cars.Commands.CreateCar
 
             await _dataContext.SaveChangesAsync(cancellationToken);
             return car.Id;
-        }
+        }*/
     }
 }

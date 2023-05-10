@@ -4,14 +4,17 @@
     {
         public Guid Id { get; set; }        
         public int Price { get; set; }
-
+        public int ProductionYear { get; set; }
 
         public Guid ModelId { get; set; }
         public virtual Model? Model { get; set; }
 
-        public virtual List<Car_Color>? Car_Colors { get; set; }
-        public virtual List<Car__Property_PropValue>? Car_Prop_Values { get; set; }
-        public virtual List<Image>? Images { get; set; }
+        public Guid ColorId { get; set; }
+        public virtual Color? Color { get; set; }
+
+
+        public virtual List<Car_PropValue>? Car_PropValues { get; set; }
+        public virtual List<Car_Image>? Car_Images { get; set; }
 
     }
 }
