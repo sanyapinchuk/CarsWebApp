@@ -16,13 +16,6 @@ namespace Applicaton.Cars.Queries.GetCarFullInfo
 {
     public class CarFullInfoDto : IMapWith<Car>
     {
-        private readonly IRepositoryManager repositoryManager;
-
-        public CarFullInfoDto(IRepositoryManager repositoryManager)
-        {
-            this.repositoryManager = repositoryManager;
-        }
-
         public Guid Id;
         public int Price { get; set; }
         public string ModelName { get; set; }
@@ -32,12 +25,9 @@ namespace Applicaton.Cars.Queries.GetCarFullInfo
         public string Color { get; set; }
         public List<(string propertyName, bool isKeyProperty, string value)> Properties { get; set; }
         public List<(string path, bool isMainImage)> Images { get; set; }
-        public void Mapping(Profile profile)
+        public void Mapping(Profile profile, IRepositoryManager repositoryManager)
         {
-            IRepositoryManager repositoryManager = null;
-
             profile.CreateMap<Car, CarFullInfoDto>()
-                .ConstructUsing(m => new CarFullInfoDto(repositoryManager))
                 .ForMember(carDto => carDto.Id,
                 mem => mem.MapFrom(car => car.Id))
                 .ForMember(carDto => carDto.Price,
@@ -50,7 +40,7 @@ namespace Applicaton.Cars.Queries.GetCarFullInfo
                     var model = await repositoryManager.ModelRepository.GetByCondition(m => m.Id == src.ModelId);
 
                     if (model == null)
-                        throw new DamagedEntityException(nameof(Car), "Model", new object());
+                        throw new DamagedEntityException(nameof(Car), "CarType", new object());
 
                     return model.CarType.Name;
                 }))
@@ -70,7 +60,7 @@ namespace Applicaton.Cars.Queries.GetCarFullInfo
                     var model = await repositoryManager.ModelRepository.GetByCondition(c => c.Id == src.ModelId);
 
                     if (model == null)
-                        throw new DamagedEntityException(nameof(Car), "Model", new object());
+                        throw new DamagedEntityException(nameof(Car), "Company", new object());
                     var companyName = model.Company.Name;
 
                     return companyName;

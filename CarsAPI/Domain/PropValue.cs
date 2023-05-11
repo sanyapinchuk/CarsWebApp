@@ -1,8 +1,7 @@
 ﻿namespace Domain
 {
-    public class PropValue
+    public class PropValue : BaseEntity
     {
-        public Guid Id { get; set; }
         public string Value { get; set; } = string.Empty;
 
 

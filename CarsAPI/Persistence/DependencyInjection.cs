@@ -15,10 +15,11 @@ namespace Persistence
             services.AddDbContext<DataContext>(options =>
             {
                 //options.UseSqlite(connectionString);
+                options.UseLazyLoadingProxies();
                 options.UseSqlServer(connectionString);
                 //options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
             });
-
+            services.AddSingleton(IRepositoryManager, )
 
             services.AddScoped<IDataContext>(provider =>
                 provider.GetService<DataContext>());

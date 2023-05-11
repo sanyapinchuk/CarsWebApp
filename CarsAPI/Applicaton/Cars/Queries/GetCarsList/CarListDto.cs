@@ -9,7 +9,6 @@ namespace Applicaton.Cars.Queries.GetCarsList
 {
     public class CarListDto : IMapWith<Car>
     {
-        private readonly IRepositoryManager repositoryManager;
         public Guid Id { get; set; }
         public int Price { get; set; }
         public string ModelName { get; set; }
@@ -18,16 +17,9 @@ namespace Applicaton.Cars.Queries.GetCarsList
         public string Color { get; set; }
         public List<(string propertyName, string value)> Properties { get; set; }
 
-        public CarListDto(IRepositoryManager repositoryManager)
+        public async void Mapping(Profile profile, IRepositoryManager repositoryManager)
         {
-            this.repositoryManager = repositoryManager;
-        }
-        public async void Mapping(Profile profile)
-        {
-            IRepositoryManager repositoryManager = null;
-
             profile.CreateMap<Car, CarListDto>()
-                .ConstructUsing(m=> new CarListDto(repositoryManager))
                 .ForMember(carDto => carDto.Id,
                 mem => mem.MapFrom(car => car.Id))
                 .ForMember(carDto => carDto.Price,
@@ -48,7 +40,7 @@ namespace Applicaton.Cars.Queries.GetCarsList
                     var model = await repositoryManager.ModelRepository.GetByCondition(c => c.Id == src.ModelId);
 
                     if (model == null)
-                        throw new DamagedEntityException(nameof(Car), "Model", new object());
+                        throw new DamagedEntityException(nameof(Car), "Company", new object());
                     var companyName = model.Company.Name;
 
                     return companyName;

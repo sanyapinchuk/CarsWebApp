@@ -1,8 +1,7 @@
 ﻿namespace Domain
 {
-    public class Car
-    {
-        public Guid Id { get; set; }        
+    public class Car: BaseEntity
+    {     
         public int Price { get; set; }
         public int ProductionYear { get; set; }
 

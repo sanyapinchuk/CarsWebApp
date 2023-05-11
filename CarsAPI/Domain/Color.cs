@@ -1,8 +1,7 @@
 ﻿namespace Domain
 {
-    public class Color
+    public class Color : BaseEntity
     {
-        public Guid Id { get; set; }
         public string Name { get; set; } = String.Empty;
 
         public virtual List<Car>? Cars { get; set; }

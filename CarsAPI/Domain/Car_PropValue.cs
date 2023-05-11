@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace Domain
 {
-    public class Car_PropValue
+    public class Car_PropValue: BaseEntity
     {
-        public Guid Id { get; set; }
-
         public Guid CarId { get; set; }
         public Car? Car { get; set; }
 

@@ -22,7 +22,7 @@ namespace Applicaton.Cars.Commands.DeleteCar
             CancellationToken cancellationToken)
         {
             await _repositoryManager.CarRepository.Delete(request.Id);
-
+            await _repositoryManager.SaveAsync();
             return Unit.Value;
         }
     }

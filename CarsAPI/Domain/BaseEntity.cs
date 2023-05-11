@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace Domain
 {
-    public class CarType: BaseEntity
+    public class BaseEntity
     {
-        public string Name { get; set; } = String.Empty;
-
-        public virtual List<Model>? Models { get; set; }
+        public Guid Id { get; set; } = Guid.NewGuid();
     }
 }

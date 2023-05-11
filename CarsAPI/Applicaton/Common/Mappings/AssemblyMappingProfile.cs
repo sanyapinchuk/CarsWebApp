@@ -6,10 +6,11 @@ namespace Applicaton.Common.Mappings
 {
     public class AssemblyMappingProfile: Profile
     {
-        //private readonly IDataContext _dataContext;
-        public AssemblyMappingProfile(Assembly assembly)
+        private readonly IRepositoryManager _repositoryManager;
+        public AssemblyMappingProfile(Assembly assembly, IRepositoryManager repositoryManager)
         {
             ApplyMappingsAssembly(assembly);
+            _repositoryManager = repositoryManager;
         }
         private void ApplyMappingsAssembly(Assembly assembly)
         {
@@ -22,7 +23,7 @@ namespace Applicaton.Common.Mappings
             {
                 var instance = Activator.CreateInstance(type);
                 var methodInfo = type.GetMethod("Mappping");
-               methodInfo?.Invoke(instance, new object[] {this});
+               methodInfo?.Invoke(instance, new object[] {this, _repositoryManager});
             }
         }
         

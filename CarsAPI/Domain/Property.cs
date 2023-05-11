@@ -1,8 +1,7 @@
 ﻿namespace Domain
 {
-    public class Property
+    public class Property: BaseEntity
     {
-        public Guid Id { get; set; }
         public string Name { get; set; }= String.Empty;
         public bool IsKeyProperty { get; set; }
 

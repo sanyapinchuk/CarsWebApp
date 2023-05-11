@@ -1,8 +1,7 @@
 ﻿namespace Domain
 {
-    public class Model
+    public class Model: BaseEntity
     {
-        public Guid Id { get; set; }
         public string Name { get; set; } = String.Empty;
 
         public Guid CompanyId { get; set; }

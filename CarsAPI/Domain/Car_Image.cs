@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace Domain
 {
-    public class Car_Image
+    public class Car_Image: BaseEntity
     {
-        public Guid Id { get; set; }
         public bool IsMainImage { get; set; }
 
         public Guid ImageId { get; set; }

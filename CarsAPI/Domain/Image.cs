@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace Domain
 {
-    public class Image
+    public class Image: BaseEntity
     {
-        public Guid Id { get; set; }
         public String Path { get; set; } = String.Empty;
 
         public virtual List<Car_Image>? Car_Images { get; set; }

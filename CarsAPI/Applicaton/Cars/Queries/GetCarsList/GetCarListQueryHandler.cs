@@ -24,7 +24,7 @@ namespace Applicaton.Cars.Queries.GetCarsList
             CancellationToken cancellationToken)
         {
             var cars = (await _repositoryManager.CarRepository.GetAllCarsAsync()).AsQueryable()
-                .ProjectTo<CarListDto>(_mapper.ConfigurationProvider, new { repositoryManager  = _repositoryManager})
+                .ProjectTo<CarListDto>(_mapper.ConfigurationProvider)
                 .ToList();
             return new CarListVm() { Cars = cars };
         }
