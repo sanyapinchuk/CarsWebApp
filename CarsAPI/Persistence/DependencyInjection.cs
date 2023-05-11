@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using Persistence.Data;
 using Applicaton.Interfaces;
+using Persistence.Repository;
 
 namespace Persistence
 {
@@ -19,7 +20,8 @@ namespace Persistence
                 options.UseSqlServer(connectionString);
                 //options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
             });
-            services.AddSingleton(IRepositoryManager, )
+            services.AddSingleton<IRepositoryManager>(provider =>
+            provider.GetService<RepositoryManager>());
 
             services.AddScoped<IDataContext>(provider =>
                 provider.GetService<DataContext>());
