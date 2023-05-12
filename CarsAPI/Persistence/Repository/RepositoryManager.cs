@@ -27,7 +27,6 @@ namespace Persistence.Repository
         {
             _dataContext= dataContext;
         }
-        public RepositoryManager(IDataContext dataContext) { }
         public ICarImageRepository CarImageRepository
         {
             get
@@ -119,9 +118,9 @@ namespace Persistence.Repository
                 return colorRepository;
             }
         }
-        public Task SaveAsync()
+        public async Task SaveAsync()
         {
-            throw new NotImplementedException();
+           await _dataContext.SaveChangesAsync();
         }
     }
 }

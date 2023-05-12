@@ -9,9 +9,9 @@ namespace Domain
     public class Car_PropValue: BaseEntity
     {
         public Guid CarId { get; set; }
-        public Car? Car { get; set; }
+        public virtual Car? Car { get; set; }
 
         public Guid PropValueId { get; set; }
-        public PropValue? PropValue { get; set; }
+        public virtual PropValue? PropValue { get; set; }
     }
 }

@@ -49,43 +49,46 @@ namespace Applicaton.Cars.Commands.CreateCar
             }
             car.ModelId = (Guid)modelId;
 
+            //set color
+            var colorId = (await _repositoryManager.ColorRepository.GetByCondition(c => c.Name == request.CreateCarDto.Color))?.Id;
+            if (colorId == null || colorId == Guid.Empty)
+            {
+                colorId = await _repositoryManager.ColorRepository.Create(request.CreateCarDto.Color);
+            }
+            car.ColorId = (Guid)colorId;
+
+
+            await _repositoryManager.CarRepository.Create(car);
+
+
             //set images
             foreach (var image in request.CreateCarDto.Images)
             {
-                var imageId = (await _repositoryManager.ImageRepository.GetByCondition(i => i.Path == image.Item1))?.Id;
+                var imageId = (await _repositoryManager.ImageRepository.GetByCondition(i => i.Path == image.Path))?.Id;
                 if (imageId == null || imageId == Guid.Empty)
                 {
-                    imageId = await _repositoryManager.ImageRepository.Create(image.path);
+                    imageId = await _repositoryManager.ImageRepository.Create(image.Path);
                 }
-                await _repositoryManager.CarImageRepository.Create(car.Id, (Guid)imageId, image.isMainImage);
+                await _repositoryManager.CarImageRepository.Create(car.Id, (Guid)imageId, image.IsMainImage);
             }
 
             //set properties
 
             foreach (var props in request.CreateCarDto.Properties)
             {
-                var propertyId = (await _repositoryManager.PropertyRepository.GetByCondition(p=> p.Name== props.propertyName))?.Id;
+                var propertyId = (await _repositoryManager.PropertyRepository.GetByCondition(p => p.Name == props.Property))?.Id;
                 if (propertyId == null || propertyId == Guid.Empty)
                 {
-                    propertyId = await _repositoryManager.PropertyRepository.Create(props.propertyName, props.isKeyProperty);
+                    propertyId = await _repositoryManager.PropertyRepository.Create(props.Property, props.IsKeyProperty);
                 }
-                var valueId = (await _repositoryManager.PropValueRepository.GetByCondition(p => p.Value == props.value))?.Id;
+                var valueId = (await _repositoryManager.PropValueRepository.GetByCondition(p => p.Value == props.Value))?.Id;
                 if (valueId == null || valueId == Guid.Empty)
                 {
-                    valueId = await _repositoryManager.PropValueRepository.Create(props.value, (Guid)propertyId);
+                    valueId = await _repositoryManager.PropValueRepository.Create(props.Value, (Guid)propertyId);
                 }
 
                 await _repositoryManager.CarPropValueRepository.Create(car.Id, (Guid)valueId);
             }
-
-            //set color
-
-            var colorId = (await _repositoryManager.ColorRepository.GetByCondition(c=>c.Name == request.CreateCarDto.Color))?.Id;
-            if (colorId == null || colorId == Guid.Empty)
-            {
-                colorId = await _repositoryManager.ColorRepository.Create(request.CreateCarDto.Color);
-            }
-            car.ColorId = (Guid)colorId;
 
             await _repositoryManager.SaveAsync();
             return car.Id;
@@ -108,7 +111,7 @@ namespace Applicaton.Cars.Commands.CreateCar
             .Where(m => m.Name == request.ModelName)
             .FirstOrDefault());
 
-            //create new model
+            //create new modelW
             if(model== null)
             {
                 var company = await  _dataContext.Companies

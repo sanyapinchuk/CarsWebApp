@@ -20,12 +20,15 @@ namespace Persistence
                 options.UseSqlServer(connectionString);
                 //options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
             });
-            services.AddSingleton<IRepositoryManager>(provider =>
+            /*services.AddSingleton<IRepositoryManager>(provider =>
             provider.GetService<RepositoryManager>());
 
-            services.AddScoped<IDataContext>(provider =>
+            services.AddSingleton<IDataContext>(provider =>
                 provider.GetService<DataContext>());
+            */
 
+            services.AddSingleton<IDataContext, DataContext>();
+            services.AddSingleton<IRepositoryManager, RepositoryManager>();
             return services;
         }
     }

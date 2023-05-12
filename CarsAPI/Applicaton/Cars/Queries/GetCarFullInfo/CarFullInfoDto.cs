@@ -5,6 +5,7 @@ using Applicaton.Interfaces;
 using AutoMapper;
 using Domain;
 using Microsoft.EntityFrameworkCore;
+using Shared.Dto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,15 +17,15 @@ namespace Applicaton.Cars.Queries.GetCarFullInfo
 {
     public class CarFullInfoDto : IMapWith<Car>
     {
-        public Guid Id;
+        public Guid Id { get; set; }
         public int Price { get; set; }
         public string ModelName { get; set; }
         public string CarType { get; set; }
         public int ProductionYear { get; set; }
         public string CompanyName { get; set; }
         public string Color { get; set; }
-        public List<(string propertyName, bool isKeyProperty, string value)> Properties { get; set; }
-        public List<(string path, bool isMainImage)> Images { get; set; }
+        public List<FullPropertyDto> Properties { get; set; }
+        public List<ImageInfoDto> Images { get; set; }
         public void Mapping(Profile profile, IRepositoryManager repositoryManager)
         {
             profile.CreateMap<Car, CarFullInfoDto>()
@@ -32,76 +33,34 @@ namespace Applicaton.Cars.Queries.GetCarFullInfo
                 mem => mem.MapFrom(car => car.Id))
                 .ForMember(carDto => carDto.Price,
                 mem => mem.MapFrom(car => car.Price))
-                .ForMember(carDto => carDto.ProductionYear,
+                .ForMember(car => car.ProductionYear,
                 mem => mem.MapFrom(car => car.ProductionYear))
                 .ForMember(carDto => carDto.CarType,
-                mem => mem.MapFrom(async (src, dst) =>
-                {
-                    var model = await repositoryManager.ModelRepository.GetByCondition(m => m.Id == src.ModelId);
-
-                    if (model == null)
-                        throw new DamagedEntityException(nameof(Car), "CarType", new object());
-
-                    return model.CarType.Name;
-                }))
+                mem => mem.MapFrom(car => car.Model.CarType.Name))
                 .ForMember(carDto => carDto.ModelName,
-                mem => mem.MapFrom(async (src, dst) =>
-                {
-                    var modelName = (await repositoryManager.ModelRepository.GetByCondition(m => m.Id == src.ModelId)).Name;
-
-                    if (modelName == null)
-                        throw new DamagedEntityException(nameof(Car), "Model", new object());
-
-                    return modelName;
-                }))
+                mem => mem.MapFrom(car => car.Model.Name))
                 .ForMember(carDto => carDto.CompanyName,
-                mem => mem.MapFrom(async (src, dst) =>
-                {
-                    var model = await repositoryManager.ModelRepository.GetByCondition(c => c.Id == src.ModelId);
-
-                    if (model == null)
-                        throw new DamagedEntityException(nameof(Car), "Company", new object());
-                    var companyName = model.Company.Name;
-
-                    return companyName;
-                }))
+                mem => mem.MapFrom(car => car.Model.Company.Name))
                 .ForMember(carDto => carDto.Images,
-                mem => mem.MapFrom(async (src, dst) =>
-                {
-                    var car_images = (await repositoryManager.CarImageRepository
-                      .GetAllByCondition(ci => ci.IsMainImage && ci.CarId == src.Id));
-
-                    var imageList = new List<(string path, bool isMainImage)>();
-                    foreach(var c_i in car_images)
+                mem => mem.MapFrom(src => src.Car_Images
+                    .Select<Car_Image, ImageInfoDto>(ci=>
+                    new ImageInfoDto()
                     {
-                        imageList.Add((c_i.Image.Path, c_i.IsMainImage));
-                    }
-                }))
+                        IsMainImage = ci.IsMainImage,
+                        Path = ci.Image.Path
+                    })))
                 .ForMember(carDto => carDto.Properties,
-                mem => mem.MapFrom(async (src, dst) =>
-                {
-                    var car_propValues = await repositoryManager.CarPropValueRepository
-                        .GetAllByCondition(cpv => cpv.CarId == src.Id);
-                    if (car_propValues == null)
-                        throw new DamagedEntityException(nameof(Car), "Properties", src.Id);
-
-                    List<(string propName, bool isKeyProperty, string propValue)> listProperties = new();
-
-                    foreach (var car_propValue in car_propValues)
+                mem => mem.MapFrom(src => src.Car_PropValues
+                .Select<Car_PropValue, FullPropertyDto>(cpv =>
+                    new FullPropertyDto()
                     {
-                        var value = car_propValue.PropValue.Value;
-                        var property = car_propValue.PropValue.Property;
-                        listProperties.Add((property.Name, property.IsKeyProperty, value));
+                        Value = cpv.PropValue.Value,
+                        Property = cpv.PropValue.Property.Name,
+                        IsKeyProperty = cpv.PropValue.Property.IsKeyProperty
                     }
-
-                    return listProperties;
-                }))
+                   ).ToList()))
                 .ForMember(carDto => carDto.Color,
-                mem => mem.MapFrom(async (src, dst) =>
-                {
-                    var color = (await repositoryManager.ColorRepository.GetByCondition(c => c.Id == src.ColorId)).Name;
-                    return color;
-                }));
+                mem => mem.MapFrom(src => src.Color.Name));
         }
 
     }

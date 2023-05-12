@@ -14,7 +14,7 @@ namespace Shared.Dto
         public int ProductionYear { get; set; }
         public string CompanyName { get; set; }
         public string Color { get; set; }
-        public List<(string propertyName, bool isKeyProperty, string value)> Properties { get; set; }
-        public List<(string path, bool isMainImage)> Images { get; set; }
+        public List<FullPropertyDto> Properties { get; set; }
+        public List<ImageInfoDto> Images { get; set; }
     }
 }

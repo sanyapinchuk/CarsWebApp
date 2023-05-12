@@ -16,11 +16,6 @@ namespace CarsServer.Controllers
     [Route("api/[controller]/[action]")]
     public class CarController: BaseController
     {
-        private readonly IDataContext _dataContext;
-        public CarController(IDataContext dataContext)
-        {
-            _dataContext = dataContext;
-        }
         [HttpGet]
         public async Task<ActionResult<CarListDto>> GetAll()
         {

@@ -7,6 +7,7 @@ using System.Reflection;
 using MediatR;
 using AutoMapper;
 using Microsoft.Extensions.Hosting;
+using Persistence.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,8 +25,10 @@ builder.Services.AddMediatR(typeof(DataContext).Assembly);
 
 builder.Services.AddAutoMapper(config =>
 {
-    config.AddProfile(new AssemblyMappingProfile(Assembly.GetExecutingAssembly(), builder.Services.BuildServiceProvider().GetService<IRepositoryManager>()));
-    config.AddProfile(new AssemblyMappingProfile(typeof(IDataContext).Assembly, builder.Services.BuildServiceProvider().GetService<IRepositoryManager>()));
+    var service = builder.Services.BuildServiceProvider().GetService<IRepositoryManager>();
+
+    config.AddProfile(new AssemblyMappingProfile(Assembly.GetExecutingAssembly(), service));
+    config.AddProfile(new AssemblyMappingProfile(typeof(IDataContext).Assembly, service));
 });
 builder.Services.AddCors(options =>
 {
@@ -53,6 +56,23 @@ using (var scope = app.Services.CreateScope())
        // Log.Fatal(exception, "An error occurred while app initialization");
     }
 }
+//var temp = app.Services.GetService<IRepositoryManager>();
+/*
+
+var services = app.Services. AddAutoMapper(config =>
+{
+    //var service = builder.Services.BuildServiceProvider().GetService<RepositoryManager>();
+    var serv = builder.Services.Where(s => s.ServiceType == typeof(RepositoryManager)).SingleOrDefault();
+    var serv2 = builder.Services.Where(s => s.ServiceType == typeof(IRepositoryManager)).SingleOrDefault();
+
+    var service = builder.Services.BuildServiceProvider().GetService<IRepositoryManager>();
+
+    serv = builder.Services.Where(s => s.ServiceType == typeof(RepositoryManager)).SingleOrDefault();
+    serv2 = builder.Services.Where(s => s.ServiceType == typeof(IRepositoryManager)).SingleOrDefault();
+
+    config.AddProfile(new AssemblyMappingProfile(Assembly.GetExecutingAssembly(), (RepositoryManager)serv2.ImplementationInstance));
+    config.AddProfile(new AssemblyMappingProfile(typeof(IDataContext).Assembly, builder.Services.BuildServiceProvider().GetService<IRepositoryManager>()));
+});*/
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

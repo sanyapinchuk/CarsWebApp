@@ -20,6 +20,13 @@ namespace Persistence.EntityTypeConfiguration
         {
             builder.HasKey(c => c.Id);
             builder.HasIndex(c=>c.Id).IsUnique();
+
+            builder.HasOne(c => c.Model)
+                .WithMany(m => m.Cars)
+                .HasForeignKey(c => c.ModelId);
+            builder.HasOne(c => c.Color)
+                .WithMany(c => c.Cars)
+                .HasForeignKey(c => c.ColorId);
         }
 
         public void Configure(EntityTypeBuilder<Car_PropValue> builder)
@@ -27,8 +34,13 @@ namespace Persistence.EntityTypeConfiguration
             builder.HasKey(cpv => cpv.Id);
             builder.HasIndex(cpv => cpv.Id).IsUnique();
 
-            builder.HasOne(cpv => cpv.Car).WithMany(c=> c.Car_PropValues).HasForeignKey(cpv => cpv.CarId);
-            builder.HasOne(cpv => cpv.PropValue).WithMany(pv=>pv.Car_PropValues).HasForeignKey(cpv => cpv.PropValueId);
+            builder.HasOne(cpv => cpv.Car)
+                .WithMany(c=> c.Car_PropValues)
+                .HasForeignKey(cpv => cpv.CarId);
+
+            builder.HasOne(cpv => cpv.PropValue)
+                .WithMany(pv=>pv.Car_PropValues)
+                .HasForeignKey(cpv => cpv.PropValueId);
         }
 
         public void Configure(EntityTypeBuilder<Color> builder)
@@ -54,6 +66,9 @@ namespace Persistence.EntityTypeConfiguration
             builder.HasOne(m => m.Company).WithMany(c => c.Models)
                 .HasForeignKey(m => m.CompanyId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            builder.HasOne(m => m.CarType).WithMany(ct => ct.Models)
+                .HasForeignKey(m => m.CarTypeId);
         }
 
         public void Configure(EntityTypeBuilder<Property> builder)

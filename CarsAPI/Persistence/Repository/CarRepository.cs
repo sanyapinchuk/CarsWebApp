@@ -25,7 +25,8 @@ namespace Persistence.Repository
 
         public async Task<IEnumerable<Car>> GetAllCarsAsync()
         {
-            return await _dataContext.Cars.ToListAsync();
+            var list = await _dataContext.Cars.ToListAsync();
+            return list;
         }
 
         public async Task<Guid> UpdateCarAsync(Car car)

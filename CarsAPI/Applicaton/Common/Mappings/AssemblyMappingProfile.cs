@@ -9,8 +9,8 @@ namespace Applicaton.Common.Mappings
         private readonly IRepositoryManager _repositoryManager;
         public AssemblyMappingProfile(Assembly assembly, IRepositoryManager repositoryManager)
         {
-            ApplyMappingsAssembly(assembly);
             _repositoryManager = repositoryManager;
+            ApplyMappingsAssembly(assembly);
         }
         private void ApplyMappingsAssembly(Assembly assembly)
         {
@@ -22,7 +22,7 @@ namespace Applicaton.Common.Mappings
             foreach (var type in types)
             {
                 var instance = Activator.CreateInstance(type);
-                var methodInfo = type.GetMethod("Mappping");
+                var methodInfo = type.GetMethod("Mapping");
                methodInfo?.Invoke(instance, new object[] {this, _repositoryManager});
             }
         }

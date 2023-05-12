@@ -2,7 +2,7 @@
 {
     public class Company : BaseEntity
     {
-        public string Name { get; set; }= String.Empty;
+        public string Name { get; set; }
 
         public virtual List<Model>? Models { get; set; }
     }

@@ -23,7 +23,8 @@ namespace Applicaton.Cars.Queries.GetCarsList
         public async Task<CarListVm> Handle(GetCarListQuery request,
             CancellationToken cancellationToken)
         {
-            var cars = (await _repositoryManager.CarRepository.GetAllCarsAsync()).AsQueryable()
+            var carsQ = (await _repositoryManager.CarRepository.GetAllCarsAsync()).AsQueryable();
+            var cars = carsQ
                 .ProjectTo<CarListDto>(_mapper.ConfigurationProvider)
                 .ToList();
             return new CarListVm() { Cars = cars };

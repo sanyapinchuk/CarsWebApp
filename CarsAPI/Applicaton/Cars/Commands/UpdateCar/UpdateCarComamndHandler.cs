@@ -51,27 +51,27 @@ namespace Applicaton.Cars.Commands.UpdateCar
             await _repositoryManager.CarImageRepository.DeleteByCondition(ci=>ci.CarId== car.Id);
             foreach (var image in request.CarInfo.Images)
             {
-                var imageId = (await _repositoryManager.ImageRepository.GetByCondition(i => i.Path == image.path))?.Id;
+                var imageId = (await _repositoryManager.ImageRepository.GetByCondition(i => i.Path == image.Path))?.Id;
                 if (imageId == null || imageId == Guid.Empty)
                 {
-                    imageId = await _repositoryManager.ImageRepository.Create(image.path);
+                    imageId = await _repositoryManager.ImageRepository.Create(image.Path);
                 }
-                await _repositoryManager.CarImageRepository.Create(car.Id, (Guid)imageId, image.isMainImage);
+                await _repositoryManager.CarImageRepository.Create(car.Id, (Guid)imageId, image.IsMainImage);
             }
 
             //set properties
             await _repositoryManager.CarPropValueRepository.DeleteByCondition(ci => ci.CarId == car.Id);
             foreach (var props in request.CarInfo.Properties)
             {
-                var propertyId = (await _repositoryManager.PropertyRepository.GetByCondition(p => p.Name == props.propertyName))?.Id;
+                var propertyId = (await _repositoryManager.PropertyRepository.GetByCondition(p => p.Name == props.Property))?.Id;
                 if (propertyId == null || propertyId == Guid.Empty)
                 {
-                    propertyId = await _repositoryManager.PropertyRepository.Create(props.propertyName, props.isKeyProperty);
+                    propertyId = await _repositoryManager.PropertyRepository.Create(props.Property, props.IsKeyProperty);
                 }
-                var valueId = (await _repositoryManager.PropValueRepository.GetByCondition(p => p.Value == props.value))?.Id;
+                var valueId = (await _repositoryManager.PropValueRepository.GetByCondition(p => p.Value == props.Value))?.Id;
                 if (valueId == null || valueId == Guid.Empty)
                 {
-                    valueId = await _repositoryManager.PropValueRepository.Create(props.value, (Guid)propertyId);
+                    valueId = await _repositoryManager.PropValueRepository.Create(props.Value, (Guid)propertyId);
                 }
 
                 await _repositoryManager.CarPropValueRepository.Create(car.Id, (Guid)valueId);
@@ -86,10 +86,14 @@ namespace Applicaton.Cars.Commands.UpdateCar
             }
             car.ColorId = (Guid)colorId;
 
+            car.ProductionYear = request.CarInfo.ProductionYear;
+            car.Price = request.CarInfo.Price;
+
+            await _repositoryManager.CarRepository.UpdateCarAsync(car);
+
             await _repositoryManager.SaveAsync();
 
             return Unit.Value;
-
         }
 
         /* public async Task<Unit> Handle(UpdateCarCommand request, CancellationToken cancellationToken)
