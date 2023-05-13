@@ -10,8 +10,22 @@ using Microsoft.Extensions.Hosting;
 using Persistence.Repository;
 using CarsServer.Middleware;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Serilog.Events;
+using Serilog;
+/*
+Log.Logger = new LoggerConfiguration()
+                .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
+                .WriteTo.File($"logs/CarsWebAppLog-.log", rollingInterval:
+                    RollingInterval.Day)
+                .CreateLogger();*/
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Host.UseSerilog((ctx, lc) => 
+                lc
+                .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
+                .WriteTo.File($"logs/CarsWebAppLog-.log", rollingInterval:
+                    RollingInterval.Day));
 
 builder.Services.AddControllers();
 
@@ -69,7 +83,7 @@ using (var scope = app.Services.CreateScope())
     }
     catch (Exception exception)
     {
-       // Log.Fatal(exception, "An error occurred while app initialization");
+        Log.Fatal(exception, "An error occurred while app initialization");
     }
 }
 

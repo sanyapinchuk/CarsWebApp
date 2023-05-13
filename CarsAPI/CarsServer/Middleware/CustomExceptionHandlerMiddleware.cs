@@ -6,10 +6,12 @@ namespace CarsServer.Middleware
     public class CustomExceptionHandlerMiddleware
     {
         private readonly RequestDelegate _next;
+        private readonly ILogger<CustomExceptionHandlerMiddleware> _logger;
 
-        public CustomExceptionHandlerMiddleware(RequestDelegate next)
+        public CustomExceptionHandlerMiddleware(RequestDelegate next, ILogger<CustomExceptionHandlerMiddleware> logger)
         {
             _next = next;
+            _logger = logger;
         }
 
         public async Task Invoke(HttpContext context)
@@ -26,6 +28,7 @@ namespace CarsServer.Middleware
 
         private Task HandleExceptionAsync(HttpContext context, Exception ex)
         {
+            _logger.LogError(ex.Message);
             var code = HttpStatusCode.InternalServerError;
             switch (ex)
             {
@@ -36,7 +39,7 @@ namespace CarsServer.Middleware
             }
             context.Response.ContentType = "application/json";
             context.Response.StatusCode = (int)code;
-            return context.Response.WriteAsync(ex.Message);
+            return context.Response.WriteAsync("Error: " + ex.Message);
         }
     }
 }
