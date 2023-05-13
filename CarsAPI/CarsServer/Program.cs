@@ -8,6 +8,7 @@ using MediatR;
 using AutoMapper;
 using Microsoft.Extensions.Hosting;
 using Persistence.Repository;
+using CarsServer.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -81,6 +82,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
     app.UseDeveloperExceptionPage();
 }
+
+app.UserCustomExceptionHandler();
 
 app.UseRouting();
 app.UseHttpsRedirection();
