@@ -1,8 +1,8 @@
-﻿using CarsServer.Models;
+﻿using CarsClient.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace CarsServer.Controllers
+namespace CarsClient.Controllers
 {
     public class HomeController : Controller
     {
@@ -26,12 +26,6 @@ namespace CarsServer.Controllers
             return View();
         }
 
-        [Route("passenger")]
-        public IActionResult Passenger()
-        {
-            return View();
-        }
-
         [Route("news")]
         public IActionResult News()
         {
@@ -44,10 +38,5 @@ namespace CarsServer.Controllers
             return View();
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
     }
 }

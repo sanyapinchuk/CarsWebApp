@@ -34,7 +34,7 @@ namespace CarsServer.Controllers
         }
 
         [HttpPost]
-        [Authorize]
+       // [Authorize]
         public async Task<ActionResult<Guid>> Create([FromBody] CreateCarCommand carDto)
         {
             var carId = await Mediator.Send(carDto);

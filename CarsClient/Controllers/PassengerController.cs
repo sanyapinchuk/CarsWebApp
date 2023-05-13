@@ -1,13 +1,37 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using CarsClient.Models.Dto;
+using Microsoft.AspNetCore.Mvc;
 
-namespace CarsServer.Controllers
+namespace CarsClient.Controllers
 {
     public class PassengerController : Controller
-    {                
-        [Route("passenger/Han_EV_Standart")]
-        public IActionResult Han_EV_Standart()
+    {
+        [Route("passenger")]
+        public async Task<IActionResult> AllCars()
         {
-            return View();
+            var response = await GlobalVariables.WebApiClient.GetAsync("car/getall");
+            if (response.IsSuccessStatusCode)
+            {
+                var cars = await response.Content.ReadFromJsonAsync<CarList>(); 
+               // ViewData["apiEditUrl"] = GlobalVariables.WebApiClient.BaseAddress + "Contact/edit";
+                return View(cars.Cars);
+            }
+            else
+                return StatusCode((int)response.StatusCode);
+
+        }
+        [Route("car/{id}")]
+        public async Task<IActionResult> GetCar(Guid id)
+        {
+            var response = await GlobalVariables.WebApiClient.GetAsync($"car/get/{id}");
+            if (response.IsSuccessStatusCode)
+            {
+                var car = await response.Content.ReadFromJsonAsync<CarFullInfo>();
+                // ViewData["apiEditUrl"] = GlobalVariables.WebApiClient.BaseAddress + "Contact/edit";
+                return View(car);
+            }
+            else
+                return StatusCode((int)response.StatusCode);
+
         }
     }
 }

@@ -2628,3 +2628,20 @@ option {
     margin: auto;
     margin-bottom: 30px;
 }
+
+#error_container{
+    margin: auto;
+    margin-top: 14vh;
+    margin-bottom: 20vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+#error_statusCode{
+    font-size: 40px;
+}
+#error_statusDescription{
+    font-size: 36px;
+    margin-top: 50px;
+}

@@ -1,4 +1,4 @@
-﻿namespace CarsServer.Models
+﻿namespace CarsClient.Models
 {
     public class Car
     {
