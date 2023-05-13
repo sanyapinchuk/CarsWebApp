@@ -3,13 +3,8 @@ using Applicaton.Cars.Commands.DeleteCar;
 using Applicaton.Cars.Commands.UpdateCar;
 using Applicaton.Cars.Queries.GetCarFullInfo;
 using Applicaton.Cars.Queries.GetCarsList;
-using Applicaton.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CarsServer.Controllers
 {
@@ -39,6 +34,7 @@ namespace CarsServer.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<Guid>> Create([FromBody] CreateCarCommand carDto)
         {
             var carId = await Mediator.Send(carDto);
@@ -46,12 +42,14 @@ namespace CarsServer.Controllers
         }
 
         [HttpPut]
+        [Authorize]
         public async Task<IActionResult> Update([FromBody] UpdateCarCommand carDto)
         {
             await Mediator.Send(carDto);
             return NoContent();
         }
         [HttpDelete("{id}")]
+        [Authorize]
         public async Task<IActionResult> Delete(Guid id)
         {   
             var command = new DeleteCarCommand()

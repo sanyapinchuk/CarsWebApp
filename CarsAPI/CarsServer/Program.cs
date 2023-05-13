@@ -9,6 +9,7 @@ using AutoMapper;
 using Microsoft.Extensions.Hosting;
 using Persistence.Repository;
 using CarsServer.Middleware;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -40,6 +41,20 @@ builder.Services.AddCors(options =>
         policy.AllowAnyOrigin();
     });
 });
+
+builder.Services.AddAuthentication(config =>
+{
+    config.DefaultAuthenticateScheme =
+        JwtBearerDefaults.AuthenticationScheme;
+    config.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+    .AddJwtBearer("Bearer", options =>
+    {
+        options.Authority = "https://localhost:7213/";
+        options.Audience = "CarsWebAPI";
+        options.RequireHttpsMetadata = false;
+    });
+
 //builder.Services.AddScoped<IDataContext, DataContext>();
 
 var app = builder.Build();
@@ -57,23 +72,7 @@ using (var scope = app.Services.CreateScope())
        // Log.Fatal(exception, "An error occurred while app initialization");
     }
 }
-//var temp = app.Services.GetService<IRepositoryManager>();
-/*
 
-var services = app.Services. AddAutoMapper(config =>
-{
-    //var service = builder.Services.BuildServiceProvider().GetService<RepositoryManager>();
-    var serv = builder.Services.Where(s => s.ServiceType == typeof(RepositoryManager)).SingleOrDefault();
-    var serv2 = builder.Services.Where(s => s.ServiceType == typeof(IRepositoryManager)).SingleOrDefault();
-
-    var service = builder.Services.BuildServiceProvider().GetService<IRepositoryManager>();
-
-    serv = builder.Services.Where(s => s.ServiceType == typeof(RepositoryManager)).SingleOrDefault();
-    serv2 = builder.Services.Where(s => s.ServiceType == typeof(IRepositoryManager)).SingleOrDefault();
-
-    config.AddProfile(new AssemblyMappingProfile(Assembly.GetExecutingAssembly(), (RepositoryManager)serv2.ImplementationInstance));
-    config.AddProfile(new AssemblyMappingProfile(typeof(IDataContext).Assembly, builder.Services.BuildServiceProvider().GetService<IRepositoryManager>()));
-});*/
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -88,7 +87,8 @@ app.UserCustomExceptionHandler();
 app.UseRouting();
 app.UseHttpsRedirection();
 app.UseCors();
-//app.UseAuthorization();
+app.UseAuthorization();
+app.UseAuthentication();
 
 app.MapControllers();
 
