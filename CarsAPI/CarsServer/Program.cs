@@ -64,7 +64,7 @@ builder.Services.AddAuthentication(config =>
 })
     .AddJwtBearer("Bearer", options =>
     {
-        options.Authority = "https://localhost:7213/";
+        options.Authority = builder.Configuration["IdentityServerAddress"];
         options.Audience = "CarsWebAPI";
         options.RequireHttpsMetadata = false;
     });

@@ -22,7 +22,7 @@ namespace CarsIdentity.Controllers
             (_signInManager, _userManager, _interactionService) =
             (signInManager, userManager, interactionService);
 
-        [HttpGet]
+        [HttpGet]   
         public IActionResult Login(string returnUrl)
         {
             var viewModel = new LoginViewModel
@@ -48,7 +48,7 @@ namespace CarsIdentity.Controllers
             }
 
             var result = await _signInManager.PasswordSignInAsync(viewModel.Username,
-                viewModel.Password, false, false);
+                viewModel.Password, true, false);
             if (result.Succeeded)
             {
                 return Redirect(viewModel.ReturnUrl);
@@ -77,8 +77,10 @@ namespace CarsIdentity.Controllers
 
             var user = new AppUser
             {
-                UserName = viewModel.Username
-            };
+                UserName = viewModel.Username,
+                FirstName = viewModel.Username,
+				LastName = viewModel.Username
+			};
 
             var result = await _userManager.CreateAsync(user, viewModel.Password);
             if (result.Succeeded)

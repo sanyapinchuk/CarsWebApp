@@ -42,16 +42,16 @@ namespace CarsIdentity
                     RequirePkce = true,
                     RedirectUris =
                     {
-                        "http://localhost:3000/signin-oidc"
-                    },
+						"https://localhost:7106/signin-oidc"
+					},
                     AllowedCorsOrigins =
                     {
-                        "http://localhost:3000"
-                    },
+						"https://localhost:7106"
+					},
                     PostLogoutRedirectUris =
                     {
-                        "http://localhost:3000/signout-oidc"
-                    },
+						"https://localhost:7106/signout-oidc"
+					},
                     AllowedScopes =
                     {
                         IdentityServerConstants.StandardScopes.OpenId,

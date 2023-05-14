@@ -2645,3 +2645,17 @@ option {
     font-size: 36px;
     margin-top: 50px;
 }
+
+.delete_car_icon {
+    position: absolute;
+    margin-left: 190px;
+    top: 10px;
+    cursor: pointer;
+    width: 100px;
+    transform: scale(1.3);
+    transition: all 0.2s;
+}
+
+.delete_car_icon:hover {
+    color: #C0A97A;
+}
