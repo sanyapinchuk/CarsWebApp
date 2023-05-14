@@ -18,7 +18,7 @@ namespace CarsClient.Controllers
             {
                 this.HttpContext.Response.StatusCode = statusCode.Value;
             }*/
-
+            
             _logger.LogWarning($"Handle http error, status code= {statusCode}");
 
             var errorModel = new ErrorViewModel();

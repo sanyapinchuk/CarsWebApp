@@ -15,7 +15,7 @@ document.querySelector("#less").onclick = function(){
     elem3.style.visibility= 'visible';		
 }   
 
-
+/*
 document.querySelector("#more_price_button").onclick = function(){
     let elem = document.getElementById('hide_price_info');
     elem.style.display= 'initial';
@@ -31,4 +31,4 @@ document.querySelector("#less_price_button").onclick = function(){
     elem2.style.visibility= 'hidden';
     let elem3 = document.getElementById('more_price_button');
     elem3.style.visibility= 'visible';		
-}   
+}   */

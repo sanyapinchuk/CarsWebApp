@@ -4,6 +4,7 @@
     {     
         public int Price { get; set; }
         public int ProductionYear { get; set; }
+        public string Description { get; set; }
 
         public Guid ModelId { get; set; }
         public virtual Model? Model { get; set; }

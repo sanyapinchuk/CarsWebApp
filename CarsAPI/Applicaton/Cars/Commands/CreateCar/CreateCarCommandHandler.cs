@@ -29,6 +29,7 @@ namespace Applicaton.Cars.Commands.CreateCar
                 Id = new Guid(),
                 Price = request.CreateCarDto.Price,
                 ProductionYear = request.CreateCarDto.ProductionYear,
+                Description = request.CreateCarDto.Description,
             };
             //set model
             var modelId = (await _repositoryManager.ModelRepository.GetByCondition(m => m.Name == request.CreateCarDto.ModelName))?.Id;

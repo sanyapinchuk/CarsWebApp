@@ -1,61 +1,289 @@
-﻿@model CarsClient.Models.Dto.CarFullInfo
+﻿@using CarsClient;
+@model CarsClient.Models.Dto.CarFullInfo;
 
 @{
-    ViewData["Title"] = "GetCar";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+	ViewData["Title"] = Model.ModelName + " купить в Минске недорого – Цена с учетом доставки";
+	ViewData["Description"] = Model.Description + " | " + GlobalVariables.Postfix;
+	ViewData["activePage"] = "passengerPage";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+	ViewData["pathPrefix"] = "../";
 }
 
-<h1>GetCar</h1>
+	<div class="panel commercial">	
+		<h1>@Model.ModelName</h1>
+	</div>
+	<div class="car_information">	
+		<div class="all">
+			<input checked type="radio" name="respond" id="desktop">
+			<div id="slider">
+			@for(int i= 1; i< Model.Images.Count+1; i++)
+				{
+					if (i == 1)
+					{
+						<input checked type="radio" name="slider" id="switch_1">
+					}
+					else{
+						<input type="radio" name="slider" id= "switch_@i">
+					}
+				}
+				<div id="slides">
+					<div id="overflow">
+						<div class="image">
+							@foreach(var item in Model.Images)
+							{
+								<article><img src="../images/cars/@item.Path"></article>
+							}
+						</div>
+					</div>
+					<div id="__left_block"></div>
+					<div id="__right_block"></div>
+				</div>
+						
+				<div id="controls">
+					@for(int i= 1; i< Model.Images.Count+1; i++)
+					{
+						<label for="switch_@i"></label>
+					}
+				</div>
+				<div id="active">
+					@for(int i= 1; i< Model.Images.Count+1; i++)
+					{
+						<label 	style= "background-image: url('../images/cars/@Model.Images[i-1].Path');" for="switch_@i"></label>
+					}
+				</div>		
+			</div>			
+		</div>
+		<table class="info">
+			<tr style="top:-10%;">
+				<td style="vertical-align:bottom;">
+					<div id="model">@Model.ModelName</div>
+					<div id="price"> Цена с учётом доставки: <b>$@Model.Price.ToString("N", System.Globalization.CultureInfo.CreateSpecificCulture("en-US"))</b></div>
+					<button id="make-order">Заказать</button>		
+				</td>  
+			</tr>
+		</table>
+	</div>	
+	<div id="box_characterstics">
+		<div id="car_characterstics">
+			<div class= "backgr_name">
+				<div id="tech_ch">ТЕХНИЧЕСКИЕ ХАРАКТЕРИСТИКИ</div>
+			</div>					
+			<ul>				
+				<li> <img src="../images/icons/brand.png">Марка <span>@Model.CompanyName</span></li>
+				<li> <img src="../images/icons/color.png">Цвет <span>@Model.Color</span></li>
+				<li> <img src="../images/icons/calendar.png">Год производства <span>@Model.ProductionYear</span></li>
+				@foreach(var item in Model.Properties)
+				{
+					if (item.IsKeyProperty)
+					{
+						<li> <img src="../images/icons/road.svg">@item.Property <span>@item.Value</span></li>
+					}
+				}
+			</ul>
+			<div class="add_info" id="add_info">
+				@foreach(var item in Model.Properties)
+				{
+					if (!item.IsKeyProperty)
+					{
+						<div class="mesta main_border">
+							<div class="__left">@item.Property</div><div class="__right">@item.Value</div>
+						</div>
+					}
+				}			
+			</div>
+			<div id="more_info">
+				<div id="box_more">
+					<div id="more">
+						Развернуть
+						<img src="../images/icons/vnis_new.svg" alt="">
+					</div>
+					<div id="less">
+						Свернуть
+						<img src="../images/icons/vverh_new.svg" alt="">
+					</div>
+				</div>						
+			</div>
+		</div>				
+	</div>
+			
+			
+	<div id="call_us">
+		<div style="margin: auto; width: 80%; margin-top: 20px; margin-bottom: 20px; font-size: 23px; line-height: 32px ;" >
+			Для уточнения деталей и заказа авто свяжитесь с нами
+			<a href="tel:375296349842"><b id="mynumber">+375296349842</b></a>
+				<div class="tooltip"> 
+					<div onclick="myFunction()" onmouseout="outFunc()">
+					<span class="tooltiptext" id="myTooltip">Копировать</span>
+					<img style="width: 20px;" src="../images/icons/copy.png" alt="">
+					</div>
+				</div>
+				(все мессенджеры), либо заходите в наш телеграм-канал <a style="text-decoration: underline; font-style: italic;" href="https://t.me/it_car_by_channel">https://t.me/it_car_by_channel</a> 
+		</div>						
+	</div>
+	<!-- <div style="background-color: #ffffff; width: 100%; padding-bottom: 40px;"> 
+		<div id="same_cars">
+			<div class= "backgr_name">
+				<div id="name_same">ПОХОЖИЕ АВТО</div>
+			</div>						
+			<div id="box_same_cars">
+				<div class="list_same_cars">
+					<div style="overflow: hidden;"><a href="../cars/Xpeng_P5_550G"><img src="../images/cars/Xpeng_P5_550G/1.jpg" alt="no image"></a></div>
+					<div id="name_same_car">Xpeng P5 550G</div>
+					<div id="price_same_car">Белый/Чёрный</div>
+					<a href="../cars/Xpeng_P5_550G"><div class="same_button">Подробнее</div></a>
+				</div>
+				<div class="list_same_cars">
+					<div style="overflow: hidden;"><a href="../cars/C_HR_EV"><img src="../images/cars/C_HR_EV/1.jpg" alt="no image"></a></div>
+					<div id="name_same_car">C-HR EV</div>
+					<div id="price_same_car">Белый</div>
+					<a href="../cars/C_HR_EV"><div class="same_button">Подробнее</div></a>
+				</div>
+				<div class="list_same_cars">
+					<div style="overflow: hidden;"><a href="../cars/Chevrolet_Menlo_Plus"><img src="../images/cars/Chevrolet_Menlo_Plus/1.jpg" alt="no image"></a></div>
+					<div id="name_same_car">Menlo Plus </div>
+					<div id="price_same_car">Белый</div>
+					<a href="../cars/Chevrolet_Menlo_Plus"><div class="same_button">Подробнее</div></a>
+				</div>
+				<div class="list_same_cars">
+					<div style="overflow: hidden;"><a href="../cars/Han_EV_Extra"><img src="../images/cars/Han_EV_Extra/1.jpg" alt="no image"></a></div>
+					<div id="name_same_car">Han EV Extra Long Range Deluxe</div>
+					<div id="price_same_car">Серый / Красный императорский / Белый / Черный</div>
+					<a href="../cars/Han_EV_Extra"><div class="same_button">Подробнее</div></a>
+				</div>							
+			</div>		
+		</div>
+	</div> -->
+	<div style="width: 100%; padding-bottom: 40px; margin-top: 40px;">
+		<div class="same_cars">
+			<div class= "backgr_name">
+				<div id="name_same">НАШ ТЕЛЕГРАМ-КАНАЛ</div>
+			</div>
+			<div id="our_telegram_chanel">
+				Еще больше авто в нашем телеграм-канале
+			</div>
+			<div id="link_telchanel">
+				<a href="https://t.me/it_car_by_channel">https://t.me/it_car_by_channel</a>
+			</div>
+					
+		</div>
+	</div>
 
-<div>
-    <h4>CarFullInfo</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Id)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Id)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ModelName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ModelName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CarType)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CarType)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ProductionYear)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ProductionYear)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CompanyName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CompanyName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Color)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Color)
-        </dd>
-    </dl>
-</div>
-<div>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    <a asp-action="Index">Back to List</a>
-</div>
+@section AfterBody{
+	<div id="pop-order">
+		<div id="order-all"></div>
+		<div id="add_place">
+			<div class="external_order">					
+				<form id= "order-form" class="order" method="POST" action="../php/handler.php">			
+					<i id="icon-close" class="fas fa-times"></i>	
+					<div class="form-group" id="span">
+						Оставить заявку
+					</div>
+					<div class="form-group">						
+						<input type="text" name="name" class="order-control" placeholder="Имя *" required>
+						<input type="email" name="email" class="order-control" placeholder="Электронная почта *" required>
+					</div>
+					<div class="form-group">
+						<input type="tel" name="phone" class="order-control" placeholder="Телефон">
+					</div>
+					<button type="submit" style="cursor: pointer;">Отправить</button>
+				</form>	
+			</div>
+		</div>	
+	</div>
+	<script src="../js/make_order.js"></script>
+	<script src="../js/car_parameters.js"></script>
+}
+
+@section Headers{
+    <style>
+			
+		#slider { 
+			 position: relative;
+			 text-align: center;
+			 top: 10px;
+			 width:100%; 
+		 }
+
+		 #slider{ 
+			margin: 0 auto;
+		 }
+
+		 #overflow{ 
+			width: 100%;
+			overflow: hidden;
+		 }
+
+		 article img{ 
+			width: 100%;
+		 }
+
+		 #desktop:checked ~ #slider{ 
+			max-width: 700px; 
+		 }
+
+
+		 label, a{ 
+		 cursor: pointer;
+		 }
+
+		 .all input, #slider input{ 
+		 display: none;
+		 }
+
+
+		 #controls{ 
+		 margin: -40% 0 36% 0;
+		 width: 100%;
+		 height: 20px;
+		 }
+
+		 @ViewData["carStyles"]
+
+
+		 #active label{ 
+		 border-radius: 0; 
+		 display: inline-block; 
+		 width: 80px;
+		 height: 60px;
+		 margin-bottom: 2px;
+		 margin-top: 0px;
+		 background-size: cover;
+		 opacity: 0.6;	
+		 }
+
+		 #active{ 
+
+		 text-align: center;
+		 }
+
+		 #active label:hover{ 
+		 opacity: 1;
+		 }
+
+		 #slides {
+			margin-bottom: 15px;
+		 }
+
+		 #slides .image{ 
+		 transition: all 500ms cubic-bezier(.94,.68,.44,1.01);
+		 }
+
+		 #controls label:hover{ 
+		 opacity: 0.6;
+		 }
+
+		 #controls label{ 
+		 transition: opacity 0.2s ease-out;
+		 }
+		 @@media (max-width: 877px)
+		 {
+			.__left{
+			   margin-left: 15px;
+			}
+			.__right{
+			   margin-right: 15px;
+			}
+		 }
+
+	</style>
+}

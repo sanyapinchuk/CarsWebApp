@@ -1,4 +1,5 @@
-﻿using CarsClient.Models.Dto;
+﻿using CarsClient.Helpers;
+using CarsClient.Models.Dto;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CarsClient.Controllers
@@ -27,7 +28,9 @@ namespace CarsClient.Controllers
             {
                 var car = await response.Content.ReadFromJsonAsync<CarFullInfo>();
                 // ViewData["apiEditUrl"] = GlobalVariables.WebApiClient.BaseAddress + "Contact/edit";
-                return View(car);
+                var tags = CarHelper.GetCarStyleTags(car.Images.Count);
+                ViewData["carStyles"] = tags;
+				return View(car);
             }
             else
                 return StatusCode((int)response.StatusCode);

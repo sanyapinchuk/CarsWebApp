@@ -88,6 +88,7 @@ namespace Applicaton.Cars.Commands.UpdateCar
 
             car.ProductionYear = request.CarInfo.ProductionYear;
             car.Price = request.CarInfo.Price;
+            car.Description = request.CarInfo.Description;
 
             await _repositoryManager.CarRepository.UpdateCarAsync(car);
 

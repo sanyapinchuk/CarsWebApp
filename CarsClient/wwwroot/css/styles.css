@@ -765,7 +765,7 @@ td {
     visibility: hidden;
 }
 
-.order-all {
+.order-all, #order-all{
     visibility: inherit; /**/
     width: 100%;
     position: fixed;

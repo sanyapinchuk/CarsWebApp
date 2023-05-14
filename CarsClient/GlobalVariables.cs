@@ -6,6 +6,8 @@ namespace CarsClient
     {
         public static HttpClient WebApiClient = new HttpClient();
 
+        public static string Postfix = "it-car.by";
+
         static GlobalVariables()
         {
             WebApiClient.BaseAddress = new Uri("https://localhost:7052/api/");

@@ -27,7 +27,7 @@ window.addEventListener('scroll', function() {
             if (active != null) active.style.boxShadow='-14px -18px 21px -4px rgba(16, 16, 14, 0.21) inset';
             let color_elem = this.document.getElementsByClassName('new_color');
            // if (window.getComputedStyle(color_elem[0]).color== 'rgb(96, 96, 96)')
-            for(let i=0; i < 5; i++){
+            for(let i=0; i < 4; i++){
                 color_elem[i].style.color='#504315';
             } 
 
@@ -44,7 +44,7 @@ window.addEventListener('scroll', function() {
            let color_elem = this.document.getElementsByClassName('new_color');
 
            // if (window.getComputedStyle(color_elem[1]).color=='rgb(80, 67, 21)')
-            for(let i=0; i < 5; i++){ 
+            for(let i=0; i < 4; i++){ 
                 color_elem[i].style.color='#606060';
             } 
 

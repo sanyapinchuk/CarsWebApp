@@ -19,6 +19,7 @@ namespace Applicaton.Cars.Queries.GetCarFullInfo
     {
         public Guid Id { get; set; }
         public int Price { get; set; }
+        public string Description { get; set; }
         public string ModelName { get; set; }
         public string CarType { get; set; }
         public int ProductionYear { get; set; }
@@ -35,7 +36,9 @@ namespace Applicaton.Cars.Queries.GetCarFullInfo
                 mem => mem.MapFrom(car => car.Price))
                 .ForMember(car => car.ProductionYear,
                 mem => mem.MapFrom(car => car.ProductionYear))
-                .ForMember(carDto => carDto.CarType,
+				.ForMember(carDto => carDto.Description,
+				mem => mem.MapFrom(car => car.Description))
+				.ForMember(carDto => carDto.CarType,
                 mem => mem.MapFrom(car => car.Model.CarType.Name))
                 .ForMember(carDto => carDto.ModelName,
                 mem => mem.MapFrom(car => car.Model.Name))
