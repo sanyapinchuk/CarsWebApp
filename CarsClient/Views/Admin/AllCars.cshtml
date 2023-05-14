@@ -5,9 +5,8 @@
 	ViewData["activePage"] = "passengerPage";
 	ViewData["Description"] = "Электромобили Tesla, BYD, Volkswagen, Xpeng, Cherry и др. Надежные электрокары по сниженной цене. Доставка. Финансовая поддержка. Гарантии. Страховка. Круглосуточная связь";
 	Layout = "~/Views/Shared/_Layout.cshtml";
+	ViewData["pathPrefix"] = "../";
 }
-
-
 
 
 <div class="panel commercial">
@@ -21,7 +20,7 @@
 			{
 				<li>
 					<i class="far fa-trash-alt delete_car_icon" data-carId="@item.Id"></i>
-					<a href="car/@item.Id"><img src="images/cars/@item.TitleImagePath" alt="no image"></a>
+					<a href="car/@item.Id"><img src="@ViewData["pathPrefix"]images/cars/@item.TitleImagePath" alt="no image"></a>
 					<div class="short_car_info">
 						<div id="name_car_list">
 							<a href="car/@item.Id">@item.ModelName</a>
@@ -29,14 +28,14 @@
 						<ul>
 							<li class="each_info">
 								<div class="car_option">
-									<img src="images/icons/drop.svg">
+									<img src="@ViewData["pathPrefix"]images/icons/drop.svg">
 									<div>Цвет</div>
 								</div>
 								<div class="option_value" style="position: static;">@item.Color</div>
 							</li>
 							<li class="each_info">
 								<div class="car_option">
-									<img src="images/icons/brand.png">
+									<img src="@ViewData["pathPrefix"]images/icons/brand.png">
 									<div>Марка</div>
 								</div>
 								<div class="option_value">@item.CompanyName</div>
@@ -45,7 +44,7 @@
 							{
 								<li class="each_info">
 									<div class="car_option">
-										<img src="images/icons/road.png">
+										<img src="@ViewData["pathPrefix"]images/icons/road.png">
 										<div>@prop.Property</div>
 									</div>
 									<div class="option_value">@prop.Value</div>
@@ -53,7 +52,7 @@
 							}
 							<li class="each_info">
 								<div class="car_option">
-									<img src="images/icons/condition.svg">
+									<img src="@ViewData["pathPrefix"]images/icons/condition.svg">
 									<div>Состояние</div>
 								</div>
 								<div class="option_value">Новое</div>
@@ -74,3 +73,7 @@
 		</ul>
 	</div>
 </div>	
+
+@section AfterBody{
+	<script src="@ViewData["pathPrefix"]../js/adminCarsIteraction.js"></script>
+}

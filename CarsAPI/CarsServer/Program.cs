@@ -55,7 +55,22 @@ builder.Services.AddCors(options =>
         policy.AllowAnyOrigin();
     });
 });
+builder.Services.AddAuthentication("Bearer")
+			.AddIdentityServerAuthentication("Bearer", options =>
+			{
+				options.ApiName = "carsApi";
+				options.Authority = "https://localhost:5001";
+			});
 
+builder.Services.AddAuthorization(options =>
+{
+	options.AddPolicy("carsApiScope", policy =>
+	{
+		policy.RequireAuthenticatedUser();
+		policy.RequireClaim("scope", "carsApi.read");
+	});
+});
+/*
 builder.Services.AddAuthentication(config =>
 {
     config.DefaultAuthenticateScheme =
@@ -67,7 +82,7 @@ builder.Services.AddAuthentication(config =>
         options.Authority = builder.Configuration["IdentityServerAddress"];
         options.Audience = "CarsWebAPI";
         options.RequireHttpsMetadata = false;
-    });
+    });*/
 
 //builder.Services.AddScoped<IDataContext, DataContext>();
 

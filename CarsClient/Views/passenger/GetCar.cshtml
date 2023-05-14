@@ -31,7 +31,7 @@
 						<div class="image">
 							@foreach(var item in Model.Images)
 							{
-								<article><img src="../images/cars/@item.Path"></article>
+								<article><img src="@ViewData["pathPrefix"]../images/cars/@item.Path"></article>
 							}
 						</div>
 					</div>
@@ -48,7 +48,7 @@
 				<div id="active">
 					@for(int i= 1; i< Model.Images.Count+1; i++)
 					{
-						<label 	style= "background-image: url('../images/cars/@Model.Images[i-1].Path');" for="switch_@i"></label>
+						<label 	style= "background-image: url('@ViewData["pathPrefix"]../images/cars/@Model.Images[i-1].Path');" for="switch_@i"></label>
 					}
 				</div>		
 			</div>			
@@ -69,14 +69,14 @@
 				<div id="tech_ch">ТЕХНИЧЕСКИЕ ХАРАКТЕРИСТИКИ</div>
 			</div>					
 			<ul>				
-				<li> <img src="../images/icons/brand.png">Марка <span>@Model.CompanyName</span></li>
-				<li> <img src="../images/icons/color.png">Цвет <span>@Model.Color</span></li>
-				<li> <img src="../images/icons/calendar.png">Год производства <span>@Model.ProductionYear</span></li>
+				<li> <img src="@ViewData["pathPrefix"]../images/icons/brand.png">Марка <span>@Model.CompanyName</span></li>
+				<li> <img src="@ViewData["pathPrefix"]../images/icons/color.png">Цвет <span>@Model.Color</span></li>
+				<li> <img src="@ViewData["pathPrefix"]../images/icons/calendar.png">Год производства <span>@Model.ProductionYear</span></li>
 				@foreach(var item in Model.Properties)
 				{
 					if (item.IsKeyProperty)
 					{
-						<li> <img src="../images/icons/road.svg">@item.Property <span>@item.Value</span></li>
+						<li> <img src="@ViewData["pathPrefix"]../images/icons/road.svg">@item.Property <span>@item.Value</span></li>
 					}
 				}
 			</ul>
@@ -95,11 +95,11 @@
 				<div id="box_more">
 					<div id="more">
 						Развернуть
-						<img src="../images/icons/vnis_new.svg" alt="">
+						<img src="@ViewData["pathPrefix"]../images/icons/vnis_new.svg" alt="">
 					</div>
 					<div id="less">
 						Свернуть
-						<img src="../images/icons/vverh_new.svg" alt="">
+						<img src="@ViewData["pathPrefix"]../images/icons/vverh_new.svg" alt="">
 					</div>
 				</div>						
 			</div>
@@ -114,7 +114,7 @@
 				<div class="tooltip"> 
 					<div onclick="myFunction()" onmouseout="outFunc()">
 					<span class="tooltiptext" id="myTooltip">Копировать</span>
-					<img style="width: 20px;" src="../images/icons/copy.png" alt="">
+					<img style="width: 20px;" src="@ViewData["pathPrefix"]../images/icons/copy.png" alt="">
 					</div>
 				</div>
 				(все мессенджеры), либо заходите в наш телеграм-канал <a style="text-decoration: underline; font-style: italic;" href="https://t.me/it_car_by_channel">https://t.me/it_car_by_channel</a> 
@@ -173,7 +173,7 @@
 		<div id="order-all"></div>
 		<div id="add_place">
 			<div class="external_order">					
-				<form id= "order-form" class="order" method="POST" action="../php/handler.php">			
+				<form id= "order-form" class="order" method="POST" action="@ViewData["pathPrefix"]../php/handler.php">			
 					<i id="icon-close" class="fas fa-times"></i>	
 					<div class="form-group" id="span">
 						Оставить заявку
@@ -190,8 +190,8 @@
 			</div>
 		</div>	
 	</div>
-	<script src="../js/make_order.js"></script>
-	<script src="../js/car_parameters.js"></script>
+	<script src="@ViewData["pathPrefix"]../js/make_order.js"></script>
+	<script src="@ViewData["pathPrefix"]../js/car_parameters.js"></script>
 }
 
 @section Headers{

@@ -5,6 +5,7 @@ using IdentityServer4.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -33,14 +34,15 @@ builder.Services.AddIdentityServer()
                 .AddInMemoryIdentityResources(Configuration.IdentityResources)
                 .AddInMemoryApiScopes(Configuration.ApiScopes)
                 .AddInMemoryClients(Configuration.Clients)
+                .AddTestUsers(Configuration.TestUsers)
                 .AddDeveloperSigningCredential();
 
-builder.Services.ConfigureApplicationCookie(config =>
+/*builder.Services.ConfigureApplicationCookie(config =>
 {
     config.Cookie.Name = "CarsIdentity.Cookie";
     config.LoginPath = "/Auth/Login";
     config.LogoutPath = "/Auth/Logout";
-});
+});*/
 
 builder.Services.AddControllersWithViews();
 

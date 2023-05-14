@@ -28,7 +28,7 @@ namespace CarsClient.Controllers
             {
                 var car = await response.Content.ReadFromJsonAsync<CarFullInfo>();
                 // ViewData["apiEditUrl"] = GlobalVariables.WebApiClient.BaseAddress + "Contact/edit";
-                var tags = CarHelper.GetCarStyleTags(car.Images.Count);
+                var tags = CarHelper.GetCarStyleTags(car.Images.Count, "");
                 ViewData["carStyles"] = tags;
 				return View(car);
             }
