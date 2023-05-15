@@ -7,6 +7,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Views\All_News\battery_life.cshtml" />
+    <Content Remove="Views\All_News\how_to_choose_a_car.cshtml" />
+    <Content Remove="Views\All_News\TESLA_vs_BYD.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Views\All_News\battery_life.cshtml" />
+    <None Include="Views\All_News\how_to_choose_a_car.cshtml" />
+    <None Include="Views\All_News\TESLA_vs_BYD.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="IdentityModel" Version="6.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Cookies" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="6.0.16" />

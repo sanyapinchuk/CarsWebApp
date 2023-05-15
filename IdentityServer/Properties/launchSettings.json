@@ -15,7 +15,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "ProCodeGuide.Samples.IdentityServer4": {
+    "IdentityServer": {
       "commandName": "Project",
       "dotnetRunMessages": "true",
       "launchBrowser": true,

@@ -184,25 +184,106 @@ namespace CarsClient.Controllers
             return RedirectToAction("AllCars");
         }
 
-        // GET: AdminController/Edit/5
-        public ActionResult Edit(int id)
+        [HttpGet]
+        [Route("update/{id}")]
+        public async Task<IActionResult> Update(Guid id)
         {
-            return View();
+            var response = await _globalVariables.WebApiClient.GetAsync($"car/get/{id}");
+            if (response.IsSuccessStatusCode)
+            {
+                var car = await response.Content.ReadFromJsonAsync<CarFullInfo>();
+                // ViewData["apiEditUrl"] = GlobalVariables.WebApiClient.BaseAddress + "Contact/edit";
+                
+                return View(car);
+            }
+            else
+                return StatusCode((int)response.StatusCode);
         }
 
-        // POST: AdminController/Edit/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+        [Route("update")]
+        public async Task<IActionResult> Update(IFormCollection form)
+		{
+            var id = form["id"];
+			var model = form["model"];
+			var company = form["company"];
+			var price = form["price"];
+			var color = form["color"];
+			var description = form["description"];
+			var cartype = form["cartype"];
+			var productionYear = form["productionYear"];
+			var mainImage = form["mainImage"];
+
+
+			var props = form.Where(f => f.Key.StartsWith("prop"));
+			var vals = form.Where(f => f.Key.StartsWith("val"));
+			var checks = form.Where(f => f.Key.StartsWith("check"));
+
+			var propsList = new List<PropertyFullInfo>();
+			foreach (var prop in props)
+			{
+				var number = int.Parse(prop.Key.Substring(4));
+				var propName = prop.Value;
+				var value = vals.Where(v => v.Key == $"val{number}")?.FirstOrDefault().Value ?? "";
+				var isMainProp = checks.Count(v => v.Key == $"check{number}") > 0;
+
+				propsList.Add(new PropertyFullInfo()
+				{
+					Property = propName,
+					Value = value,
+					IsKeyProperty = isMainProp
+				});
+			}
+
+			var images = new List<ImageInfo>();
+			foreach (var file in form.Files)
+			{
+
+				var fileName = Path.GetFileNameWithoutExtension(file.FileName);
+				var fileExtension = Path.GetExtension(file.FileName);
+
+
+				var subPath = $"{model}-{Guid.NewGuid()}/{file.FileName}";
+				var filePath = Path.Combine(_hostingEnvironment.WebRootPath, $"images/cars/{subPath}");
+				Directory.CreateDirectory(Path.GetDirectoryName(filePath));
+				using (var fileStream = new FileStream(filePath, FileMode.Create))
+				{
+					file.CopyTo(fileStream);
+				}
+				images.Add(new ImageInfo()
+				{
+					Path = subPath,
+					IsMainImage = file.FileName == mainImage
+				});
+			}
+			if (images.Where(i => i.IsMainImage).Count() == 0)
+			{
+				var first = images.FirstOrDefault();
+				if (first != null)
+					first.IsMainImage = true;
+			}
+
+			var car = new CarFullInfo()
+			{
+				Price = int.Parse(price),
+				CarType = cartype,
+				Color = color,
+				CompanyName = company,
+				Description = description,
+				Images = images,
+				ModelName = model,
+				ProductionYear = int.Parse(productionYear),
+				Properties = propsList
+			};
+
+			var response = await _globalVariables.WebApiClient.PutAsJsonAsync($"car/update",
+				new { Id = Guid.Parse(id), CarInfo = car });
+
+			if (!response.IsSuccessStatusCode)
+				return StatusCode((int)response.StatusCode);
+
+
+			return RedirectToAction("AllCars");
+		}
     }
 }
