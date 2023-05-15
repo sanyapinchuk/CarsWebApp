@@ -1,4 +1,4 @@
-
+﻿
 * {
     box-sizing: border-box;
     margin: 0;
@@ -2648,7 +2648,7 @@ option {
 
 .delete_car_icon {
     position: absolute;
-    margin-left: 190px;
+    margin-left: 262px;
     top: 10px;
     cursor: pointer;
     width: 100px;
@@ -2658,4 +2658,140 @@ option {
 
 .delete_car_icon:hover {
     color: #C0A97A;
+}
+
+#add_car_block {
+    font-size: 30px;
+    cursor: pointer;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    margin-left: 20px;
+    transition: all 0.2s;
+    display: block;
+}
+
+#add_car_block > i {
+    width: 40px;
+}
+
+#add_car_block:hover {
+    color: #C0A97A;
+}
+
+#form_create_wrapper{
+    margin: auto;
+    width: 70%;
+
+}
+#form_create{
+    width: 100%;
+
+}
+#form_create > input {
+    margin-top: 5px;
+    font-size: 17px;
+    display: block;
+    width: 100%;
+    height: 40px;
+    border-radius: 5px;
+    padding-left: 8px;
+    border-width: 1px;
+    border-style: solid;
+    outline: none;
+}
+    #form_create > input::placeholder{
+        font-size: 13px;
+    }
+#separate_line_create{
+    width: 100%;
+    height:1px;
+    background-color: #888;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+#add_property {
+    margin-top: 20px;
+    font-size: 22px;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+.one_property{
+    display: flex;
+    justify-content:space-evenly;
+}
+.prop_item_input {
+    margin-top: 5px;
+    font-size: 17px;
+    display: block;
+    width: 46%;
+    height: 40px;
+    border-radius: 5px;
+    padding-left: 8px;
+    border-width: 1px;
+    border-style: solid;
+    outline: none;
+}
+#createButton_create_wrapper {
+    margin: auto;
+    text-align: center;
+}
+#createButton_create {
+    margin: auto;
+    width: 300px;
+    height: 50px;
+    font-size: 20px;
+    text-align: center;
+}
+
+#files_block_wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#exist_files_list {
+    margin-left: 10px;
+}
+
+.custom-file-input {
+    color: transparent;
+    margin-top: 7px;
+    width: 131px;
+}
+
+.custom-file-input::-webkit-file-upload-button {
+    visibility: hidden;
+}
+
+.custom-file-input::before {
+    content: 'Добавить фото...';
+    color: black;
+    display: inline-block;
+    background: -webkit-linear-gradient(top, #f9f9f9, #e3e3e3);
+    border: 1px solid #999;
+    border-radius: 3px;
+    padding: 5px 8px;
+    outline: none;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    cursor: pointer;
+    text-shadow: 1px 1px #fff;
+    font-weight: 700;
+    font-size: 10pt;
+}
+
+.custom-file-input:hover::before {
+    border-color: black;
+}
+
+.custom-file-input:active {
+    outline: 0;
+}
+
+.custom-file-input:active::before {
+    background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+}
+
+.one_file_from_list {
+    display: inline-block;
+    font-size: 12px;
 }

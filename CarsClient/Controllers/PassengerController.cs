@@ -1,15 +1,23 @@
 ﻿using CarsClient.Helpers;
 using CarsClient.Models.Dto;
+using CarsClient.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CarsClient.Controllers
 {
     public class PassengerController : Controller
     {
+        private GlobalVariables _globalVariables;
+        public PassengerController( GlobalVariables globalVariables)
+        {
+            _globalVariables = globalVariables;
+        }
+
+
         [Route("passenger")]
         public async Task<IActionResult> AllCars()
         {
-            var response = await GlobalVariables.WebApiClient.GetAsync("car/getall");
+            var response = await _globalVariables.WebApiClient.GetAsync("car/getall");
             if (response.IsSuccessStatusCode)
             {
                 var cars = await response.Content.ReadFromJsonAsync<CarList>(); 
@@ -23,7 +31,7 @@ namespace CarsClient.Controllers
         [Route("car/{id}")]
         public async Task<IActionResult> GetCar(Guid id)
         {
-            var response = await GlobalVariables.WebApiClient.GetAsync($"car/get/{id}");
+            var response = await _globalVariables.WebApiClient.GetAsync($"car/get/{id}");
             if (response.IsSuccessStatusCode)
             {
                 var car = await response.Content.ReadFromJsonAsync<CarFullInfo>();

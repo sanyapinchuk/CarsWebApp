@@ -5,6 +5,7 @@ using IdentityModel.Client;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.CodeAnalysis.Operations;
 using Newtonsoft.Json;
 using System.Net;
 using System.Net.Http.Headers;
@@ -18,12 +19,15 @@ namespace CarsClient.Controllers
     {
         private IIdentityServer4Service _identityServer4Service;
         private GlobalVariables _globalVariables;
-        public AdminController(IIdentityServer4Service identityServer4Service, GlobalVariables globalVariables)
+        private readonly IWebHostEnvironment _hostingEnvironment;
+        public AdminController(IIdentityServer4Service identityServer4Service, 
+            GlobalVariables globalVariables,
+            IWebHostEnvironment hostingEnvironment)
         {
             _identityServer4Service= identityServer4Service;
             _globalVariables= globalVariables;
+            _hostingEnvironment= hostingEnvironment;
         }
-
 
 		[HttpGet]
         public async Task<IActionResult> Index()
@@ -63,6 +67,7 @@ namespace CarsClient.Controllers
 				return StatusCode((int)response.StatusCode);
 		}
 
+
         [HttpDelete("{id}")]
         [Route("delete/{id}")]
         public async Task<IActionResult> Delete(Guid id)
@@ -70,7 +75,7 @@ namespace CarsClient.Controllers
             var OAuth2Token = await _identityServer4Service.GetToken("carsApi.read");
 
             _globalVariables.WebApiClient.SetBearerToken(OAuth2Token.AccessToken);
-                var result = await _globalVariables.WebApiClient.DeleteAsync($"https://localhost:5001/car/delete/{id}");
+                var result = await _globalVariables.WebApiClient.DeleteAsync($"car/delete/{id}");
             if (result.IsSuccessStatusCode)
             {
                 return Ok();
@@ -85,27 +90,98 @@ namespace CarsClient.Controllers
             }
 
 		}
-        
 
-        // GET: AdminController/Create
-        public ActionResult Create()
+        [HttpGet]
+        [Route("create")]
+        public async Task<IActionResult> Create()
         {
             return View();
         }
 
         // POST: AdminController/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        [Route("create")]
+        public async  Task<IActionResult> Create(IFormCollection form)
         {
-            try
+            var model = form["model"];
+            var company = form["company"];
+            var price = form["price"];
+            var color = form["color"];
+            var description = form["description"];
+            var cartype = form["cartype"];
+            var productionYear = form["productionYear"];
+            var mainImage = form["mainImage"];
+
+
+            var props = form.Where(f => f.Key.StartsWith("prop"));
+            var vals = form.Where(f => f.Key.StartsWith("val"));
+            var checks = form.Where(f => f.Key.StartsWith("check"));
+
+            var propsList = new List<PropertyFullInfo>();
+            foreach(var prop in props)
             {
-                return RedirectToAction(nameof(Index));
+                var number = int.Parse(prop.Key.Substring(4));
+                var propName = prop.Value;
+                var value = vals.Where(v => v.Key == $"val{number}")?.FirstOrDefault().Value ?? "";
+                var isMainProp = checks.Count(v => v.Key == $"check{number}") > 0;
+
+                propsList.Add(new PropertyFullInfo()
+                {
+                    Property = propName,
+                    Value = value,
+                    IsKeyProperty = isMainProp
+                });
             }
-            catch
+
+            var images = new List<ImageInfo>();
+            foreach (var file in form.Files)
             {
-                return View();
+                
+                var fileName = Path.GetFileNameWithoutExtension(file.FileName);
+                var fileExtension = Path.GetExtension(file.FileName);
+
+                
+                var subPath = $"{model}-{Guid.NewGuid()}/{file.FileName}";
+                var filePath = Path.Combine(_hostingEnvironment.WebRootPath, $"images/cars/{subPath}");
+                Directory.CreateDirectory(Path.GetDirectoryName(filePath));
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    file.CopyTo(fileStream);
+                }
+                images.Add(new ImageInfo()
+                {
+                    Path = subPath,
+                    IsMainImage = file.FileName == mainImage
+                });
             }
+            if (images.Where(i => i.IsMainImage).Count() == 0)
+            {
+                var first = images.FirstOrDefault();
+                if (first != null)
+                    first.IsMainImage = true;
+            }
+
+            var car = new CarFullInfo()
+            {
+                Price = int.Parse(price),
+                CarType = cartype,
+                Color = color,
+                CompanyName = company,
+                Description = description,
+                Images = images,
+                ModelName = model,
+                ProductionYear = int.Parse(productionYear),
+                Properties = propsList
+            };
+
+            var response = await _globalVariables.WebApiClient.PostAsJsonAsync($"car/create",
+                new { CreateCarDto = car });
+
+            if(!response.IsSuccessStatusCode)
+                return StatusCode((int)response.StatusCode);
+
+            
+            return RedirectToAction("AllCars");
         }
 
         // GET: AdminController/Edit/5

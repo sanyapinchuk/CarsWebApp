@@ -34,22 +34,22 @@ namespace CarsServer.Controllers
         }
 
         [HttpPost]
-        [Authorize]
+     //   [Authorize]
         public async Task<ActionResult<Guid>> Create([FromBody] CreateCarCommand carDto)
         {
             var carId = await Mediator.Send(carDto);
-            return Ok(carId);
+                return Ok(carId);
         }
 
         [HttpPut]
-        [Authorize]
+      //  [Authorize]
         public async Task<IActionResult> Update([FromBody] UpdateCarCommand carDto)
         {
             await Mediator.Send(carDto);
             return NoContent();
         }
         [HttpDelete("{id}")]
-        [Authorize]
+      //  [Authorize]
         public async Task<IActionResult> Delete(Guid id)
         {   
             var command = new DeleteCarCommand()

@@ -1,9 +1,10 @@
-﻿@model IEnumerable<CarsClient.Models.Dto.CarShortInfo>
+﻿@using CarsClient;
+@model IEnumerable<CarsClient.Models.Dto.CarShortInfo>
 
 @{
 	ViewData["Title"] = "admin - Купить электромобили по ценам от Поставщика";
 	ViewData["activePage"] = "passengerPage";
-	ViewData["Description"] = "Электромобили Tesla, BYD, Volkswagen, Xpeng, Cherry и др. Надежные электрокары по сниженной цене. Доставка. Финансовая поддержка. Гарантии. Страховка. Круглосуточная связь";
+	ViewData["Description"] = "Электромобили Tesla, BYD, Volkswagen, Xpeng, Cherry и др. Надежные электрокары по сниженной цене. Доставка. Финансовая поддержка. Гарантии. Страховка. Круглосуточная связь | " + GlobalVariables.Postfix;
 	Layout = "~/Views/Shared/_Layout.cshtml";
 	ViewData["pathPrefix"] = "../";
 }
@@ -12,7 +13,9 @@
 <div class="panel commercial">
 	<h1>Электромобили из Китая</h1>
 </div>
-
+<a id="add_car_block" href="create">
+    <i class="fas fa-plus"></i> Add Car...
+</a>
 <div id="car_list_id">
 	<div id="list_border">
 		<ul class="car_list" id="car_list">

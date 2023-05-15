@@ -7,11 +7,11 @@ namespace CarsClient
         public  HttpClient WebApiClient = new HttpClient(); 
         public  string IdentityServerUrl { get; set; }
 
-        public  string Postfix = "it-car.by";
+        public static string Postfix = "it-car.by";
 
         public GlobalVariables()
         {
-            WebApiClient.BaseAddress = new Uri("https://localhost:7052/api/");
+            WebApiClient.BaseAddress = new Uri("https://0642-146-120-15-246.ngrok-free.app/api/");
             WebApiClient.DefaultRequestHeaders.Clear();
             WebApiClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
