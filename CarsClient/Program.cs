@@ -23,7 +23,7 @@ builder.Services.AddAuthentication(options =>
 	.AddCookie("cookie")
 	.AddOpenIdConnect("oidc", options =>
 	{
-		options.Authority = "https://localhost:5001";
+		options.Authority = builder.Configuration["IdentityServerAddress"];
 		options.ClientId = "oidcMVCApp";
 		options.ClientSecret = "CarsApi";
 
@@ -37,12 +37,9 @@ builder.Services.AddAuthentication(options =>
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
-    //app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-    app.UseHsts();
+	app.UseHsts();
 }
 
 app.UseStatusCodePagesWithRedirects("/Error?statusCode={0}");

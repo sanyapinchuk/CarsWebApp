@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CarsClient.Models.Dto
+﻿namespace CarsClient.Models.Dto
 {
     public class CarFullInfo
     {
@@ -18,5 +12,6 @@ namespace CarsClient.Models.Dto
         public string Color { get; set; }
         public List<PropertyFullInfo> Properties { get; set; }
         public List<ImageInfo> Images { get; set; }
-    }
+		public List<SameCarInfoDto> SameCars { get; set; }
+	}
 }

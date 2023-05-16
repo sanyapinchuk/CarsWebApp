@@ -5,7 +5,7 @@
 	ViewData["Title"] = Model.ModelName + " купить в Минске недорого – Цена с учетом доставки";
 	ViewData["Description"] = Model.Description + " | " + GlobalVariables.Postfix;
 	ViewData["activePage"] = "passengerPage";
-	Layout = "~/Views/Shared/_Layout.cshtml";
+	Layout = "~/Views/Shared/_Layout_Admin.cshtml";
 	ViewData["pathPrefix"] = "../../";
 }
 
@@ -57,15 +57,6 @@
 				</div>		
 			</div>			
 		</div>
-		<table class="info">
-			<tr style="top:-10%;">
-				<td style="vertical-align:bottom;">
-					<div id="model">@Model.ModelName</div>
-					<div id="price"> Цена с учётом доставки: <b>$@Model.Price.ToString("N", System.Globalization.CultureInfo.CreateSpecificCulture("en-US"))</b></div>
-					<button id="make-order">Заказать</button>		
-				</td>  
-			</tr>
-		</table>
 	</div>	
 	<div id="box_characterstics">
 		<div id="car_characterstics">
@@ -110,91 +101,31 @@
 		</div>				
 	</div>
 			
-			
-	<div id="call_us">
-		<div style="margin: auto; width: 80%; margin-top: 20px; margin-bottom: 20px; font-size: 23px; line-height: 32px ;" >
-			Для уточнения деталей и заказа авто свяжитесь с нами
-			<a href="tel:375296349842"><b id="mynumber">+375296349842</b></a>
-				<div class="tooltip"> 
-					<div onclick="myFunction()" onmouseout="outFunc()">
-					<span class="tooltiptext" id="myTooltip">Копировать</span>
-					<img style="width: 20px;" src="../images/icons/copy.png" alt="">
-					</div>
-				</div>
-				(все мессенджеры), либо заходите в наш телеграм-канал <a style="text-decoration: underline; font-style: italic;" href="https://t.me/it_car_by_channel">https://t.me/it_car_by_channel</a> 
-		</div>						
-	</div>
-	<!-- <div style="background-color: #ffffff; width: 100%; padding-bottom: 40px;"> 
+	
+@if (Model.SameCars.Count > 0)
+{
+	<div style=" width: 100%; padding-bottom: 40px;"> 
 		<div id="same_cars">
 			<div class= "backgr_name">
 				<div id="name_same">ПОХОЖИЕ АВТО</div>
 			</div>						
 			<div id="box_same_cars">
-				<div class="list_same_cars">
-					<div style="overflow: hidden;"><a href="../cars/Xpeng_P5_550G"><img src="../images/cars/Xpeng_P5_550G/1.jpg" alt="no image"></a></div>
-					<div id="name_same_car">Xpeng P5 550G</div>
-					<div id="price_same_car">Белый/Чёрный</div>
-					<a href="../cars/Xpeng_P5_550G"><div class="same_button">Подробнее</div></a>
+				@for(var i =0; i < Model.SameCars.Count && i <4; i++)
+				{
+					<div class="list_same_cars">
+					<div style="overflow: hidden;"><a href="../car/@Model.SameCars[i].Id"><img src="@ViewData["pathPrefix"]images/cars/@Model.SameCars[0].TitleImage" alt="no image"></a></div>
+					<div id="name_same_car">@Model.SameCars[i].ModelName</div>
+					<div id="price_same_car">@Model.SameCars[i].Color</div>
+					<a href="../car/@Model.SameCars[i].Id"><div class="same_button">Подробнее</div></a>
 				</div>
-				<div class="list_same_cars">
-					<div style="overflow: hidden;"><a href="../cars/C_HR_EV"><img src="../images/cars/C_HR_EV/1.jpg" alt="no image"></a></div>
-					<div id="name_same_car">C-HR EV</div>
-					<div id="price_same_car">Белый</div>
-					<a href="../cars/C_HR_EV"><div class="same_button">Подробнее</div></a>
-				</div>
-				<div class="list_same_cars">
-					<div style="overflow: hidden;"><a href="../cars/Chevrolet_Menlo_Plus"><img src="../images/cars/Chevrolet_Menlo_Plus/1.jpg" alt="no image"></a></div>
-					<div id="name_same_car">Menlo Plus </div>
-					<div id="price_same_car">Белый</div>
-					<a href="../cars/Chevrolet_Menlo_Plus"><div class="same_button">Подробнее</div></a>
-				</div>
-				<div class="list_same_cars">
-					<div style="overflow: hidden;"><a href="../cars/Han_EV_Extra"><img src="../images/cars/Han_EV_Extra/1.jpg" alt="no image"></a></div>
-					<div id="name_same_car">Han EV Extra Long Range Deluxe</div>
-					<div id="price_same_car">Серый / Красный императорский / Белый / Черный</div>
-					<a href="../cars/Han_EV_Extra"><div class="same_button">Подробнее</div></a>
-				</div>							
+				}						
 			</div>		
 		</div>
-	</div> -->
-	<div style="width: 100%; padding-bottom: 40px; margin-top: 40px;">
-		<div class="same_cars">
-			<div class= "backgr_name">
-				<div id="name_same">НАШ ТЕЛЕГРАМ-КАНАЛ</div>
-			</div>
-			<div id="our_telegram_chanel">
-				Еще больше авто в нашем телеграм-канале
-			</div>
-			<div id="link_telchanel">
-				<a href="https://t.me/it_car_by_channel">https://t.me/it_car_by_channel</a>
-			</div>
-					
-		</div>
 	</div>
+}
+	
 
 @section AfterBody{
-	<div id="pop-order">
-		<div id="order-all"></div>
-		<div id="add_place">
-			<div class="external_order">					
-				<form id= "order-form" class="order" method="POST" action="@ViewData["pathPrefix"]../php/handler.php">			
-					<i id="icon-close" class="fas fa-times"></i>	
-					<div class="form-group" id="span">
-						Оставить заявку
-					</div>
-					<div class="form-group">						
-						<input type="text" name="name" class="order-control" placeholder="Имя *" required>
-						<input type="email" name="email" class="order-control" placeholder="Электронная почта *" required>
-					</div>
-					<div class="form-group">
-						<input type="tel" name="phone" class="order-control" placeholder="Телефон">
-					</div>
-					<button type="submit" style="cursor: pointer;">Отправить</button>
-				</form>	
-			</div>
-		</div>	
-	</div
-	<script src="@ViewData["pathPrefix"]../js/make_order.js"></script>
 	<script src="@ViewData["pathPrefix"]../js/car_parameters.js"></script>
 }
 

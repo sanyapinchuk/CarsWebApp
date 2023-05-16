@@ -13,7 +13,7 @@ if($_SERVER['HTTP_REFERER']=='https://localhost:7106/contact_us')
         'budget: '. $_POST['budget']."/r/n".
         'request: '. $_POST['request'];
 
-    mail('info.itcar@gmail.com', 'Request from the user', $message);
+    mail('62422507sp@gmail.com', 'Request from the user', $message);
     header('Location: https://localhost:7106/success_order');
 }
 else
@@ -24,6 +24,6 @@ else
         'phone: '.$_POST['phone']."/r/n".
         'car/'s address: '. $_SERVER['HTTP_REFERER'];
 
-    mail('info.itcar@gmail.com', 'Order from the user', $message);
+    mail('62422507sp@gmail.com', 'Order from the user', $message);
     header('Location: '.$_SERVER['HTTP_REFERER']);
 }

@@ -38,6 +38,9 @@ namespace CarsClient.Controllers
                 // ViewData["apiEditUrl"] = GlobalVariables.WebApiClient.BaseAddress + "Contact/edit";
                 var tags = CarHelper.GetCarStyleTags(car.Images.Count, "");
                 ViewData["carStyles"] = tags;
+                var titleImage = car.Images.Where(i => i.IsMainImage).First();
+                car.Images.Remove(titleImage);
+                car.Images.Insert(0, titleImage);
 				return View(car);
             }
             else

@@ -120,39 +120,28 @@
 				(все мессенджеры), либо заходите в наш телеграм-канал <a style="text-decoration: underline; font-style: italic;" href="https://t.me/it_car_by_channel">https://t.me/it_car_by_channel</a> 
 		</div>						
 	</div>
-	<!-- <div style="background-color: #ffffff; width: 100%; padding-bottom: 40px;"> 
+@if (Model.SameCars.Count > 0)
+{
+	<div style=" width: 100%; padding-bottom: 40px;"> 
 		<div id="same_cars">
 			<div class= "backgr_name">
 				<div id="name_same">ПОХОЖИЕ АВТО</div>
 			</div>						
 			<div id="box_same_cars">
-				<div class="list_same_cars">
-					<div style="overflow: hidden;"><a href="../cars/Xpeng_P5_550G"><img src="../images/cars/Xpeng_P5_550G/1.jpg" alt="no image"></a></div>
-					<div id="name_same_car">Xpeng P5 550G</div>
-					<div id="price_same_car">Белый/Чёрный</div>
-					<a href="../cars/Xpeng_P5_550G"><div class="same_button">Подробнее</div></a>
+				@for(var i =0; i < Model.SameCars.Count && i <4; i++)
+				{
+					<div class="list_same_cars">
+					<div style="overflow: hidden;"><a href="../car/@Model.SameCars[i].Id"><img src="../images/cars/@Model.SameCars[0].TitleImage" alt="no image"></a></div>
+					<div id="name_same_car">@Model.SameCars[i].ModelName</div>
+					<div id="price_same_car">@Model.SameCars[i].Color</div>
+					<a href="../car/@Model.SameCars[i].Id"><div class="same_button">Подробнее</div></a>
 				</div>
-				<div class="list_same_cars">
-					<div style="overflow: hidden;"><a href="../cars/C_HR_EV"><img src="../images/cars/C_HR_EV/1.jpg" alt="no image"></a></div>
-					<div id="name_same_car">C-HR EV</div>
-					<div id="price_same_car">Белый</div>
-					<a href="../cars/C_HR_EV"><div class="same_button">Подробнее</div></a>
-				</div>
-				<div class="list_same_cars">
-					<div style="overflow: hidden;"><a href="../cars/Chevrolet_Menlo_Plus"><img src="../images/cars/Chevrolet_Menlo_Plus/1.jpg" alt="no image"></a></div>
-					<div id="name_same_car">Menlo Plus </div>
-					<div id="price_same_car">Белый</div>
-					<a href="../cars/Chevrolet_Menlo_Plus"><div class="same_button">Подробнее</div></a>
-				</div>
-				<div class="list_same_cars">
-					<div style="overflow: hidden;"><a href="../cars/Han_EV_Extra"><img src="../images/cars/Han_EV_Extra/1.jpg" alt="no image"></a></div>
-					<div id="name_same_car">Han EV Extra Long Range Deluxe</div>
-					<div id="price_same_car">Серый / Красный императорский / Белый / Черный</div>
-					<a href="../cars/Han_EV_Extra"><div class="same_button">Подробнее</div></a>
-				</div>							
+				}							
 			</div>		
 		</div>
-	</div> -->
+	</div>
+}
+	
 	<div style="width: 100%; padding-bottom: 40px; margin-top: 40px;">
 		<div class="same_cars">
 			<div class= "backgr_name">
@@ -173,8 +162,9 @@
 		<div id="order-all"></div>
 		<div id="add_place">
 			<div class="external_order">					
-				<form id= "order-form" class="order" method="POST" action="@ViewData["pathPrefix"]../php/handler.php">			
-					<i id="icon-close" class="fas fa-times"></i>	
+				<form id= "order-form" class="order" method="POST" action="https://formspree.io/f/xqknwazn">			
+					<i id="icon-close" class="fas fa-times"></i>
+					<input type="hidden" name="car_id" value="@Model.Id"/>
 					<div class="form-group" id="span">
 						Оставить заявку
 					</div>

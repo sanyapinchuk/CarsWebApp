@@ -72,10 +72,7 @@ namespace CarsClient.Controllers
         [Route("delete/{id}")]
         public async Task<IActionResult> Delete(Guid id)
         {
-            var OAuth2Token = await _identityServer4Service.GetToken("carsApi.read");
-
-            _globalVariables.WebApiClient.SetBearerToken(OAuth2Token.AccessToken);
-                var result = await _globalVariables.WebApiClient.DeleteAsync($"car/delete/{id}");
+            var result = await _globalVariables.WebApiClient.DeleteAsync($"car/delete/{id}");
             if (result.IsSuccessStatusCode)
             {
                 return Ok();

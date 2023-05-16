@@ -3,6 +3,7 @@ using Applicaton.Cars.Commands.DeleteCar;
 using Applicaton.Cars.Commands.UpdateCar;
 using Applicaton.Cars.Queries.GetCarFullInfo;
 using Applicaton.Cars.Queries.GetCarsList;
+using CarsServer.Helpers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -34,23 +35,24 @@ namespace CarsServer.Controllers
         }
 
         [HttpPost]
-     //   [Authorize]
-        public async Task<ActionResult<Guid>> Create([FromBody] CreateCarCommand carDto)
+		[AuthAttribute]
+		public async Task<ActionResult<Guid>> Create([FromBody] CreateCarCommand carDto)
         {
             var carId = await Mediator.Send(carDto);
                 return Ok(carId);
         }
 
         [HttpPut]
-      //  [Authorize]
-        public async Task<IActionResult> Update([FromBody] UpdateCarCommand carDto)
+		[AuthAttribute]
+		public async Task<IActionResult> Update([FromBody] UpdateCarCommand carDto)
         {
             await Mediator.Send(carDto);
             return NoContent();
         }
+
         [HttpDelete("{id}")]
-      //  [Authorize]
-        public async Task<IActionResult> Delete(Guid id)
+		[AuthAttribute]
+		public async Task<IActionResult> Delete(Guid id)
         {   
             var command = new DeleteCarCommand()
             {

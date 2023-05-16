@@ -27,6 +27,7 @@ namespace Applicaton.Cars.Queries.GetCarFullInfo
         public string Color { get; set; }
         public List<FullPropertyDto> Properties { get; set; }
         public List<ImageInfoDto> Images { get; set; }
+        public List<SameCarInfoDto> SameCars { get; set; }
         public void Mapping(Profile profile, IRepositoryManager repositoryManager)
         {
             profile.CreateMap<Car, CarFullInfoDto>()
@@ -63,7 +64,17 @@ namespace Applicaton.Cars.Queries.GetCarFullInfo
                     }
                    ).ToList()))
                 .ForMember(carDto => carDto.Color,
-                mem => mem.MapFrom(src => src.Color.Name));
+                mem => mem.MapFrom(src => src.Color.Name))
+                .ForMember(carDto=>carDto.SameCars,
+                mem=>mem.MapFrom(src=>src.Model.Cars.Where(c=>c.Id != src.Id)
+                    .Select<Car, SameCarInfoDto>(c=>
+                    new SameCarInfoDto()
+                    {
+                        Id = c.Id,
+                        Color = c.Color.Name,
+                        ModelName = c.Model.Name,
+                        TitleImage = c.Car_Images.Where(ci=>ci.IsMainImage).First().Image.Path
+                    })));
         }
 
     }

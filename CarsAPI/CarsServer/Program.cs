@@ -12,12 +12,6 @@ using CarsServer.Middleware;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Serilog.Events;
 using Serilog;
-/*
-Log.Logger = new LoggerConfiguration()
-                .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
-                .WriteTo.File($"logs/CarsWebAppLog-.log", rollingInterval:
-                    RollingInterval.Day)
-                .CreateLogger();*/
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,7 +23,6 @@ builder.Host.UseSerilog((ctx, lc) =>
 
 builder.Services.AddControllers();
 
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -59,7 +52,7 @@ builder.Services.AddAuthentication("Bearer")
 			.AddIdentityServerAuthentication("Bearer", options =>
 			{
 				options.ApiName = "carsApi";
-				options.Authority = "https://localhost:5001";
+				options.Authority = builder.Configuration["IdentityServerAddress"];
 			});
 
 builder.Services.AddAuthorization(options =>
@@ -70,21 +63,6 @@ builder.Services.AddAuthorization(options =>
 		policy.RequireClaim("scope", "carsApi.read");
 	});
 });
-/*
-builder.Services.AddAuthentication(config =>
-{
-    config.DefaultAuthenticateScheme =
-        JwtBearerDefaults.AuthenticationScheme;
-    config.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-})
-    .AddJwtBearer("Bearer", options =>
-    {
-        options.Authority = builder.Configuration["IdentityServerAddress"];
-        options.Audience = "CarsWebAPI";
-        options.RequireHttpsMetadata = false;
-    });*/
-
-//builder.Services.AddScoped<IDataContext, DataContext>();
 
 var app = builder.Build();
 
