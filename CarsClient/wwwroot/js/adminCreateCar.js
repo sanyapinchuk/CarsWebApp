@@ -60,6 +60,12 @@ function deleteFileHandler() {
 
     removeFileFromFileList(number);
     this.parentElement.remove();
+
+    var exsImages = document.getElementById("existsImages");
+    let fileName = this.attributes['data-filename'].value;
+    exsImages.value = exsImages.value;
+    const regex = new RegExp(`\\|[^|]*${fileName.replace(".", "\\.")}`);
+    exsImages.value = exsImages.value.replace(regex, "");
 }
 
 $('.delete_file_icon').on('click', deleteFileHandler);
@@ -77,7 +83,7 @@ $('#files_prop').on('change', function () {
         <div class="one_file_from_list_wrapper">
             <input type="radio" name="mainImage" value="${files[i].name}">
             <div class="one_file_from_list">${files[i].name}</div>
-            <i class="fas fa-times delete_file_icon" data-number="${countChilds}"></i>
+            <i class="fas fa-times delete_file_icon" data-filename ="${files[i].name}" data-number="${countChilds}"></i>
         </div>
         `)
         countChilds++;

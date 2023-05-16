@@ -15,21 +15,25 @@
         <form action="../update" method="post" id="form_create" enctype="multipart/form-data">
             <div id="files_block_wrapper">
                 <div id="exist_files_list"> 
+                    @{
+                        var existsImages = "";
+                    }
                     @for(int i = 1; i< Model.Images.Count + 1; i++)
                     {
+                        existsImages += "|" + Model.Images[i - 1].Path;
                         var isChecked = "";
                         if (Model.Images[i-1].IsMainImage)
                             isChecked = "checked";
                         var fileName = Model.Images[i-1].Path.Split('/')[1];
-
                         <div class="one_file_from_list_wrapper">
                             <input type="radio" name="mainImage" value="@fileName" @isChecked>
                             <div class="one_file_from_list">@fileName</div>
-                            <i class="fas fa-times delete_file_icon" data-number="@i"></i>
+                            <i class="fas fa-times delete_file_icon" data-filename ="@fileName" data-number="@i"></i>
                         </div>
                     }
+                    <input type="hidden" id="existsImages" name="existsImages" value="@existsImages" />
                 </div>
-                <input name="files" id="files_prop" class="custom-file-input" required accept=".jpg,.png" type="file" multiple="multiple" >
+                <input name="files" id="files_prop" class="custom-file-input" accept=".jpg,.png" type="file" multiple="multiple" >
             </div>
             <input type="hidden" name="id" required value="@Model.Id" />
             <input type="text" name="model" required placeholder="Модель" value="@Model.ModelName" />

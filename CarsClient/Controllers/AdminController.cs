@@ -30,7 +30,8 @@ namespace CarsClient.Controllers
         }
 
 		[HttpGet]
-        public async Task<IActionResult> Index()
+        [Route("")]
+        public IActionResult Index()
         {
             return RedirectToAction("AllCars");
         }
@@ -58,9 +59,11 @@ namespace CarsClient.Controllers
 			if (response.IsSuccessStatusCode)
 			{
 				var car = await response.Content.ReadFromJsonAsync<CarFullInfo>();
-				// ViewData["apiEditUrl"] = GlobalVariables.WebApiClient.BaseAddress + "Contact/edit";
 				var tags = CarHelper.GetCarStyleTags(car.Images.Count,"../");
-				ViewData["carStyles"] = tags;
+				ViewData["carStyles0"] = tags[0];
+				ViewData["carStyles1"] = tags[1];
+				ViewData["carStyles2"] = tags[2];
+				ViewData["carStyles3"] = tags[3];
 				return View(car);
 			}
 			else
@@ -134,11 +137,14 @@ namespace CarsClient.Controllers
             foreach (var file in form.Files)
             {
                 
-                var fileName = Path.GetFileNameWithoutExtension(file.FileName);
+                //var fileName = Path.GetFileNameWithoutExtension(file.FileName);
                 var fileExtension = Path.GetExtension(file.FileName);
 
-                
-                var subPath = $"{model}-{Guid.NewGuid()}/{file.FileName}";
+                var fileName = file.FileName;
+                if (string.IsNullOrWhiteSpace(fileName))
+                    fileName = "image";
+
+                var subPath = $"{model}-{Guid.NewGuid()}/{fileName}";
                 var filePath = Path.Combine(_hostingEnvironment.WebRootPath, $"images/cars/{subPath}");
                 Directory.CreateDirectory(Path.GetDirectoryName(filePath));
                 using (var fileStream = new FileStream(filePath, FileMode.Create))
@@ -148,7 +154,7 @@ namespace CarsClient.Controllers
                 images.Add(new ImageInfo()
                 {
                     Path = subPath,
-                    IsMainImage = file.FileName == mainImage
+                    IsMainImage = fileName == mainImage
                 });
             }
             if (images.Where(i => i.IsMainImage).Count() == 0)
@@ -189,8 +195,10 @@ namespace CarsClient.Controllers
             if (response.IsSuccessStatusCode)
             {
                 var car = await response.Content.ReadFromJsonAsync<CarFullInfo>();
-                // ViewData["apiEditUrl"] = GlobalVariables.WebApiClient.BaseAddress + "Contact/edit";
-                
+                car.Images.Sort((i1, i2) =>
+                {
+                    return i1.Path.Split("/")[1].CompareTo(i2.Path.Split("/")[1]);
+                });
                 return View(car);
             }
             else
@@ -236,11 +244,15 @@ namespace CarsClient.Controllers
 			foreach (var file in form.Files)
 			{
 
-				var fileName = Path.GetFileNameWithoutExtension(file.FileName);
+				//var fileName = Path.GetFileNameWithoutExtension(file.FileName);
 				var fileExtension = Path.GetExtension(file.FileName);
 
-
-				var subPath = $"{model}-{Guid.NewGuid()}/{file.FileName}";
+                var fileName = file.FileName;
+                if(string.IsNullOrWhiteSpace(fileName))
+                {
+                    fileName = "image";
+                }
+                var subPath = $"{model}-{Guid.NewGuid()}/{fileName}";
 				var filePath = Path.Combine(_hostingEnvironment.WebRootPath, $"images/cars/{subPath}");
 				Directory.CreateDirectory(Path.GetDirectoryName(filePath));
 				using (var fileStream = new FileStream(filePath, FileMode.Create))
@@ -250,9 +262,23 @@ namespace CarsClient.Controllers
 				images.Add(new ImageInfo()
 				{
 					Path = subPath,
-					IsMainImage = file.FileName == mainImage
+					IsMainImage = fileName == mainImage
 				});
 			}
+            var existsImages = form["existsImages"];
+            if (!string.IsNullOrWhiteSpace(existsImages))
+            {
+                var exsImages = existsImages.First().Split('|').ToList();
+                exsImages.RemoveAt(0);
+                exsImages.ForEach(exsImage =>
+                {
+                    images.Add(new ImageInfo()
+                    {
+                        Path = exsImage,
+                        IsMainImage = exsImage.Split("/")[1] == mainImage
+                    });
+                });
+            }
 			if (images.Where(i => i.IsMainImage).Count() == 0)
 			{
 				var first = images.FirstOrDefault();
