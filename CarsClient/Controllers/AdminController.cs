@@ -1,6 +1,5 @@
 ﻿using CarsClient.Helpers;
 using CarsClient.Models.Dto;
-using CarsClient.Services;
 using IdentityModel.Client;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -17,14 +16,12 @@ namespace CarsClient.Controllers
 	[Authorize]
 	public class AdminController : Controller
     {
-        private IIdentityServer4Service _identityServer4Service;
         private GlobalVariables _globalVariables;
         private readonly IWebHostEnvironment _hostingEnvironment;
-        public AdminController(IIdentityServer4Service identityServer4Service, 
+        public AdminController(
             GlobalVariables globalVariables,
             IWebHostEnvironment hostingEnvironment)
         {
-            _identityServer4Service= identityServer4Service;
             _globalVariables= globalVariables;
             _hostingEnvironment= hostingEnvironment;
         }
@@ -64,7 +61,12 @@ namespace CarsClient.Controllers
 				ViewData["carStyles1"] = tags[1];
 				ViewData["carStyles2"] = tags[2];
 				ViewData["carStyles3"] = tags[3];
-				return View(car);
+
+                var titleImage = car.Images.Where(i => i.IsMainImage).First();
+                car.Images.Remove(titleImage);
+                car.Images.Insert(0, titleImage);
+
+                return View(car);
 			}
 			else
 				return StatusCode((int)response.StatusCode);
@@ -308,5 +310,12 @@ namespace CarsClient.Controllers
 
 			return RedirectToAction("AllCars");
 		}
-    }
+
+        public IActionResult Logout()
+        {
+            CarHelper.Logout(HttpContext);
+            return RedirectToAction("Index", "Home");
+		}
+
+	}
 }

@@ -162,7 +162,7 @@
 		<div id="order-all"></div>
 		<div id="add_place">
 			<div class="external_order">					
-				<form id= "order-form" class="order" method="POST" action="https://formspree.io/f/xqknwazn">			
+				<form id= "order-form" class="order" method="POST" action="@ViewData["mailAddress"]">			
 					<i id="icon-close" class="fas fa-times"></i>
 					<input type="hidden" name="car_id" value="@Model.Id"/>
 					<div class="form-group" id="span">

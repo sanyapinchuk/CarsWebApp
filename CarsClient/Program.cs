@@ -3,15 +3,12 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.IdentityModel.Tokens;
-using CarsClient.Services;
 using CarsClient;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
-builder.Services.AddSingleton<IIdentityServer4Service, IdentityServer4Service>();
 
 builder.Services.AddSingleton<GlobalVariables>();
 

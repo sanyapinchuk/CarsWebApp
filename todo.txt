@@ -1,0 +1,540 @@
+СЕРВЕРНОЕ ПРИЛОЖЕНИЕ 
+Проект CarsServer
+код файла Program.cs
+
+
+
+using Applicaton;
+using Applicaton.Common.Mappings;
+using Applicaton.Interfaces;
+using Persistence;
+using Persistence.Data;
+using System.Reflection;
+using MediatR;
+using AutoMapper;
+using Microsoft.Extensions.Hosting;
+using Persistence.Repository;
+using CarsServer.Middleware;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Serilog.Events;
+using Serilog;
+
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Host.UseSerilog((ctx, lc) => 
+                lc
+                .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
+                .WriteTo.File($"logs/CarsWebAppLog-.log", rollingInterval:
+                    RollingInterval.Day));
+
+builder.Services.AddControllers();
+
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
+ 
+builder.Services.AddApplication();
+builder.Services.AddPersistence(builder.Configuration);
+
+builder.Services.AddMediatR(typeof(DataContext).Assembly);
+
+builder.Services.AddAutoMapper(config =>
+{
+    var service = builder.Services.BuildServiceProvider().GetService<IRepositoryManager>();
+
+    config.AddProfile(new AssemblyMappingProfile(Assembly.GetExecutingAssembly(), service));
+    config.AddProfile(new AssemblyMappingProfile(typeof(IDataContext).Assembly, service));
+});
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", policy =>
+    {
+        policy.AllowAnyHeader();
+        policy.AllowAnyMethod();
+        policy.AllowAnyOrigin();
+    });
+});
+builder.Services.AddAuthentication("Bearer")
+			.AddIdentityServerAuthentication("Bearer", options =>
+			{
+				options.ApiName = "carsApi";
+				options.Authority = builder.Configuration["IdentityServerAddress"];
+			});
+
+builder.Services.AddAuthorization(options =>
+{
+	options.AddPolicy("carsApiScope", policy =>
+	{
+		policy.RequireAuthenticatedUser();
+		policy.RequireClaim("scope", "carsApi.read");
+	});
+});
+
+var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var serviceProvider = scope.ServiceProvider;
+    try
+    {
+        var context = serviceProvider.GetRequiredService<DataContext>();
+        DbInitializer.Initialize(context);
+    }
+    catch (Exception exception)
+    {
+        Log.Fatal(exception, "An error occurred while app initialization");
+    }
+}
+
+
+// Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+    app.UseDeveloperExceptionPage();
+}
+
+app.UserCustomExceptionHandler();
+
+app.UseRouting();
+app.UseHttpsRedirection();
+app.UseCors();
+app.UseAuthorization();
+app.UseAuthentication();
+
+app.MapControllers();
+
+app.Run();
+
+
+
+
+Проект CarsServer
+код файла RepositoryManager.cs
+
+
+
+using Applicaton.Interfaces;
+using Persistence.Data;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Persistence.Repository
+{
+    public class RepositoryManager : IRepositoryManager
+    {
+        private DataContext _dataContext;
+
+        private CarImageRepository carImageRepository;
+        private CarPropValueRepository carPropValueRepository;
+        private CarRepository carRepository;
+        private CarTypeRepository carTypeRepository;
+        private CompanyRepository companyRepository;
+        private ImageRepository imageRepository;
+        private ModelRepository modelRepository;
+        private PropValueRepository propValueRepository;
+        private PropertyRepository propertyRepository;
+        private ColorRepository colorRepository;
+
+        public RepositoryManager(DataContext dataContext) 
+        {
+            _dataContext= dataContext;
+        }
+        public ICarImageRepository CarImageRepository
+        {
+            get
+            {
+                if (carImageRepository == null)
+                    return new CarImageRepository(_dataContext);
+                return carImageRepository;
+            }
+        }
+
+        public ICarPropValueRepository CarPropValueRepository
+        {
+            get
+            {
+                if (carPropValueRepository == null)
+                    return new CarPropValueRepository(_dataContext);
+                return carPropValueRepository;
+            }
+        }
+        public ICarRepository CarRepository
+        {
+            get
+            {
+                if (carRepository == null)
+                    return new CarRepository(_dataContext);
+                return carRepository;
+            }
+        }
+        public ICarTypeRepository CarTypeRepository
+        {
+            get
+            {
+                if (carTypeRepository == null)
+                    return new CarTypeRepository(_dataContext);
+                return carTypeRepository;
+            }
+        }
+        public ICompanyRepository CompanyRepository
+        {
+            get
+            {
+                if (companyRepository == null)
+                    return new CompanyRepository(_dataContext);
+                return companyRepository;
+            }
+        }
+        public IImageRepository ImageRepository
+        {
+            get
+            {
+                if (imageRepository == null)
+                    return new ImageRepository(_dataContext);
+                return imageRepository;
+            }
+        }
+        public IModelRepository ModelRepository
+        {
+            get
+            {
+                if (modelRepository == null)
+                    return new ModelRepository(_dataContext);
+                return modelRepository;
+            }
+        }
+        public IPropValueRepository PropValueRepository
+        {
+            get
+            {
+                if (propValueRepository == null)
+                    return new PropValueRepository(_dataContext);
+                return propValueRepository;
+            }
+        }
+        public IPropertyRepository PropertyRepository
+        {
+            get
+            {
+                if (propertyRepository == null)
+                    return new PropertyRepository(_dataContext);
+                return propertyRepository;
+            }
+        }
+        public IColorRepository ColorRepository
+        {
+            get
+            {
+                if (colorRepository == null)
+                    return new ColorRepository(_dataContext);
+                return colorRepository;
+            }
+        }
+        public async Task SaveAsync()
+        {
+           await _dataContext.SaveChangesAsync();
+        }
+    }
+}
+
+
+файл DependencyEnjection.cs
+
+
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Configuration;
+using Persistence.Data;
+using Applicaton.Interfaces;
+using Persistence.Repository;
+
+namespace Persistence
+{
+    public static class DependencyInjection
+    {
+        public static IServiceCollection AddPersistence(this IServiceCollection services,
+            IConfiguration configuration)
+        {
+            var connectionString = configuration["DbConnection"];
+            services.AddDbContext<DataContext>(options =>
+            {
+                options.UseLazyLoadingProxies();
+                options.UseSqlServer(connectionString);
+            });
+            services.AddSingleton<IDataContext, DataContext>();
+            services.AddSingleton<IRepositoryManager, RepositoryManager>();
+            return services;
+        }
+    }
+}
+
+
+
+
+ПРОЕКТ Application 
+файл CarListDto.cs
+
+
+using Applicaton.Common.Exceptions;
+using Applicaton.Common.Mappings;
+using Applicaton.Interfaces;
+using AutoMapper;
+using Domain;
+using Shared.Dto;
+using System;
+using System.Linq;
+using System.Net.Mail;
+
+namespace Applicaton.Cars.Queries.GetCarsList
+{
+    public class CarListDto : IMapWith<Car>
+    {
+        public Guid Id { get; set; }
+        public int Price { get; set; }
+        public string ModelName { get; set; }
+        public string CompanyName { get; set; }
+        public string TitleImagePath { get; set; }
+        public string Color { get; set; }
+        public List<PropertyDto> Properties { get; set; }
+
+        public async void Mapping(Profile profile, IRepositoryManager repositoryManager)
+        {
+            profile.CreateMap<Car, CarListDto>()
+                .ForMember(carDto => carDto.Id,
+                mem => mem.MapFrom(car => car.Id))
+                .ForMember(carDto => carDto.Price,
+                mem => mem.MapFrom(car => car.Price))
+                .ForMember(carDto => carDto.ModelName,
+                mem => mem.MapFrom(car => car.Model.Name))
+                .ForMember(carDto => carDto.CompanyName,
+                mem => mem.MapFrom(car => car.Model.Company.Name))
+                .ForMember(carDto => carDto.TitleImagePath,
+                 mem => mem.MapFrom(src => src.Car_Images.Where(ci => ci.IsMainImage).First().Image.Path))
+                 .ForMember(carDto => carDto.Properties,
+                  mem => mem.MapFrom(src => src.Car_PropValues
+                    .Where(cpv => cpv.PropValue.Property.IsKeyProperty)
+                    .Select<Car_PropValue, PropertyDto>(cpv =>
+                        new PropertyDto() 
+                        { 
+                            Value= cpv.PropValue.Value, 
+                            Property = cpv.PropValue.Property.Name
+                        }
+                  ).ToList()))
+                .ForMember(carDto => carDto.Color,
+                mem => mem.MapFrom(src => src.Color.Name));
+        }
+    }
+}
+
+
+
+
+ПРОЕКТ IdentityServer
+файл Sturtup.cs
+
+
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using ProCodeGuide.Samples.IdentityServer4.IdentityConfiguration;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace ProCodeGuide.Samples.IdentityServer4
+{
+    public class Startup
+    {
+        public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddIdentityServer()
+                .AddInMemoryClients(Clients.Get())
+                .AddInMemoryIdentityResources(Resources.GetIdentityResources())
+                .AddInMemoryApiResources(Resources.GetApiResources())
+                .AddInMemoryApiScopes(Scopes.GetApiScopes())
+                .AddTestUsers(Users.Get())
+                .AddDeveloperSigningCredential();
+
+            services.AddControllersWithViews();
+        }
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        {
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+
+            app.UseStaticFiles();
+
+            app.UseRouting();
+
+            app.UseIdentityServer();
+
+            app.UseEndpoints(endpoints => endpoints.MapDefaultControllerRoute());
+        }
+    }
+}
+
+
+
+ПРОЕКТ CarsClient
+файл AllCars.cshtml
+
+
+
+@using CarsClient;
+@model IEnumerable<CarsClient.Models.Dto.CarShortInfo>
+
+@{
+	ViewData["Title"] = "admin - Купить электромобили по ценам от Поставщика";
+	ViewData["activePage"] = "passengerPage";
+	ViewData["Description"] = "Электромобили Tesla, BYD, Volkswagen, Xpeng, Cherry и др. Надежные электрокары по сниженной цене. Доставка. Финансовая поддержка. Гарантии. Страховка. Круглосуточная связь | " + GlobalVariables.Postfix;
+	Layout = "~/Views/Shared/_Layout_Admin.cshtml";
+	ViewData["pathPrefix"] = "../";
+}
+
+
+<div class="panel commercial">
+	<h1>Электромобили из Китая</h1>
+</div>
+<a id="add_car_block" href="create">
+    <i class="fas fa-plus"></i> Добавить автомобиль...
+</a>
+<div id="car_list_id">
+	<div id="list_border">
+		<ul class="car_list" id="car_list">
+			@foreach (var item in Model)
+			{
+				<li>
+					<i class="far fa-trash-alt delete_car_icon" data-carId="@item.Id"></i>
+					<a href="car/@item.Id"><img src="@ViewData["pathPrefix"]images/cars/@item.TitleImagePath" alt="no image"></a>
+					<div class="short_car_info">
+						<div id="name_car_list">
+							<a href="car/@item.Id">@item.ModelName</a>
+						</div>
+						<ul>
+							<li class="each_info">
+								<div class="car_option">
+									<img src="@ViewData["pathPrefix"]images/icons/drop.svg">
+									<div>Цвет</div>
+								</div>
+								<div class="option_value" style="position: static;">@item.Color</div>
+							</li>
+							<li class="each_info">
+								<div class="car_option">
+									<img src="@ViewData["pathPrefix"]images/icons/brand.png">
+									<div>Марка</div>
+								</div>
+								<div class="option_value">@item.CompanyName</div>
+							</li>
+							@foreach (var prop in item.Properties)
+							{
+								<li class="each_info">
+									<div class="car_option">
+										<img src="@ViewData["pathPrefix"]images/icons/road.png">
+										<div>@prop.Property</div>
+									</div>
+									<div class="option_value">@prop.Value</div>
+								</li>
+							}
+							<li class="each_info">
+								<div class="car_option">
+									<img src="@ViewData["pathPrefix"]images/icons/condition.svg">
+									<div>Состояние</div>
+								</div>
+								<div class="option_value">Новое</div>
+							</li>
+						</ul>
+						<div class="short_price">
+
+							<a href="car/@item.Id" class="a_price">
+								<div style="width: 100%;">
+									Подробнее
+								</div>
+							</a>
+
+						</div>
+					</div>
+				</li>
+			}
+		</ul>
+	</div>
+</div>	
+
+@section AfterBody{
+	<script src="@ViewData["pathPrefix"]../js/adminCarsIteraction.js"></script>
+}
+
+
+
+файл Program.cs
+
+
+
+using CarsClient.Middleware;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.IdentityModel.Tokens;
+using CarsClient;
+
+var builder = WebApplication.CreateBuilder(args);
+
+// Add services to the container.
+builder.Services.AddControllersWithViews();
+
+builder.Services.AddSingleton<GlobalVariables>();
+
+builder.Services.AddAuthentication(options =>
+{
+	options.DefaultScheme = "cookie";
+	options.DefaultChallengeScheme = "oidc";
+})
+	.AddCookie("cookie")
+	.AddOpenIdConnect("oidc", options =>
+	{
+		options.Authority = builder.Configuration["IdentityServerAddress"];
+		options.ClientId = "oidcMVCApp";
+		options.ClientSecret = "CarsApi";
+
+		options.ResponseType = "code";
+		options.UsePkce = true;
+		options.ResponseMode = "query";
+
+		options.Scope.Add("carsApi.read");
+		options.SaveTokens = true;
+	});
+
+var app = builder.Build();
+
+if (!app.Environment.IsDevelopment())
+{
+	app.UseHsts();
+}
+
+app.UseStatusCodePagesWithRedirects("/Error?statusCode={0}");
+app.UseCustomExceptionHandler();
+
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+
+app.UseRouting();
+
+app.UseAuthentication();
+app.UseAuthorization();
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.Run();
+

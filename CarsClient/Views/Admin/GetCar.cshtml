@@ -8,7 +8,6 @@
 	Layout = "~/Views/Shared/_Layout_Admin.cshtml";
 	ViewData["pathPrefix"] = "../../";
 }
-
 	<div class="panel commercial">	
 		<h1>@Model.ModelName</h1>
 	</div>
@@ -57,6 +56,14 @@
 				</div>		
 			</div>			
 		</div>
+		<table class="info">
+			<tr style="top:-10%;">
+				<td style="vertical-align:bottom;">
+					<div id="model">@Model.ModelName</div>
+					<div id="price"> Цена с учётом доставки: <b>$@Model.Price.ToString("N", System.Globalization.CultureInfo.CreateSpecificCulture("en-US"))</b></div>	
+				</td>  
+			</tr>
+		</table>
 	</div>	
 	<div id="box_characterstics">
 		<div id="car_characterstics">

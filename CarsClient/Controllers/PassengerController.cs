@@ -1,6 +1,5 @@
 ﻿using CarsClient.Helpers;
 using CarsClient.Models.Dto;
-using CarsClient.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CarsClient.Controllers
@@ -8,9 +7,12 @@ namespace CarsClient.Controllers
     public class PassengerController : Controller
     {
         private GlobalVariables _globalVariables;
-        public PassengerController( GlobalVariables globalVariables)
+        private readonly IConfiguration _configuration;
+        public PassengerController( GlobalVariables globalVariables,
+                IConfiguration configuration)
         {
             _globalVariables = globalVariables;
+            _configuration = configuration;
         }
 
 
@@ -43,7 +45,9 @@ namespace CarsClient.Controllers
                 var titleImage = car.Images.Where(i => i.IsMainImage).First();
                 car.Images.Remove(titleImage);
                 car.Images.Insert(0, titleImage);
-				return View(car);
+
+                ViewData["mailAddress"] = _configuration["mailAddress"];
+                return View(car);
             }
             else
                 return StatusCode((int)response.StatusCode);

@@ -1,4 +1,5 @@
 using CarsClient.Models;
+using System.Runtime.CompilerServices;
 using System.Security.Policy;
 
 namespace CarsClient.Helpers
@@ -39,5 +40,21 @@ namespace CarsClient.Helpers
 			return styles;
 
         }
+
+		public static void Logout(HttpContext context)
+		{
+			if (context != null)
+			{
+				var cookies = context.Response.Cookies;
+				cookies.Delete("_ym_uid");
+				cookies.Delete(".AspNetCore.cookieC2");
+				cookies.Delete("_ym_d");
+				cookies.Delete("idsrv.session");
+				cookies.Delete(".AspNetCore.cookieC1");
+				cookies.Delete(".AspNetCore.cookie");
+				cookies.Delete("idsrv");
+				cookies.Delete(".AspNetCore.Antiforgery.vt3n6_Bd4OM");
+			}
+		}
 	}
 }

@@ -53,19 +53,21 @@ function removeFileFromFileList(index) {
 }
 
 function deleteFileHandler() {
-    let number = this.attributes['data-number'].value;
-    var elem = document.getElementById("selectedFilesForDelete");
-    if (elem)
-        elem.value += `${this.attributes['data-fileId'].value},`;
+    if (document.getElementsByClassName("one_file_from_list_wrapper").length > 1) {
+        let number = this.attributes['data-number'].value;
+        var elem = document.getElementById("selectedFilesForDelete");
+        if (elem)
+            elem.value += `${this.attributes['data-fileId'].value},`;
 
-    removeFileFromFileList(number);
-    this.parentElement.remove();
+        removeFileFromFileList(number);
+        this.parentElement.remove();
 
-    var exsImages = document.getElementById("existsImages");
-    let fileName = this.attributes['data-filename'].value;
-    exsImages.value = exsImages.value;
-    const regex = new RegExp(`\\|[^|]*${fileName.replace(".", "\\.")}`);
-    exsImages.value = exsImages.value.replace(regex, "");
+        var exsImages = document.getElementById("existsImages");
+        let fileName = this.attributes['data-filename'].value;
+        exsImages.value = exsImages.value;
+        const regex = new RegExp(`\\|[^|]*${fileName.replace(".", "\\.")}`);
+        exsImages.value = exsImages.value.replace(regex, "");
+    }
 }
 
 $('.delete_file_icon').on('click', deleteFileHandler);

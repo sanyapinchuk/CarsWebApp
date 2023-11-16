@@ -8,3 +8,4 @@ namespace Applicaton.Cars.Commands.CreateCar
         public CarFullInfoDto? CreateCarDto { get; set; }
     }
 }
+    

@@ -7,10 +7,12 @@ namespace CarsClient.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IConfiguration _configuration;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IConfiguration configuration)
         {
             _logger = logger;
+            _configuration = configuration;
         }
 
         [Route("")]
@@ -20,21 +22,10 @@ namespace CarsClient.Controllers
             return View();
         }
 
-        [Route("commercial")]
-        public IActionResult Commercial()
-        {
-            return View();
-        }
-
-        [Route("news")]
-        public IActionResult News()
-        {
-            return View();
-        }
-
         [Route("contact_us")]
         public IActionResult Contact_us()
         {
+            ViewData["mailAddress"] = _configuration["mailAddress"];
             return View();
         }
 

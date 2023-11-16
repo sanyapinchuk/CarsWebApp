@@ -2812,3 +2812,22 @@ option {
     #eddit_button:hover {
         transform: scale(2.8);
     }
+
+#logoutButt {
+    font-size: 20px;
+    padding: 10px 20px;
+    background-color: #282828;
+    border: 1px solid #eee;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+    #logoutButt:hover {
+        background-color: #eee;
+        color: #282828;
+    }

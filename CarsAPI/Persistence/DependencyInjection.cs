@@ -15,18 +15,9 @@ namespace Persistence
             var connectionString = configuration["DbConnection"];
             services.AddDbContext<DataContext>(options =>
             {
-                //options.UseSqlite(connectionString);
                 options.UseLazyLoadingProxies();
                 options.UseSqlServer(connectionString);
-                //options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
             });
-            /*services.AddSingleton<IRepositoryManager>(provider =>
-            provider.GetService<RepositoryManager>());
-
-            services.AddSingleton<IDataContext>(provider =>
-                provider.GetService<DataContext>());
-            */
-
             services.AddSingleton<IDataContext, DataContext>();
             services.AddSingleton<IRepositoryManager, RepositoryManager>();
             return services;
