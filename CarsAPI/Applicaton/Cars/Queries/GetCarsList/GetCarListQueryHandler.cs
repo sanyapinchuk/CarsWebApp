@@ -5,6 +5,7 @@ using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
 using Applicaton.Interfaces;
+using System.Data.Common;
 
 namespace Applicaton.Cars.Queries.GetCarsList
 {
@@ -23,10 +24,12 @@ namespace Applicaton.Cars.Queries.GetCarsList
         public async Task<CarListVm> Handle(GetCarListQuery request,
             CancellationToken cancellationToken)
         {
-            var carsQ = (await _repositoryManager.CarRepository.GetAllCarsAsync()).AsQueryable();
-            var cars = carsQ
-                .ProjectTo<CarListDto>(_mapper.ConfigurationProvider)
-                .ToList();
+            var carsQ = await _repositoryManager.CarRepository.GetAllCarsAsync();
+            var cars = new List<CarListDto>();
+            foreach (var car in carsQ)
+            {
+                cars.Add(_mapper.Map<CarListDto>(car));
+            }
             return new CarListVm() { Cars = cars };
         }
     }

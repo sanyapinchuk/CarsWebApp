@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "admin - Добавить авто";
     ViewData["activePage"] = "passengerPage";
-    ViewData["Description"] = "Добавление авто | " +  GlobalVariables.Postfix;
+    ViewData["Description"] = "Добавление авто | " + ViewData["Postfix"];
     Layout = "~/Views/Shared/_Layout_Admin.cshtml";
     ViewData["pathPrefix"] = "../";
 }
@@ -12,17 +12,24 @@
 <div class="row">
     <div id="form_create_wrapper">
         <form asp-action="Create" method="post" id="form_create" enctype="multipart/form-data">
-            <div id="files_block_wrapper">
-                <div id="exist_files_list"> </div>
-                <input name="files" id="files_prop" class="custom-file-input" required accept=".jpg,.png" type="file" multiple="multiple" >
+            <div id="photos_block">
+                <div id="photos_list">
+                    <div class="one_photo">
+                        <input type="radio" name="mainImage" value="photo1">
+                        <input type="text" placeholder="Ссылка" class="onePhotoName_create photo_item_input" name="photo1" />
+                        <i data-filename="photo1" class="fas fa-times delete_file_icon" aria-hidden="true"></i>
+                    </div>
+                </div>
+                <div id="add_photo">
+                    <i class="fas fa-plus"></i> Добавить Фото
+                </div>
             </div>
             <input type="text" name="model" required placeholder="Модель"/>
-            <input type="text" name="company" required placeholder="Производитель" />
             <input type="text" pattern="[0-9]*" name="price" required placeholder="Цена $" />
             <input type="text" name="color" required placeholder="Цвет"/>
             <input type="text" name="description" required placeholder="Описание" />
             <input type="text" name="cartype" required placeholder="Кузов" />
-            <input type="text" pattern="[0-9]*" name="productionYear" required placeholder="Год производства" />
+            <input type="text" pattern="[0-9]*" name="productionYear" required placeholder="Модельный год" />
             <div id="separate_line_create"></div>
             <div id="properties_block">
                 <div id="properties_list">
@@ -30,6 +37,8 @@
                         <input type="checkbox" name="check1" value="check1"/>
                         <input type="text" placeholder="Свойство" class="onePropName_create prop_item_input" name="prop1"/>
                         <input type="text" placeholder="Значение" class="prop_item_input" name="val1" />
+                        <input type="text" placeholder="Категория" class="prop_item_input" name="propCategory1" />
+                        <input type="number" placeholder="Приоритет" step="1" class="prop_item_input prop_item_input_priority" name="propCategoryPriority1" />
                     </div>
                 </div>
                 <div id="add_property">

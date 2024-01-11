@@ -4,7 +4,7 @@
 @{
 	ViewData["Title"] = "admin - Купить электромобили по ценам от Поставщика";
 	ViewData["activePage"] = "passengerPage";
-	ViewData["Description"] = "Электромобили Tesla, BYD, Volkswagen, Xpeng, Cherry и др. Надежные электрокары по сниженной цене. Доставка. Финансовая поддержка. Гарантии. Страховка. Круглосуточная связь | " + GlobalVariables.Postfix;
+	ViewData["Description"] = "Электромобили Tesla, BYD, Volkswagen, Xpeng, Cherry и др. Надежные электрокары по сниженной цене. Доставка. Финансовая поддержка. Гарантии. Страховка. Круглосуточная связь | " + ViewData["Postfix"];
 	Layout = "~/Views/Shared/_Layout_Admin.cshtml";
 	ViewData["pathPrefix"] = "../";
 }
@@ -22,26 +22,12 @@
 			{
 				<li>
 					<i class="far fa-trash-alt delete_car_icon" data-carId="@item.Id"></i>
-					<a href="car/@item.Id"><img src="@ViewData["pathPrefix"]images/cars/@item.TitleImagePath" alt="no image"></a>
+					<a href="car/@item.Id"><img src="@item.TitleImagePath" alt="no image"></a>
 					<div class="short_car_info">
 						<div id="name_car_list">
 							<a href="car/@item.Id">@item.ModelName</a>
 						</div>
 						<ul>
-							<li class="each_info">
-								<div class="car_option">
-									<img src="@ViewData["pathPrefix"]images/icons/drop.svg">
-									<div>Цвет</div>
-								</div>
-								<div class="option_value" style="position: static;">@item.Color</div>
-							</li>
-							<li class="each_info">
-								<div class="car_option">
-									<img src="@ViewData["pathPrefix"]images/icons/brand.png">
-									<div>Марка</div>
-								</div>
-								<div class="option_value">@item.CompanyName</div>
-							</li>
 							@foreach (var prop in item.Properties)
 							{
 								<li class="each_info">

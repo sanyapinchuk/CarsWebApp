@@ -28,14 +28,65 @@
     input3.setAttribute("value", "check" + lastNumber);
     input3.setAttribute("name", "check" + lastNumber);
 
-    // Добавляем два новых элемента input в новый элемент div
+    var input4 = document.createElement("input");
+    input4.setAttribute("type", "text");
+    input4.setAttribute("placeholder", "Категория");
+    input4.setAttribute("name", "propCategory" + lastNumber);
+    input4.classList.add("prop_item_input");
+
+    var input5 = document.createElement("input");
+    input5.setAttribute("type", "number");
+    input5.setAttribute("placeholder", "Приоритет");
+    input5.setAttribute("name", "propCategoryPriority" + lastNumber);
+    input5.classList.add("prop_item_input");
+    input5.classList.add("prop_item_input_priority");
+
     newDiv.appendChild(input3);
     newDiv.appendChild(input1);
     newDiv.appendChild(input2);
+    newDiv.appendChild(input4);
+    newDiv.appendChild(input5);
 
-    // Добавляем новый элемент div в элемент-родитель
     parentElement.appendChild(newDiv);
+}
 
+document.querySelector("#add_photo").onclick = function () {
+    var parentElement = document.getElementById("photos_list");
+
+    var allProps = document.getElementsByClassName("onePhotoName_create");
+    var icons = document.getElementsByClassName("delete_file_icon");
+
+    var lastProp = allProps[allProps.length - 1].name;
+    var lastNumber = parseInt(lastProp.substring(5)) + 1;
+    // Создаем новый элемент div с классом one_property
+    var newDiv = document.createElement("div");
+    newDiv.classList.add("one_photo");
+
+    var input1 = document.createElement("input");
+    input1.setAttribute("type", "text");
+    input1.setAttribute("placeholder", "Ссылка");
+    input1.setAttribute("name", "photo" + lastNumber);
+    input1.classList.add("onePhotoName_create");
+    input1.classList.add("photo_item_input");
+
+    var input2 = document.createElement("input");
+    input2.setAttribute("type", "radio");
+    input2.setAttribute("name", "mainImage");
+    input2.setAttribute("value", "photo" + lastNumber);
+
+    var input3 = document.createElement("i");
+    input3.setAttribute("data-filename", "photo" + lastNumber);
+    input3.classList.add("fas");
+    input3.classList.add("fa-times");
+    input3.classList.add("delete_file_icon");
+    input3.addEventListener('click', deleteFileHandler);
+    
+
+    newDiv.appendChild(input2);
+    newDiv.appendChild(input1);
+    newDiv.appendChild(input3);
+
+    parentElement.appendChild(newDiv);
 }
 
 function removeFileFromFileList(index) {
@@ -53,20 +104,8 @@ function removeFileFromFileList(index) {
 }
 
 function deleteFileHandler() {
-    if (document.getElementsByClassName("one_file_from_list_wrapper").length > 1) {
-        let number = this.attributes['data-number'].value;
-        var elem = document.getElementById("selectedFilesForDelete");
-        if (elem)
-            elem.value += `${this.attributes['data-fileId'].value},`;
-
-        removeFileFromFileList(number);
+    if (document.getElementsByClassName("one_photo").length > 1) {
         this.parentElement.remove();
-
-        var exsImages = document.getElementById("existsImages");
-        let fileName = this.attributes['data-filename'].value;
-        exsImages.value = exsImages.value;
-        const regex = new RegExp(`\\|[^|]*${fileName.replace(".", "\\.")}`);
-        exsImages.value = exsImages.value.replace(regex, "");
     }
 }
 

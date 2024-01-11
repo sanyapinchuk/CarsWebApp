@@ -1,9 +1,9 @@
 ﻿@using CarsClient;
-@model CarsClient.Models.Dto.CarFullInfo;
+@model CarsClient.Models.Dto.CarFullInfoDto;
 
 @{
 	ViewData["Title"] = Model.ModelName + " купить в Минске недорого – Цена с учетом доставки";
-	ViewData["Description"] = Model.Description + " | " + GlobalVariables.Postfix;
+	ViewData["Description"] = Model.Description + " | " + ViewData["Postfix"];
 	ViewData["activePage"] = "passengerPage";
 	Layout = "~/Views/Shared/_Layout.cshtml";
 	ViewData["pathPrefix"] = "../";
@@ -28,10 +28,11 @@
 				}
 				<div id="slides">
 					<div id="overflow">
+						
 						<div class="image">
 							@foreach(var item in Model.Images)
 							{
-								<article><img src="@ViewData["pathPrefix"]../images/cars/@item.Path"></article>
+								<article><img src="@item.Path"></article>
 							}
 						</div>
 					</div>
@@ -48,7 +49,7 @@
 				<div id="active">
 					@for(int i= 1; i< Model.Images.Count+1; i++)
 					{
-						<label 	style= "background-image: url('@ViewData["pathPrefix"]../images/cars/@Model.Images[i-1].Path');" for="switch_@i"></label>
+						<label 	style= "background-image: url('@Model.Images[i-1].Path');" for="switch_@i"></label>
 					}
 				</div>		
 			</div>			
@@ -69,19 +70,28 @@
 				<div id="tech_ch">Технические характеристики</div>
 			</div>					
 			<ul>				
-				<li> <img src="@ViewData["pathPrefix"]../images/icons/brand.png">Марка <span>@Model.CompanyName</span></li>
-				<li> <img src="@ViewData["pathPrefix"]../images/icons/color.png">Цвет <span>@Model.Color</span></li>
-				<li> <img src="@ViewData["pathPrefix"]../images/icons/calendar.png">Год производства <span>@Model.ProductionYear</span></li>
-				@foreach(var item in Model.Properties)
+				<li> <img src="@ViewData["pathPrefix"]../images/icons/calendar.png">Модельный год <span>@Model.ProductionYear</span></li>
+			
+			@foreach(var category in Model.Categories)
+			{
+				@foreach(var item in category.Properties)
 				{
 					if (item.IsKeyProperty)
 					{
 						<li> <img src="@ViewData["pathPrefix"]../images/icons/road.svg">@item.Property <span>@item.Value</span></li>
 					}
 				}
+			}
+			
 			</ul>
 			<div class="add_info" id="add_info">
-				@foreach(var item in Model.Properties)
+			@foreach(var category in Model.Categories)
+			{
+				if(category.Properties.Any(x=> !x.IsKeyProperty))
+				{
+					<div class="type_separate">@category.Category</div>
+				}
+				@foreach(var item in category.Properties)
 				{
 					if (!item.IsKeyProperty)
 					{
@@ -89,7 +99,9 @@
 							<div class="__left">@item.Property</div><div class="__right">@item.Value</div>
 						</div>
 					}
-				}			
+				}
+			}
+
 			</div>
 			<div id="more_info">
 				<div id="box_more">
@@ -131,9 +143,8 @@
 				@for(var i =0; i < Model.SameCars.Count && i <4; i++)
 				{
 					<div class="list_same_cars">
-					<div style="overflow: hidden;"><a href="../car/@Model.SameCars[i].Id"><img src="../images/cars/@Model.SameCars[0].TitleImage" alt="no image"></a></div>
+					<div style="overflow: hidden;"><a href="../car/@Model.SameCars[i].Id"><img src="@Model.SameCars[0].TitleImage" alt="no image"></a></div>
 					<div id="name_same_car">@Model.SameCars[i].ModelName</div>
-					<div id="price_same_car">@Model.SameCars[i].Color</div>
 					<a href="../car/@Model.SameCars[i].Id"><div class="same_button">Подробнее</div></a>
 				</div>
 				}							
@@ -177,7 +188,7 @@
 			<div class="external_order">					
 				<form id= "order-form" class="order" method="POST" action="@ViewData["mailAddress"]">			
 					<i id="icon-close" class="fas fa-times"></i>
-					<input type="hidden" name="car_id" value="@Model.Id"/>
+					<input type="hidden" name="car_id" value="@ViewData["CarPageAddress"]"/>
 					<div class="form-group" id="span">
 						Оставить заявку
 					</div>

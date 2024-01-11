@@ -1,7 +1,4 @@
-﻿using System.Web.Http;
-using System.Web.Http.Controllers;
-using System.Net.Http;
-using IdentityModel;
+﻿using IdentityModel;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc;
 

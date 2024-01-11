@@ -14,9 +14,6 @@ namespace CarsClient.Controllers
         [HttpGet("/error")]
         public IActionResult Error(int statusCode = 500)
         {
-            
-            _logger.LogWarning($"Handle http error, status code= {statusCode}");
-
             var errorModel = new ErrorViewModel();
             string message;
             errorModel.Code = statusCode;

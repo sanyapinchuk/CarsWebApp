@@ -11,9 +11,7 @@ namespace Shared.Dto
         public Guid Id { get; set; }
         //public int Price { get; set; }
         public string ModelName { get; set; }
-        public string CompanyName { get; set; }
         public string TitleImagePath { get; set; }
-        public List<string> Colors { get; set; }
         public List<(string propName, string propValue)> properties { get; set; }
     }
 }

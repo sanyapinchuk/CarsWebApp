@@ -36,7 +36,7 @@ namespace CarsClient.Middleware
         
         private void HadleProgramExceptionAsync(HttpContext context, Exception exception)
         {
-            _logger.LogError($"statusCode = {context.Response.StatusCode}, exeptionMessage = {exception.Message}");
+            _logger.LogError($"statusCode = {context.Response.StatusCode}, exeptionMessage = {exception.Message}, trace = {exception.StackTrace}");
             context.Response.Redirect("/Error?statusCode=500");
         }
       

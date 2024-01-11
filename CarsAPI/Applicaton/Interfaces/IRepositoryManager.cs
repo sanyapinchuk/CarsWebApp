@@ -13,11 +13,10 @@ namespace Applicaton.Interfaces
         ICarPropValueRepository CarPropValueRepository { get; }
         ICarRepository CarRepository { get; }
         ICarTypeRepository CarTypeRepository { get; }
-        ICompanyRepository CompanyRepository { get; }
         IImageRepository ImageRepository { get; }
         IModelRepository ModelRepository { get; }
         IPropValueRepository PropValueRepository { get; }
         IPropertyRepository PropertyRepository { get; }
-        IColorRepository ColorRepository { get; }
+        INewsRepository NewsRepository { get; }
     }
 }

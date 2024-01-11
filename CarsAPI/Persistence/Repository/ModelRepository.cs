@@ -17,14 +17,13 @@ namespace Persistence.Repository
         {
         }
 
-        public async Task<Guid> Create(string name, Guid companyId, Guid carTypeId)
+        public async Task<Guid> Create(string name, Guid carTypeId)
         {
             var id = Guid.NewGuid();
             await _dataContext.Models.AddAsync(new Model
             {
                 Id = id,
                 Name = name,
-                CompanyId = companyId,
                 CarTypeId = carTypeId
             });
 
