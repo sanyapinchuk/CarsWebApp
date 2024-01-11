@@ -21,14 +21,14 @@ window.addEventListener('scroll', function() {
           //  let elem2 = document.getElementsByClassName('submenu');
            // let elem3 = document.getElementsByClassName('popmenu');
             let active = this.document.getElementsByClassName('active')[0];
-            elem.style.backgroundColor='#9A9A84';
+            elem.style.backgroundColor='#ffffff';
           //  elem2[0].style.backgroundColor='#9A9A84';
 
             if (active != null) active.style.boxShadow='-14px -18px 21px -4px rgba(16, 16, 14, 0.21) inset';
             let color_elem = this.document.getElementsByClassName('new_color');
             // if (window.getComputedStyle(color_elem[0]).color== 'rgb(96, 96, 96)')
             for (let i = 0; i < color_elem.length; i++){
-                color_elem[i].style.color='#504315';
+                color_elem[i].style.color='#EF7A13';
             } 
 
         }
@@ -37,7 +37,7 @@ window.addEventListener('scroll', function() {
             let elem = document.getElementById('main_menu');
           //  let elem2 = document.getElementsByClassName('submenu');
             let active = this.document.getElementsByClassName('active')[0];
-            elem.style.backgroundColor='#E3E3DC';
+            elem.style.backgroundColor='#EF7A13';
          //   elem2[0].style.backgroundColor='#E3E3DC';
 
            if (active != null) active.style.boxShadow='-14px -18px 16px -1px rgba(101, 101, 101, 0.21) inset';
@@ -45,9 +45,9 @@ window.addEventListener('scroll', function() {
 
            // if (window.getComputedStyle(color_elem[1]).color=='rgb(80, 67, 21)')
             for (let i = 0; i < color_elem.length; i++){ 
-                color_elem[i].style.color='#606060';
+                color_elem[i].style.color='#FFFFFF';
             } 
-
+    
         }
     }
    

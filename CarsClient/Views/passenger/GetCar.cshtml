@@ -67,7 +67,7 @@
 	<div id="box_characterstics">
 		<div id="car_characterstics">
 			<div class= "backgr_name">
-				<div id="tech_ch">ТЕХНИЧЕСКИЕ ХАРАКТЕРИСТИКИ</div>
+				<div id="tech_ch">Технические характеристики</div>
 			</div>					
 			<ul>				
 				<li> <img src="@ViewData["pathPrefix"]../images/icons/calendar.png">Модельный год <span>@Model.ProductionYear</span></li>
@@ -122,14 +122,14 @@
 	<div id="call_us">
 		<div style="margin: auto; width: 80%; margin-top: 20px; margin-bottom: 20px; font-size: 23px; line-height: 32px ;" >
 			Для уточнения деталей и заказа авто свяжитесь с нами
-			<a href="tel:375296349842"><b id="mynumber">+375296349842</b></a>
+			<a href="tel:375296349842"><b id="mynumber">+375 (29) 634-98-42</b></a>
 				<div class="tooltip"> 
 					<div onclick="myFunction()" onmouseout="outFunc()">
 					<span class="tooltiptext" id="myTooltip">Копировать</span>
 					<img style="width: 20px;" src="@ViewData["pathPrefix"]../images/icons/copy.png" alt="">
 					</div>
 				</div>
-				(все мессенджеры), либо заходите в наш телеграм-канал <a style="text-decoration: underline; font-style: italic;" href="https://t.me/it_car_by_channel">https://t.me/it_car_by_channel</a> 
+				(все мессенджеры), либо заходите в наш <a class="call_us_tg" href="https://t.me/it_car_by_channel">телеграм-канал</a> 
 		</div>						
 	</div>
 @if (Model.SameCars.Count > 0)
@@ -137,7 +137,7 @@
 	<div style=" width: 100%; padding-bottom: 40px;"> 
 		<div id="same_cars">
 			<div class= "backgr_name">
-				<div id="name_same">ПОХОЖИЕ АВТО</div>
+				<div id="name_same">Похожие авто</div>
 			</div>						
 			<div id="box_same_cars">
 				@for(var i =0; i < Model.SameCars.Count && i <4; i++)
@@ -152,11 +152,24 @@
 		</div>
 	</div>
 }
+
+	<div style="background-color: #ffffff; width: 100%; padding-top: 50px; padding-bottom: 10px;">
+		<div class="same_cars">
+			<div class="backgr_name">
+				<div id="name_same">Наш телеграм-канал</div>
+			</div>
+			<div id="our_telegram_chanel">В нашем телеграм-канале мы постоянно выкладываем новые предложения, различные обзоры электричек, актуальные цены, различные аксесуары для Ваших электрокаров!</div>
+				<div id="link_telchanel">
+					<a href="https://t.me/it_car_by_channel"><div class="same_button2">Перейти на канал</div></a>
+				</div>
+			</div>
+		</div>
+	</div>
 	
-	<div style="width: 100%; padding-bottom: 40px; margin-top: 40px;">
+	<!-- <div style="width: 100%; padding-bottom: 40px; margin-top: 40px;">
 		<div class="same_cars">
 			<div class= "backgr_name">
-				<div id="name_same">НАШ ТЕЛЕГРАМ-КАНАЛ</div>
+				<div id="name_same">На телеграм-канал</div>
 			</div>
 			<div id="our_telegram_chanel">
 				Еще больше авто в нашем телеграм-канале
@@ -166,7 +179,7 @@
 			</div>
 					
 		</div>
-	</div>
+	</div> -->
 
 @section AfterBody{
 	<div id="pop-order">
