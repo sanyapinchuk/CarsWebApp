@@ -7,8 +7,6 @@ namespace Applicaton.Interfaces
     {
         public DbSet<Car> Cars { get; set; }
         public DbSet<Car_Image> Car_Images { get; set; }
-        public DbSet<Color> Colors { get; set; }
-        public DbSet<Company> Companies { get; set; }
         public DbSet<Model> Models { get; set; }
         public DbSet<Property> Properties { get; set; }
         public DbSet<Car_PropValue> Car_PropValues { get; set; }

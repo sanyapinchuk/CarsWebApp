@@ -11,6 +11,6 @@ namespace Applicaton.Cars.Commands.UpdateCar
     public class UpdateCarCommand : IRequest
     {
         public Guid Id { get; set; }
-        public CarFullInfoDto CarInfo { get; set; }
+        public CarFullInfoDtoV2 CarInfo { get; set; }
     }
 }

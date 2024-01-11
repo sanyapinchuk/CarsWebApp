@@ -9,6 +9,6 @@ namespace Applicaton.Interfaces
 {
     public interface IModelRepository : IBaseEntityRepository<Model>
     {
-        Task<Guid> Create(string name, Guid companyId, Guid carTypeId);
+        Task<Guid> Create(string name, Guid carTypeId);
     }
 }

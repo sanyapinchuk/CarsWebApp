@@ -16,12 +16,11 @@ namespace Persistence.Repository
         private CarPropValueRepository carPropValueRepository;
         private CarRepository carRepository;
         private CarTypeRepository carTypeRepository;
-        private CompanyRepository companyRepository;
         private ImageRepository imageRepository;
         private ModelRepository modelRepository;
         private PropValueRepository propValueRepository;
         private PropertyRepository propertyRepository;
-        private ColorRepository colorRepository;
+        private NewsRepository newsRepository;
 
         public RepositoryManager(DataContext dataContext) 
         {
@@ -64,15 +63,6 @@ namespace Persistence.Repository
                 return carTypeRepository;
             }
         }
-        public ICompanyRepository CompanyRepository
-        {
-            get
-            {
-                if (companyRepository == null)
-                    return new CompanyRepository(_dataContext);
-                return companyRepository;
-            }
-        }
         public IImageRepository ImageRepository
         {
             get
@@ -109,15 +99,17 @@ namespace Persistence.Repository
                 return propertyRepository;
             }
         }
-        public IColorRepository ColorRepository
+
+        public INewsRepository NewsRepository
         {
             get
             {
-                if (colorRepository == null)
-                    return new ColorRepository(_dataContext);
-                return colorRepository;
+                if (newsRepository == null)
+                    return new NewsRepository(_dataContext);
+                return newsRepository;
             }
         }
+
         public async Task SaveAsync()
         {
            await _dataContext.SaveChangesAsync();

@@ -1,12 +1,14 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ProCodeGuide.Samples.IdentityServer4.IdentityConfiguration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace ProCodeGuide.Samples.IdentityServer4
@@ -24,6 +26,14 @@ namespace ProCodeGuide.Samples.IdentityServer4
                 .AddDeveloperSigningCredential();
 
             services.AddControllersWithViews();
+
+            services.Configure<KestrelServerOptions>(options =>
+            {
+                options.Listen(IPAddress.Any, 5001, listenOptions =>
+                {
+                    listenOptions.UseHttps();
+                });
+            });
         }
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {

@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121.
+-->
+<Project>
+  <PropertyGroup>
+    <_PublishTargetUrl>D:\projects\SITES\HTML_server\puplish\client</_PublishTargetUrl>
+    <History>True|2023-12-10T16:24:06.4335286Z;True|2023-12-05T04:31:25.2133060+03:00;True|2023-12-05T04:30:29.9326052+03:00;True|2023-12-05T03:35:18.1293509+03:00;True|2023-12-01T03:05:05.8311025+03:00;True|2023-12-01T02:27:39.4245241+03:00;True|2023-11-30T22:57:32.6898605+03:00;True|2023-11-29T01:05:41.9372720+03:00;True|2023-11-29T00:49:13.2455653+03:00;True|2023-11-27T20:55:04.8538486+03:00;True|2023-11-27T02:31:59.8201856+03:00;True|2023-11-27T01:36:00.8192194+03:00;True|2023-11-26T22:43:10.8281880+03:00;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+</Project>

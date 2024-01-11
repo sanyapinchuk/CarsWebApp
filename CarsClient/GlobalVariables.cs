@@ -8,7 +8,8 @@ namespace CarsClient
         public  HttpClient WebApiClient = new HttpClient(); 
         public  string IdentityServerUrl { get; set; }
 
-        public static string Postfix = "it-car.by";
+        public readonly string Postfix;
+        public readonly string AppAddress;
 
         public GlobalVariables( IConfiguration configuration)
         {
@@ -18,7 +19,10 @@ namespace CarsClient
             var temp = "CarsApi".ToSha256();
 
 			WebApiClient.DefaultRequestHeaders.Add("secretToken", temp);
-		}
+
+            Postfix = configuration["AppDomain"];
+            AppAddress = $"https://{configuration["AppDomain"]}/";
+        }
 
         public void Dispose()
         {

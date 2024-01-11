@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Persistence.Data;
 using Applicaton.Interfaces;
 using Persistence.Repository;
+using Microsoft.EntityFrameworkCore;
 
 namespace Persistence
 {
@@ -16,10 +17,10 @@ namespace Persistence
             services.AddDbContext<DataContext>(options =>
             {
                 options.UseLazyLoadingProxies();
-                options.UseSqlServer(connectionString);
+                options.UseNpgsql(connectionString);
             });
-            services.AddSingleton<IDataContext, DataContext>();
-            services.AddSingleton<IRepositoryManager, RepositoryManager>();
+            services.AddScoped<IDataContext, DataContext>();
+            services.AddScoped<IRepositoryManager, RepositoryManager>();
             return services;
         }
     }

@@ -35,7 +35,7 @@ namespace CarsServer.Controllers
         }
 
         [HttpPost]
-		[AuthAttribute]
+		//[AuthAttribute]
 		public async Task<ActionResult<Guid>> Create([FromBody] CreateCarCommand carDto)
         {
             var carId = await Mediator.Send(carDto);
@@ -43,7 +43,7 @@ namespace CarsServer.Controllers
         }
 
         [HttpPut]
-		[AuthAttribute]
+		//[AuthAttribute]
 		public async Task<IActionResult> Update([FromBody] UpdateCarCommand carDto)
         {
             await Mediator.Send(carDto);
@@ -51,7 +51,7 @@ namespace CarsServer.Controllers
         }
 
         [HttpDelete("{id}")]
-		[AuthAttribute]
+		//[AuthAttribute]
 		public async Task<IActionResult> Delete(Guid id)
         {   
             var command = new DeleteCarCommand()

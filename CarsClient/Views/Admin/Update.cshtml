@@ -1,10 +1,10 @@
 ﻿@using CarsClient;
-@model CarsClient.Models.Dto.CarFullInfo;
+@model CarsClient.Models.Dto.CarFullInfoApi;
 
 @{
     ViewData["Title"] = "admin - Изменить авто";
     ViewData["activePage"] = "passengerPage";
-    ViewData["Description"] = "Изменение авто | " +  GlobalVariables.Postfix;
+    ViewData["Description"] = "Изменение авто | " + ViewData["Postfix"];
     Layout = "~/Views/Shared/_Layout_Admin.cshtml";
     ViewData["pathPrefix"] = "../../";
 }
@@ -13,36 +13,32 @@
 <div class="row">
     <div id="form_create_wrapper">
         <form action="../update" method="post" id="form_create" enctype="multipart/form-data">
-            <div id="files_block_wrapper">
-                <div id="exist_files_list"> 
-                    @{
-                        var existsImages = "";
-                    }
-                    @for(int i = 1; i< Model.Images.Count + 1; i++)
+            <div id="photos_block">
+                <div id="photos_list">
+                    @for (int i = 1; i < Model.Images.Count + 1; i++)
                     {
-                        existsImages += "|" + Model.Images[i - 1].Path;
+                        var inputName = "photo" + i.ToString();
                         var isChecked = "";
-                        if (Model.Images[i-1].IsMainImage)
+                        if (Model.Images[i - 1].IsMainImage)
                             isChecked = "checked";
-                        var fileName = Model.Images[i-1].Path.Split('/')[1];
-                        <div class="one_file_from_list_wrapper">
-                            <input type="radio" name="mainImage" value="@fileName" @isChecked>
-                            <div class="one_file_from_list">@fileName</div>
-                            <i class="fas fa-times delete_file_icon" data-filename ="@fileName" data-number="@i"></i>
+                        <div class="one_photo">
+                            <input type="radio" name="mainImage" value="@inputName" @isChecked>
+                            <input type="text" placeholder="Ссылка" class="onePhotoName_create photo_item_input" name="@inputName" value="@Model.Images[i-1].Path"/>
+                            <i class="fas fa-times delete_file_icon" data-filename="@inputName"></i>
                         </div>
                     }
-                    <input type="hidden" id="existsImages" name="existsImages" value="@existsImages" />
                 </div>
-                <input name="files" id="files_prop" class="custom-file-input" accept=".jpg,.png" type="file" multiple="multiple" >
+                <div id="add_photo">
+                    <i class="fas fa-plus"></i> Добавить Фото
+                </div>
             </div>
+           
             <input type="hidden" name="id" required value="@Model.Id" />
             <input type="text" name="model" required placeholder="Модель" value="@Model.ModelName" />
-            <input type="text" name="company" required placeholder="Производитель" value="@Model.CompanyName" />
             <input type="text" pattern="[0-9]*" name="price" required placeholder="Цена $" value="@Model.Price" />
-            <input type="text" name="color" required placeholder="Цвет" value="@Model.Color" />
             <input type="text" name="description" required placeholder="Описание" value="@Model.Description" />
             <input type="text" name="cartype" required placeholder="Кузов" value="@Model.CarType" />
-            <input type="text" pattern="[0-9]*" name="productionYear" required placeholder="Год производства" value="@Model.ProductionYear" />
+            <input type="text" pattern="[0-9]*" name="productionYear" required placeholder="Модельный год" value="@Model.ProductionYear" />
             <div id="separate_line_create"></div>
             <div id="properties_block">
                 <div id="properties_list">
@@ -56,6 +52,8 @@
                             <input type="checkbox" name="check@(i)" @isChecked value="check@(i)"/>
                             <input type="text" placeholder="Свойство" class="onePropName_create prop_item_input" name="prop@(i)" value="@Model.Properties[i-1].Property"/>
                             <input type="text" placeholder="Значение" class="prop_item_input" name="val@(i)" value="@Model.Properties[i-1].Value"/>
+                            <input type="text" placeholder="Категория" class="prop_item_input" name="propCategory@(i)" value="@Model.Properties[i-1].Category" />
+                            <input type="number" step="1" class="prop_item_input prop_item_input_priority" name="propCategoryPriority@(i)" value="@Model.Properties[i-1].Priority" />
                         </div>
                     }
                 </div>

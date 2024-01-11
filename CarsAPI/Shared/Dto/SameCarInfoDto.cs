@@ -10,7 +10,6 @@ namespace Shared.Dto
 	{
 		public Guid Id { get; set; }
 		public string ModelName { get; set; }
-		public string Color { get; set; }
 		public string TitleImage { get; set; }
 	}
 }

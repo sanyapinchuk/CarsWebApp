@@ -23,8 +23,6 @@ namespace Applicaton.Cars.Queries.GetCarFullInfo
         public string ModelName { get; set; }
         public string CarType { get; set; }
         public int ProductionYear { get; set; }
-        public string CompanyName { get; set; }
-        public string Color { get; set; }
         public List<FullPropertyDto> Properties { get; set; }
         public List<ImageInfoDto> Images { get; set; }
         public List<SameCarInfoDto> SameCars { get; set; }
@@ -43,8 +41,6 @@ namespace Applicaton.Cars.Queries.GetCarFullInfo
                 mem => mem.MapFrom(car => car.Model.CarType.Name))
                 .ForMember(carDto => carDto.ModelName,
                 mem => mem.MapFrom(car => car.Model.Name))
-                .ForMember(carDto => carDto.CompanyName,
-                mem => mem.MapFrom(car => car.Model.Company.Name))
                 .ForMember(carDto => carDto.Images,
                 mem => mem.MapFrom(src => src.Car_Images
                     .Select<Car_Image, ImageInfoDto>(ci=>
@@ -60,18 +56,17 @@ namespace Applicaton.Cars.Queries.GetCarFullInfo
                     {
                         Value = cpv.PropValue.Value,
                         Property = cpv.PropValue.Property.Name,
-                        IsKeyProperty = cpv.PropValue.Property.IsKeyProperty
+                        IsKeyProperty = cpv.PropValue.Property.IsKeyProperty,
+                        Category = cpv.PropValue.Property.PropCategory.Name,
+                        Priority = cpv.PropValue.Property.PropCategory.Priority
                     }
                    ).ToList()))
-                .ForMember(carDto => carDto.Color,
-                mem => mem.MapFrom(src => src.Color.Name))
                 .ForMember(carDto=>carDto.SameCars,
                 mem=>mem.MapFrom(src=>src.Model.Cars.Where(c=>c.Id != src.Id)
                     .Select<Car, SameCarInfoDto>(c=>
                     new SameCarInfoDto()
                     {
                         Id = c.Id,
-                        Color = c.Color.Name,
                         ModelName = c.Model.Name,
                         TitleImage = c.Car_Images.Where(ci=>ci.IsMainImage).First().Image.Path
                     })));

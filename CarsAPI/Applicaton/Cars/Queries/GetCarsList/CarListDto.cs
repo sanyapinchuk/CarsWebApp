@@ -15,9 +15,7 @@ namespace Applicaton.Cars.Queries.GetCarsList
         public Guid Id { get; set; }
         public int Price { get; set; }
         public string ModelName { get; set; }
-        public string CompanyName { get; set; }
         public string TitleImagePath { get; set; }
-        public string Color { get; set; }
         public List<PropertyDto> Properties { get; set; }
 
         public async void Mapping(Profile profile, IRepositoryManager repositoryManager)
@@ -29,8 +27,6 @@ namespace Applicaton.Cars.Queries.GetCarsList
                 mem => mem.MapFrom(car => car.Price))
                 .ForMember(carDto => carDto.ModelName,
                 mem => mem.MapFrom(car => car.Model.Name))
-                .ForMember(carDto => carDto.CompanyName,
-                mem => mem.MapFrom(car => car.Model.Company.Name))
                 .ForMember(carDto => carDto.TitleImagePath,
                  mem => mem.MapFrom(src => src.Car_Images.Where(ci => ci.IsMainImage).First().Image.Path))
                  .ForMember(carDto => carDto.Properties,
@@ -42,9 +38,7 @@ namespace Applicaton.Cars.Queries.GetCarsList
                             Value= cpv.PropValue.Value, 
                             Property = cpv.PropValue.Property.Name
                         }
-                  ).ToList()))
-                .ForMember(carDto => carDto.Color,
-                mem => mem.MapFrom(src => src.Color.Name));
+                  ).ToList()));
         }
     }
 }

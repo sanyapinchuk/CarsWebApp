@@ -28,14 +28,21 @@ namespace CarsServer.Middleware
 
         private Task HandleExceptionAsync(HttpContext context, Exception ex)
         {
-            _logger.LogError(ex.Message);
-            var code = HttpStatusCode.InternalServerError;
+            HttpStatusCode code;
             switch (ex)
             {
+                case BadRequestException:
+                    code = HttpStatusCode.BadRequest;
+                    break;
+                    
                 case EntityNotFoundException:
                     code = HttpStatusCode.NotFound; 
                     break;
 
+                default:
+                    _logger.LogError(ex.Message);
+                    code = HttpStatusCode.InternalServerError;
+                    break;
             }
             context.Response.ContentType = "application/json";
             context.Response.StatusCode = (int)code;
