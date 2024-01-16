@@ -7,12 +7,12 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <TimeStampOfAssociatedLegacyPublishXmlFile />
     <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAuTqGf+3DHEKZp1QvcTR5dAAAAAACAAAAAAAQZgAAAAEAACAAAABetAKGIIUYlELY4LaY7a6cl9rCcZgBnyHT+EmggIhApQAAAAAOgAAAAAIAACAAAAAPzzDVkW/7Z0kfArBnR6xbfovOQ9aIgGuSX7n45CtA2SAAAADqVKYkeAo5NsnLMlL3IRzppYOkxvAW/yMh4M89Ct+Dh0AAAAD2NcR+DTtkoL4rt9Ti9PJLGJX58bHK+A1VbImqobNUjMHpmPi0GqTZSAQRuHvqIJdL+bUDpV+9uv+o/+lOx3f1</EncryptedPassword>
     <_PublishTargetUrl>ftp://85.209.148.48/var/NetClientApp/</_PublishTargetUrl>
-    <History>True|2024-01-11T21:41:28.4502152Z;False|2024-01-12T00:26:57.0252423+03:00;False|2024-01-11T23:53:02.6096212+03:00;True|2024-01-11T22:53:21.2716645+03:00;False|2023-12-13T02:29:24.4802646+03:00;False|2023-12-10T20:27:27.2612061+03:00;False|2023-12-10T20:24:52.6692191+03:00;</History>
+    <History>True|2024-01-16T00:29:12.3699681Z;True|2024-01-12T00:41:28.4502152+03:00;False|2024-01-12T00:26:57.0252423+03:00;False|2024-01-11T23:53:02.6096212+03:00;True|2024-01-11T22:53:21.2716645+03:00;False|2023-12-13T02:29:24.4802646+03:00;False|2023-12-10T20:27:27.2612061+03:00;False|2023-12-10T20:24:52.6692191+03:00;</History>
     <LastFailureDetails />
   </PropertyGroup>
   <ItemGroup>
     <File Include="appsettings.Development.json">
-      <publishTime>01/12/2024 00:09:20</publishTime>
+      <publishTime>01/16/2024 03:17:15</publishTime>
     </File>
     <File Include="appsettings.json">
       <publishTime>01/11/2024 21:29:43</publishTime>
@@ -21,16 +21,16 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>01/11/2024 21:29:43</publishTime>
     </File>
     <File Include="CarsClient">
-      <publishTime>01/12/2024 00:27:43</publishTime>
+      <publishTime>01/16/2024 03:23:34</publishTime>
     </File>
     <File Include="CarsClient.deps.json">
-      <publishTime>01/12/2024 00:27:50</publishTime>
+      <publishTime>01/16/2024 03:23:35</publishTime>
     </File>
     <File Include="CarsClient.dll">
-      <publishTime>01/12/2024 00:27:43</publishTime>
+      <publishTime>01/16/2024 03:23:34</publishTime>
     </File>
     <File Include="CarsClient.pdb">
-      <publishTime>01/12/2024 00:27:43</publishTime>
+      <publishTime>01/16/2024 03:23:34</publishTime>
     </File>
     <File Include="CarsClient.runtimeconfig.json">
       <publishTime>01/11/2024 22:37:52</publishTime>
@@ -1578,7 +1578,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>10/20/2023 02:29:14</publishTime>
     </File>
     <File Include="wwwroot/css/styles.css">
-      <publishTime>01/11/2024 23:52:29</publishTime>
+      <publishTime>01/16/2024 03:02:08</publishTime>
     </File>
     <File Include="wwwroot/favicon.ico">
       <publishTime>06/06/2022 00:23:15</publishTime>
@@ -1700,6 +1700,9 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="wwwroot/images/icons/car.png">
       <publishTime>01/12/2024 00:09:20</publishTime>
     </File>
+    <File Include="wwwroot/images/icons/car_type.png">
+      <publishTime>01/16/2024 03:11:38</publishTime>
+    </File>
     <File Include="wwwroot/images/icons/certificate.png">
       <publishTime>04/16/2022 19:48:13</publishTime>
     </File>
@@ -1807,6 +1810,9 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     </File>
     <File Include="wwwroot/images/icons/premium-icon-clipboard-3155826.png">
       <publishTime>04/16/2022 19:31:53</publishTime>
+    </File>
+    <File Include="wwwroot/images/icons/property.png">
+      <publishTime>01/16/2024 03:13:18</publishTime>
     </File>
     <File Include="wwwroot/images/icons/registration.png">
       <publishTime>02/13/2022 22:08:27</publishTime>
@@ -1995,7 +2001,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>01/11/2024 21:29:43</publishTime>
     </File>
     <File Include="wwwroot/js/adminCreateCar.js">
-      <publishTime>01/11/2024 21:29:43</publishTime>
+      <publishTime>01/16/2024 00:45:50</publishTime>
     </File>
     <File Include="wwwroot/js/adminUpdateCar.js">
       <publishTime>12/10/2023 01:57:29</publishTime>
