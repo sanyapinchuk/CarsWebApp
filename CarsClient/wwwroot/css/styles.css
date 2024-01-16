@@ -3137,10 +3137,11 @@ option {
     justify-content: start;
 }
 
-.delete_file_icon:hover{
+.delete_file_icon:hover,
+.delete_property_icon:hover {
     cursor: pointer;
 }
-.delete_file_icon {
+.delete_file_icon, .delete_property_icon {
     margin-top: 15px;
     margin-left: 5px;
 }

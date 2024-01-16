@@ -71,14 +71,15 @@
 			</div>					
 			<ul>				
 				<li> <img src="@ViewData["pathPrefix"]../images/icons/calendar.png">Модельный год <span>@Model.ProductionYear</span></li>
-			
+                <li> <img src="@ViewData["pathPrefix"]../images/icons/car_type.png">Кузов <span>@Model.CarType</span></li>
+
 			@foreach(var category in Model.Categories)
 			{
 				@foreach(var item in category.Properties)
 				{
 					if (item.IsKeyProperty)
 					{
-						<li> <img src="@ViewData["pathPrefix"]../images/icons/road.svg">@item.Property <span>@item.Value</span></li>
+						<li> <img src="@ViewData["pathPrefix"]../images/icons/property.png">@item.Property <span>@item.Value</span></li>
 					}
 				}
 			}

@@ -41,11 +41,18 @@
     input5.classList.add("prop_item_input");
     input5.classList.add("prop_item_input_priority");
 
+    var input6 = document.createElement("i");
+    input6.classList.add("fas");
+    input6.classList.add("fa-times");
+    input6.classList.add("delete_property_icon");
+    input6.addEventListener('click', deletePropertyHandler);
+
     newDiv.appendChild(input3);
     newDiv.appendChild(input1);
     newDiv.appendChild(input2);
     newDiv.appendChild(input4);
     newDiv.appendChild(input5);
+    newDiv.appendChild(input6);
 
     parentElement.appendChild(newDiv);
 }
@@ -102,6 +109,14 @@ function removeFileFromFileList(index) {
 
     input.files = dt.files
 }
+
+function deletePropertyHandler() {
+    if (document.getElementsByClassName("one_property").length > 0) {
+        this.parentElement.remove();
+    }
+}
+
+$('.delete_property_icon').on('click', deletePropertyHandler);
 
 function deleteFileHandler() {
     if (document.getElementsByClassName("one_photo").length > 1) {
