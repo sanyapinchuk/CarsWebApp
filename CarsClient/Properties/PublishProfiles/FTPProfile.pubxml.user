@@ -7,33 +7,33 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <TimeStampOfAssociatedLegacyPublishXmlFile />
     <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAuTqGf+3DHEKZp1QvcTR5dAAAAAACAAAAAAAQZgAAAAEAACAAAABetAKGIIUYlELY4LaY7a6cl9rCcZgBnyHT+EmggIhApQAAAAAOgAAAAAIAACAAAAAPzzDVkW/7Z0kfArBnR6xbfovOQ9aIgGuSX7n45CtA2SAAAADqVKYkeAo5NsnLMlL3IRzppYOkxvAW/yMh4M89Ct+Dh0AAAAD2NcR+DTtkoL4rt9Ti9PJLGJX58bHK+A1VbImqobNUjMHpmPi0GqTZSAQRuHvqIJdL+bUDpV+9uv+o/+lOx3f1</EncryptedPassword>
     <_PublishTargetUrl>ftp://85.209.148.48/var/NetClientApp/</_PublishTargetUrl>
-    <History>True|2024-01-16T00:29:12.3699681Z;True|2024-01-12T00:41:28.4502152+03:00;False|2024-01-12T00:26:57.0252423+03:00;False|2024-01-11T23:53:02.6096212+03:00;True|2024-01-11T22:53:21.2716645+03:00;False|2023-12-13T02:29:24.4802646+03:00;False|2023-12-10T20:27:27.2612061+03:00;False|2023-12-10T20:24:52.6692191+03:00;</History>
+    <History>False|2024-02-18T22:23:16.3699812Z;True|2024-01-16T03:29:12.3699681+03:00;True|2024-01-12T00:41:28.4502152+03:00;False|2024-01-12T00:26:57.0252423+03:00;False|2024-01-11T23:53:02.6096212+03:00;True|2024-01-11T22:53:21.2716645+03:00;False|2023-12-13T02:29:24.4802646+03:00;False|2023-12-10T20:27:27.2612061+03:00;False|2023-12-10T20:24:52.6692191+03:00;</History>
     <LastFailureDetails />
   </PropertyGroup>
   <ItemGroup>
     <File Include="appsettings.Development.json">
-      <publishTime>01/16/2024 03:17:15</publishTime>
+      <publishTime>02/15/2024 23:47:19</publishTime>
     </File>
     <File Include="appsettings.json">
-      <publishTime>01/11/2024 21:29:43</publishTime>
+      <publishTime>02/19/2024 01:09:07</publishTime>
     </File>
     <File Include="appsettings.Production.json">
       <publishTime>01/11/2024 21:29:43</publishTime>
     </File>
     <File Include="CarsClient">
-      <publishTime>01/16/2024 03:23:34</publishTime>
+      <publishTime>02/19/2024 01:52:54</publishTime>
     </File>
     <File Include="CarsClient.deps.json">
-      <publishTime>01/16/2024 03:23:35</publishTime>
+      <publishTime>02/19/2024 01:52:54</publishTime>
     </File>
     <File Include="CarsClient.dll">
-      <publishTime>01/16/2024 03:23:34</publishTime>
+      <publishTime>02/19/2024 01:52:54</publishTime>
     </File>
     <File Include="CarsClient.pdb">
-      <publishTime>01/16/2024 03:23:34</publishTime>
+      <publishTime>02/19/2024 01:52:54</publishTime>
     </File>
     <File Include="CarsClient.runtimeconfig.json">
-      <publishTime>01/11/2024 22:37:52</publishTime>
+      <publishTime>02/19/2024 01:18:22</publishTime>
     </File>
     <File Include="createdump">
       <publishTime>10/20/2023 02:26:52</publishTime>
@@ -1578,10 +1578,16 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>10/20/2023 02:29:14</publishTime>
     </File>
     <File Include="wwwroot/css/styles.css">
-      <publishTime>01/16/2024 03:02:08</publishTime>
+      <publishTime>02/19/2024 01:17:03</publishTime>
     </File>
     <File Include="wwwroot/favicon.ico">
-      <publishTime>06/06/2022 00:23:15</publishTime>
+      <publishTime>02/18/2024 18:35:12</publishTime>
+    </File>
+    <File Include="wwwroot/favicon_32.ico">
+      <publishTime>02/18/2024 18:39:14</publishTime>
+    </File>
+    <File Include="wwwroot/favicon_64.ico">
+      <publishTime>02/18/2024 18:39:44</publishTime>
     </File>
     <File Include="wwwroot/fonts/proximanova_black.otf">
       <publishTime>01/11/2024 23:52:29</publishTime>
@@ -1645,6 +1651,24 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     </File>
     <File Include="wwwroot/images/cars/sdfsd-0f1a2740-954b-4bd3-8ee4-74d6b2591cd0/Screenshot 2023-11-26 215119.png">
       <publishTime>12/05/2023 03:34:34</publishTime>
+    </File>
+    <File Include="wwwroot/images/cars/types/Hetchbek.png">
+      <publishTime>02/15/2024 23:47:19</publishTime>
+    </File>
+    <File Include="wwwroot/images/cars/types/Krossover.png">
+      <publishTime>02/15/2024 23:47:19</publishTime>
+    </File>
+    <File Include="wwwroot/images/cars/types/Liftbek.png">
+      <publishTime>02/15/2024 23:47:19</publishTime>
+    </File>
+    <File Include="wwwroot/images/cars/types/Miniven.png">
+      <publishTime>02/15/2024 23:47:19</publishTime>
+    </File>
+    <File Include="wwwroot/images/cars/types/Sedan.png">
+      <publishTime>02/15/2024 23:47:19</publishTime>
+    </File>
+    <File Include="wwwroot/images/cars/types/SUV.png">
+      <publishTime>02/15/2024 23:47:19</publishTime>
     </File>
     <File Include="wwwroot/images/icons/1.png">
       <publishTime>01/12/2024 00:09:20</publishTime>
@@ -2006,6 +2030,12 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="wwwroot/js/adminUpdateCar.js">
       <publishTime>12/10/2023 01:57:29</publishTime>
     </File>
+    <File Include="wwwroot/js/carFilter.js">
+      <publishTime>02/18/2024 19:57:09</publishTime>
+    </File>
+    <File Include="wwwroot/js/carShortFilter.js">
+      <publishTime>02/18/2024 23:37:53</publishTime>
+    </File>
     <File Include="wwwroot/js/car_parameters.js">
       <publishTime>12/10/2023 01:57:29</publishTime>
     </File>
@@ -2195,11 +2225,26 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="wwwroot/lib/jquery/LICENSE.txt">
       <publishTime>06/06/2022 00:23:15</publishTime>
     </File>
+    <File Include="wwwroot/package-lock.json">
+      <publishTime>02/15/2024 23:47:19</publishTime>
+    </File>
+    <File Include="wwwroot/package.json">
+      <publishTime>02/15/2024 23:47:19</publishTime>
+    </File>
     <File Include="wwwroot/php/handler.php">
       <publishTime>12/10/2023 01:57:29</publishTime>
     </File>
     <File Include="wwwroot/php/log.txt">
       <publishTime>12/10/2023 01:57:29</publishTime>
+    </File>
+    <File Include="wwwroot/temp/test.html">
+      <publishTime>02/18/2024 16:19:01</publishTime>
+    </File>
+    <File Include="wwwroot/temp/test.js">
+      <publishTime>02/18/2024 17:27:17</publishTime>
+    </File>
+    <File Include="wwwroot/temp/teststyles.css">
+      <publishTime>02/18/2024 16:07:06</publishTime>
     </File>
     <File Include="zh-Hans/Microsoft.CodeAnalysis.CSharp.Features.resources.dll">
       <publishTime>10/14/2021 21:43:18</publishTime>

@@ -1,4 +1,5 @@
-﻿@{
+﻿@using CarsClient.Models.Dto
+@{
 	ViewData["Title"] = "Купить электромобили в Минске недорого - Цены с учетом доставки";
 	ViewData["activePage"] = "mainPage";
 	ViewData["Description"] = "Электромобили известных брендов: Tesla, BYD, Volkswagen, Xpeng, Cherry и др. Надежные электрокары по сниженной цене оптом и в розницу. Подбор и доставка. Финансовая поддержка. Гарантии. Страховка. Круглосуточная связь";
@@ -27,16 +28,84 @@
 	}
 	
 
-	<div id="wrap_main_back">
-		<div id="main_back">
-			<!-- <h1 style=" margin-left: 40px; margin-top: 11px; margin-bottom: 90px; margin-right: 40px;">Электромобили</h1> -->
-			<!-- <h2 style=" margin-top: 35px; margin-bottom: 40px; margin-left: 40px; margin-right: 40px;">из Китая</h2> -->
-		</div>
-	</div>
-
-	<div class="headers">
-		Как мы работаем?
-	</div>
+<div id="wrap_main_back">
+    <div id="main_back">
+        <!-- <h1 style=" margin-left: 40px; margin-top: 11px; margin-bottom: 90px; margin-right: 40px;">Электромобили</h1> -->
+        <!-- <h2 style=" margin-top: 35px; margin-bottom: 40px; margin-left: 40px; margin-right: 40px;">из Китая</h2> -->
+    </div>
+</div>
+<h1 id="filter_short_caption">
+	Подобрать автомобиль
+</h1>
+    <div id="filter_container">
+        <div id="filter_short_select_types_conainter" class="filter_select_item">
+            <div id="_select_types_container">
+                @foreach (var type in ((CarFilterConfig)ViewData["config"]).CarFilerTypeConfigs)
+                {
+                    <div class="filter_types_item">
+                        <input type="checkbox" class="filter_index_type_input" id="@type.Id" value="@type.Id">
+					    <label class="image-checkbox" for="@type.Id">
+                            <img src="@type.ImageUrl" alt="Image type">
+                            <div class="filter_types_caption">
+                                @type.Name
+                            </div>
+                        </label>
+                    </div>
+                }
+            </div>
+        </div>
+        <div id="filter_selects_container">
+            <div id="filter_select_powerReserves_conainter" class="filter_select_item">
+                <div class="__select2" data-state="">
+                    <div class="__select__title2" data-default="Запас хода">Запас хода</div>
+                    <div class="__select__content2">
+                        @foreach (var powerReserve in ((CarFilterConfig)ViewData["config"]).CarFilerPowerReserveConfigs)
+                        {
+                            <input id="@powerReserve.Id" class="__select__input2" type="checkbox" name="powerReserves" value="@powerReserve.Id"/>
+                            <label for="@powerReserve.Id" class="__select__label2">@powerReserve.Name</label>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div id="filter_select_price_conainter" class="filter_select_item">
+                <div class="__select2" data-state="">
+                    <div class="__select__title2" data-default="Цена">Цена</div>
+                    <div class="__select__content2">
+                        @foreach (var price in ((CarFilterConfig)ViewData["config"]).CarFilerPriceConfigs)
+                        {
+                            <input id="@price.Id" class="__select__input2" type="checkbox" name="prices" value="@price.Id"/>
+                            <label for="@price.Id" class="__select__label2">@price.Name</label>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+	<div id="filter_control_buttons" class="filter_control_buttons_container">
+            <button id="filter_search">Подобрать авто</button>
+        </div>
+    </div>
+    <div class="headers">
+        Как мы работаем?
+    </div>
+        @{
+		/*
+		 @foreach (var type in ((CarFilterConfig)ViewData["config"]).CarFilerTypeConfigs)
+		   {
+		       <div class="filter_types_item">
+		           <label class="image-checkbox" id="checkboxLabel">
+		               <input type="checkbox" id="filterType" onchange="changeBackgroundColor()" value="@type.Id">
+		               <img src="@type.ImageUrl" alt="Image type">
+		           </label>
+		           <div class="filter_types_caption">
+		               @type.Name
+		           </div>
+		       </div>
+		   }
+		 
+		 */
+    }
+   
+    
 	<div id="we-are">
 		<div class="one-of-we">
 			<img src="images/icons/1.png" alt="">
@@ -149,15 +218,14 @@
 		</div>
 	</div>
 
-		<div style="background-color: #ffffff; width: 100%; padding-top: 50px; padding-bottom: 10px;">
-		<div class="same_cars">
-			<div class="backgr_name">
-				<div id="name_same">Наш телеграм-канал</div>
-			</div>
-			<div id="our_telegram_chanel">В нашем телеграм-канале мы постоянно выкладываем новые предложения, различные обзоры электричек, актуальные цены, различные аксесуары для Ваших электрокаров!</div>
-				<div id="link_telchanel">
-					<a href="https://t.me/it_car_by_channel"><div class="same_button2">Перейти на канал</div></a>
-				</div>
+	<div style="background-color: #ffffff; width: 100%; padding-top: 50px; padding-bottom: 10px;">
+	<div class="same_cars">
+		<div class="backgr_name">
+			<div id="name_same">Наш телеграм-канал</div>
+		</div>
+		<div id="our_telegram_chanel">В нашем телеграм-канале мы постоянно выкладываем новые предложения, различные обзоры электричек, актуальные цены, различные аксесуары для Ваших электрокаров!</div>
+			<div id="link_telchanel">
+				<a href="https://t.me/it_car_by_channel"><div class="same_button2">Перейти на канал</div></a>
 			</div>
 		</div>
 	</div>
@@ -419,5 +487,9 @@
 		</div>
 		<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2354.4156223758514!2d27.500375390150733!3d53.835471266948495!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46dbd183f4119073%3A0x662f6af61a8167c2!2z0KLQpiDQodCV0J3QmNCm0JA!5e0!3m2!1sru!2sby!4v1701212880839!5m2!1sru!2sby" width="90%" height="450" style="margin-top: 40px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 	</div>
-	<!-- </div>
-	</div> -->
+    <!-- </div>
+    </div> -->
+
+    @section AfterBody{
+        <script src="js/carShortFilter.js"></script>
+    }

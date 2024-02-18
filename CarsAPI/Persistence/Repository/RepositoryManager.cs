@@ -5,12 +5,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
 
 namespace Persistence.Repository
 {
     public class RepositoryManager : IRepositoryManager
     {
         private DataContext _dataContext;
+        private readonly IMapper _mapper;
 
         private CarImageRepository carImageRepository;
         private CarPropValueRepository carPropValueRepository;
@@ -22,9 +24,10 @@ namespace Persistence.Repository
         private PropertyRepository propertyRepository;
         private NewsRepository newsRepository;
 
-        public RepositoryManager(DataContext dataContext) 
+        public RepositoryManager(DataContext dataContext, IMapper mapper) 
         {
             _dataContext= dataContext;
+            _mapper= mapper;
         }
         public ICarImageRepository CarImageRepository
         {
@@ -50,7 +53,7 @@ namespace Persistence.Repository
             get
             {
                 if (carRepository == null)
-                    return new CarRepository(_dataContext);
+                    return new CarRepository(_dataContext, _mapper);
                 return carRepository;
             }
         }

@@ -1,21 +1,30 @@
 using Applicaton;
-using Applicaton.Common.Mappings;
-using Applicaton.Interfaces;
 using Persistence;
 using Persistence.Data;
-using System.Reflection;
 using MediatR;
 using CarsServer.Middleware;
-using Serilog.Events;
 using Serilog;
+using Applicaton.Common.Mappings;
+using CarsServer.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Host.UseSerilog((ctx, lc) => 
-                lc
-				.MinimumLevel.Error()
-				.WriteTo.File($"logs/CarsWebAppLog-.log", rollingInterval:
-                    RollingInterval.Day));
+if (builder.Environment.IsProduction())
+{
+    builder.Host.UseSerilog((ctx, lc) =>
+        lc
+            .MinimumLevel.Error()
+            .WriteTo.File($"logs/CarsWebAppLog-.log", rollingInterval:
+                RollingInterval.Day));
+}
+else
+{
+    builder.Host.UseSerilog((ctx, lc) =>
+        lc
+            .WriteTo.Console());
+}
+
+
 
 builder.Services.AddControllers();
 
@@ -25,16 +34,14 @@ builder.Services.AddSwaggerGen();
  
 builder.Services.AddApplication();
 builder.Services.AddPersistence(builder.Configuration);
+builder.Services.AddSingleton<AuthHelperService>();
 
 builder.Services.AddMediatR(typeof(DataContext).Assembly);
-
 builder.Services.AddAutoMapper(config =>
 {
-    var service = builder.Services.BuildServiceProvider().GetService<IRepositoryManager>();
+    config.AllowNullCollections = true;
+}, typeof(CommonMappingProfile).Assembly);
 
-    config.AddProfile(new AssemblyMappingProfile(Assembly.GetExecutingAssembly(), service));
-    config.AddProfile(new AssemblyMappingProfile(typeof(IDataContext).Assembly, service));
-});
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", policy =>

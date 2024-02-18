@@ -16,23 +16,77 @@ namespace CarsClient.Controllers
             _configuration = configuration;
         }
 
+        [HttpGet]
         [Route("passenger")]
-        public async Task<IActionResult> AllCars()
+        public async Task<IActionResult> AllCars(
+            [FromQuery] Guid[]? manufactures= null,
+            [FromQuery] Guid[]? types = null,
+            [FromQuery] Guid[]? powerReserves = null,
+            [FromQuery] Guid[]? batteryCapacity = null,
+            [FromQuery] Guid[]? driveModes = null,
+            [FromQuery] int? filterPriceMin = null,
+            [FromQuery] int? filterPriceMax = null,
+            [FromQuery] Guid[]? priceIds = null)
         {
-            var response = await _globalVariables.WebApiClient.GetAsync("car/getall");
-            if (response.IsSuccessStatusCode)
+            var responseConfig = await _globalVariables.WebApiClient.GetAsync("car/FilterConfig");
+            if (responseConfig.IsSuccessStatusCode)
             {
-                var cars = await response.Content.ReadFromJsonAsync<CarList>();
-                // ViewData["apiEditUrl"] = GlobalVariables.WebApiClient.BaseAddress + "Contact/edit";
-                ViewData["Postfix"] = _globalVariables.Postfix;
-				cars?.Cars?.OrderBy(x => x.ModelName);
+                var config = await responseConfig.Content.ReadFromJsonAsync<CarFilterConfig>();
 
-				return View(cars?.Cars);
+                if (priceIds != null && config != null && priceIds.Length> 0)
+                {
+	                var minPrice = 200000;
+	                var maxPrice = 8000;
+					foreach (var priceId in priceIds)
+	                {
+		                var priceConfig = config.CarFilerPriceConfigs.FirstOrDefault(x => x.Id == priceId);
+		                if (priceConfig != null)
+		                {
+			                if (priceConfig.MaxPrice > maxPrice)
+			                {
+                                maxPrice = priceConfig.MaxPrice;
+			                }
+			                if (priceConfig.MinPrice < minPrice)
+			                {
+				                minPrice = priceConfig.MinPrice;
+			                }
+						}
+	                }
+
+	                filterPriceMax = maxPrice;
+                    filterPriceMin = minPrice;
+                }
+
+                var queryParams = CarHelper.GetQueryForCarFilter(manufactures, types, powerReserves, batteryCapacity, driveModes,
+                    filterPriceMin, filterPriceMax);
+
+                var responseCars = await _globalVariables.WebApiClient.GetAsync($"car/getall{queryParams}");
+                if (responseCars.IsSuccessStatusCode)
+                {
+                    var cars = await responseCars.Content.ReadFromJsonAsync<CarList>();
+                    ViewData["config"] = config;
+                    ViewData["Postfix"] = _globalVariables.Postfix;
+                    var filterConfig = new SelectedFilterConfig
+                    {
+                        BatteryCapacity = batteryCapacity,
+                        FilterPriceMax = filterPriceMax ?? 200000,
+                        FilterPriceMin = filterPriceMin ?? 8000,
+                        Manufactures = manufactures,
+                        PowerReserves = powerReserves,
+                        Types = types,
+                        DriveModes = driveModes
+                    };
+                    ViewData["SelectedFilterConfig"] = filterConfig;
+
+                   return View(cars?.Cars);
+                }
+                else
+                    return StatusCode((int)responseCars.StatusCode);
             }
             else
-                return StatusCode((int)response.StatusCode);
-
+                return StatusCode((int)responseConfig.StatusCode);
         }
+
         [Route("car/{id}")]
         public async Task<IActionResult> GetCar(Guid id)
         {
