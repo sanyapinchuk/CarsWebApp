@@ -1,5 +1,5 @@
 @{
-    string mainPage = "", passengerPage = "", newsPage = "", contact_usPage = "";
+    string mainPage = "", passengerPage = "", newsPage = "", contact_usPage = "", aboutusPage = "";
     switch (ViewData["activePage"]){
         case "mainPage":
             mainPage = "active";
@@ -12,6 +12,9 @@
             break;
         case "contact_usPage":
             contact_usPage = "active";
+            break;
+        case "aboutusPage":
+            aboutusPage = "active";
             break;
     }
 }
@@ -35,22 +38,35 @@
         <div id="all-body">
 		    <div class="header_top">			
 			    <div class="header_contacts">			 
-				    <a href="@ViewData["pathPrefix"]index"><img id="logotype" src= "@ViewData["pathPrefix"]images/logo/new_logo.png" alt="no image"></a>	
-				    <ul id="center_up_list">
-					    <li class="center_contacts"><a class="container_1 header_phone transition2" href="tel:375296349842"> <i class="fas fa-phone-alt"></i> +375 (29) 634-98-42 </a></li>
-					    <li class="center_contacts"><a class="container_1 header_email transition2" href="mailto:info.itcar@gmail.com"><i class="fas fa-at"></i> info.itcar@gmail.com </a></li>
+				    <div class="logo_header">
+                    <a href="@ViewData["pathPrefix"]index"><img id="logotype" src= "@ViewData["pathPrefix"]images/logo/logo_main.png" alt="no image"></a>	
+				    </div>
+                    <div class="new_menu">
+                        <ul>
+                            <li id="main" class="new_back @mainPage"><a href="@ViewData["pathPrefix"]index">Главная</a></li>
+                            <li id="passenger" class="new_back @passengerPage"><a href="@ViewData["pathPrefix"]passenger">Каталог</a></li>
+                            <li id="contacts" class="new_back @contact_usPage"><a href="https://t.me/it_car_by_channel">Новости</a></li>
+                            <li id="aboutus" class="new_back @aboutusPage"><a href="@ViewData["pathPrefix"]aboutus">О нас</a></li>
+                            <li id="contacts" class="new_back @contact_usPage"><a href="@ViewData["pathPrefix"]contact_us">Контакты</a></li>
+                        </ul>
+                    </div>    
+                    
+                    <ul id="center_up_list">
+					    <li class="center_contacts"><a class="container_1 header_phone transition2" href="tel:375296349842">+375 (29) 634-98-42</a></li>
+					    <li class="center_contacts"><a class="container_1 header_email transition2" href="mailto:info.itcar@gmail.com">info.itcar@gmail.com</a></li>
 				    </ul>
 				    <i class="fas fa-bars" id="open_list"></i>		
 			    </div>
 		    </div>
-		    <div id= "main_menu">
+            
+		    <!-- <div id= "main_menu">
 			    <ul class="topmenu">
                     <li id="main" class="new_back @mainPage"><a href="@ViewData["pathPrefix"]index" class="new_color"><i class="fa fa-home"></i> Главная</a></li>
                     <li id="passenger" class="new_back @passengerPage"><a href="@ViewData["pathPrefix"]passenger" class="new_color"><i class="fa fa-car"></i> Каталог</a></li>
-                    <!-- <li id="contacts" class="new_back @contact_usPage"><a href="@ViewData["pathPrefix"]contact_us" class="new_color"><i class="fas fa-envelope"></i> Новости</a></li> -->
+                    <li id="contacts" class="new_back @contact_usPage"><a href="@ViewData["pathPrefix"]contact_us" class="new_color"><i class="fas fa-envelope"></i> Новости</a></li>
                     <li id="contacts" class="new_back @contact_usPage"><a href="@ViewData["pathPrefix"]contact_us" class="new_color"><i class="fas fa-envelope"></i> Свяжитесь с нами</a></li>
 			    </ul>
-		    </div>
+		    </div> -->
 
             <div id="water_div"></div>
 

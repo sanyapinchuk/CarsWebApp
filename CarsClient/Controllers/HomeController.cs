@@ -28,6 +28,13 @@ namespace CarsClient.Controllers
             ViewData["mailAddress"] = _configuration["mailAddress"];
             return View();
         }
+        
+        [Route("aboutus")]
+        public IActionResult AboutUs()
+        {
+            ViewData["mailAddress"] = _configuration["mailAddress"];
+            return View();
+        }
 
     }
 }

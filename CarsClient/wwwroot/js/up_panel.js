@@ -118,7 +118,7 @@ document.querySelector("#water_div").onclick = function(){
 }       
 
 document.querySelector("#open_list").onclick = function(){
-    let menu = document.getElementById('main_menu');
+    let menu = document.getElementsByClassName('new_menu')[0];
     let myBody = document.getElementsByTagName('body')[0];
     let waterDiv = document.getElementById('water_div');
     if ((menu.style.display == 'none') || (menu.style.display == ''))
