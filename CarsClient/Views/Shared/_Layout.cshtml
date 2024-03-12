@@ -23,9 +23,9 @@
         <title>@ViewData["Title"] - it-car.by</title>		
         <meta name="description" content="@ViewData["Description"]">	
         @RenderSection("Headers",false)
-        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" sizes="16x16">
-        <link rel="shortcut icon" href="favicon_32.ico" type="image/x-icon" sizes="32x32">
-        <link rel="shortcut icon" href="favicon_64.ico" type="image/x-icon" sizes="64x64">
+        <link rel="shortcut icon" href="@ViewData["pathPrefix"]favicon.ico" type="image/x-icon" sizes="16x16">
+        <link rel="shortcut icon" href="@ViewData["pathPrefix"]favicon_32.ico" type="image/x-icon" sizes="32x32">
+        <link rel="shortcut icon" href="@ViewData["pathPrefix"]favicon_64.ico" type="image/x-icon" sizes="64x64">
 	    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200&display=swap" rel="stylesheet">
 	    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@500&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="@ViewData["pathPrefix"]css/styles.css">
@@ -49,7 +49,8 @@
                     <li id="main" class="new_back @mainPage"><a href="@ViewData["pathPrefix"]index" class="new_color"><i class="fa fa-home"></i> Главная</a></li>
                     <li id="passenger" class="new_back @passengerPage"><a href="@ViewData["pathPrefix"]passenger" class="new_color"><i class="fa fa-car"></i> Каталог</a></li>
                     <!-- <li id="contacts" class="new_back @contact_usPage"><a href="@ViewData["pathPrefix"]contact_us" class="new_color"><i class="fas fa-envelope"></i> Новости</a></li> -->
-                    <li id="contacts" class="new_back @contact_usPage"><a href="@ViewData["pathPrefix"]contact_us" class="new_color"><i class="fas fa-envelope"></i> Свяжитесь с нами</a></li>
+                <li id="dealers" class="new_back @newsPage"><a href="@ViewData["pathPrefix"]all-news" class="new_color"><i class="far fa-newspaper"></i> Новости</a></li>
+                <li id="contacts" class="new_back @contact_usPage"><a href="@ViewData["pathPrefix"]contact_us" class="new_color"><i class="fas fa-envelope"></i> Свяжитесь с нами</a></li>
 			    </ul>
 		    </div>
 
