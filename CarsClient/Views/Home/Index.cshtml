@@ -1,4 +1,6 @@
-﻿@{
+
+@using CarsClient.Models.Dto
+@{
 	ViewData["Title"] = "Купить электромобиль в Минске из Китая | Низкие цены";
 	ViewData["activePage"] = "mainPage";
 	ViewData["Description"] = "Электромобили известных брендов: Tesla, Lixiang, Volkswagen, Xiaomi, Xpeng и др. Доставка до 80 дней электромобилей из Китая. Оптимальные цены и широкий выбор. Отзывы и оценка пользователей. Кредит и лизинг.";
@@ -27,16 +29,84 @@
 	}
 	
 
-	<div id="wrap_main_back">
-		<div id="main_back">
-			<!-- <h1 style=" margin-left: 40px; margin-top: 11px; margin-bottom: 90px; margin-right: 40px;">Электромобили</h1> -->
-			<!-- <h2 style=" margin-top: 35px; margin-bottom: 40px; margin-left: 40px; margin-right: 40px;">из Китая</h2> -->
-		</div>
-	</div>
-
-	<div class="headers">
-		Как мы работаем?
-	</div>
+<div id="wrap_main_back">
+    <div id="main_back">
+        <!-- <h1 style=" margin-left: 40px; margin-top: 11px; margin-bottom: 90px; margin-right: 40px;">Электромобили</h1> -->
+        <!-- <h2 style=" margin-top: 35px; margin-bottom: 40px; margin-left: 40px; margin-right: 40px;">из Китая</h2> -->
+    </div>
+</div>
+<h1 id="filter_short_caption">
+	Подобрать автомобиль
+</h1>
+    <div id="filter_container">
+        <div id="filter_short_select_types_conainter" class="filter_select_item">
+            <div id="_select_types_container">
+                @foreach (var type in ((CarFilterConfig)ViewData["config"]).CarFilerTypeConfigs)
+                {
+                    <div class="filter_types_item">
+                        <input type="checkbox" class="filter_index_type_input" id="@type.Id" value="@type.Id">
+					    <label class="image-checkbox" for="@type.Id">
+                            <img src="@type.ImageUrl" alt="Image type">
+                            <div class="filter_types_caption">
+                                @type.Name
+                            </div>
+                        </label>
+                    </div>
+                }
+            </div>
+        </div>
+        <div id="filter_selects_container">
+            <div id="filter_select_powerReserves_conainter" class="filter_select_item">
+                <div class="__select2" data-state="">
+                    <div class="__select__title2" data-default="Запас хода">Запас хода</div>
+                    <div class="__select__content2">
+                        @foreach (var powerReserve in ((CarFilterConfig)ViewData["config"]).CarFilerPowerReserveConfigs)
+                        {
+                            <input id="@powerReserve.Id" class="__select__input2" type="checkbox" name="powerReserves" value="@powerReserve.Id"/>
+                            <label for="@powerReserve.Id" class="__select__label2">@powerReserve.Name</label>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div id="filter_select_price_conainter" class="filter_select_item">
+                <div class="__select2" data-state="">
+                    <div class="__select__title2" data-default="Цена">Цена</div>
+                    <div class="__select__content2">
+                        @foreach (var price in ((CarFilterConfig)ViewData["config"]).CarFilerPriceConfigs)
+                        {
+                            <input id="@price.Id" class="__select__input2" type="checkbox" name="prices" value="@price.Id"/>
+                            <label for="@price.Id" class="__select__label2">@price.Name</label>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+	<div id="filter_control_buttons" class="filter_control_buttons_container">
+            <button id="filter_search">Подобрать авто</button>
+        </div>
+    </div>
+    <div class="headers">
+        Как мы работаем?
+    </div>
+        @{
+		/*
+		 @foreach (var type in ((CarFilterConfig)ViewData["config"]).CarFilerTypeConfigs)
+		   {
+		       <div class="filter_types_item">
+		           <label class="image-checkbox" id="checkboxLabel">
+		               <input type="checkbox" id="filterType" onchange="changeBackgroundColor()" value="@type.Id">
+		               <img src="@type.ImageUrl" alt="Image type">
+		           </label>
+		           <div class="filter_types_caption">
+		               @type.Name
+		           </div>
+		       </div>
+		   }
+		 
+		 */
+    }
+   
+    
 	<div id="we-are">
 		<div class="one-of-we">
 			<img src="images/icons/1.png" alt="">
@@ -80,28 +150,28 @@
 			</div>
 			<div id="box_same_cars">
 				<div class="list_same_cars">
-					<div style="overflow: hidden;"><a href="cars/C_HR_EV"><img src="images\cars\C_HR_EV/1.jpg" alt="no image"></a></div>
-					<div id="name_same_car">Toyota C-HR EV</div>
+				<div style="overflow: hidden;"><a href="car/7fc336bc-3ffc-454a-9aff-9a6fadff60ed"><img src="https://p9-dcd.byteimg.com/motor-mis-img/c6eecfca168251c6b1f27d14c829229b~tplv-f042mdwyw7-original:750:0.jpg" alt="no image"></a></div>
+				<div id="name_same_car">Bestune NAT</div>
 					<div id="price_same_car">Белый</div>
-					<a href="cars/C_HR_EV"><div class="same_button">Подробнее</div></a>
+				<a href="car/7fc336bc-3ffc-454a-9aff-9a6fadff60ed"><div class="same_button">Подробнее</div></a>
 				</div>
 				<div class="list_same_cars">
-					<div style="overflow: hidden;"><a href="cars/ID4X_prime_white"><img src="images\cars\ID4X/prime_white/1.jpg" alt="no image"></a></div>
-					<div id="name_same_car">ID4X Prime</div>
-					<div id="price_same_car">Металлический ледниковый белый</div>
-					<a href="cars/ID4X_prime_white"><div class="same_button">Подробнее</div></a>
+				<div style="overflow: hidden;"><a href="car/5c882b8b-6ad3-4e20-a639-c0d848fd87cd"><img src="https://p3.dcarimg.com/img/motor-mis-img/5ae262e8d85c35bae7d83f29ae7d2305~2508x0.jpg" alt="no image"></a></div>
+				<div id="name_same_car">LI L7 MAX</div>
+					<div id="price_same_car">Белый</div>
+				<a href="car/5c882b8b-6ad3-4e20-a639-c0d848fd87cd"><div class="same_button">Подробнее</div></a>
 				</div>	
 				<div class="list_same_cars">
-					<div style="overflow: hidden;"><a href="cars/ID6X_prime_gold"><img src="images\cars\ID6X/prime_gold/1.jpg" alt="no image"></a></div>
-					<div id="name_same_car">ID6X Prime</div>
-					<div id="price_same_car">Золотого шампанского металлик</div>
-					<a href="cars/ID6X_prime_gold"><div class="same_button">Подробнее</div></a>
+				<div style="overflow: hidden;"><a href="car/1d1e2b4e-d781-479a-867d-12d57ca0c8d7"><img src="https://p3.dcarimg.com/img/motor-mis-img/5f1a139ed6016243bf353abbf0d067ee~2508x0.jpg" alt="no image"></a></div>
+				<div id="name_same_car">Zeekr 001 YOU</div>
+					<div id="price_same_car">Серый</div>
+				<a href="car/1d1e2b4e-d781-479a-867d-12d57ca0c8d7"><div class="same_button">Подробнее</div></a>
 				</div>			
 				<div class="list_same_cars">
-					<div style="overflow: hidden;"><a href="cars/ID6X_pure_gray"><img src="images\cars\ID6X/pure+gray/1.jpg" alt="no image"></a></div>
-					<div id="name_same_car">ID6X Pure+</div>
-					<div id="price_same_car">Серый металлический марганец</div>
-					<a href="cars/ID6X_pure_gray"><div class="same_button">Подробнее</div></a>
+				<div style="overflow: hidden;"><a href="car/d2cc7769-8254-461e-b7ee-2770cd0d70c1"><img src="https://p3.dcarimg.com/img/motor-mis-img/2d355b11a1f26d3f27fc2ece627128e4~2508x0.jpg" alt="no image"></a></div>
+				<div id="name_same_car">ID.4 CROZZ PRIME</div>
+					<div id="price_same_car">Белый</div>
+				<a href="car/d2cc7769-8254-461e-b7ee-2770cd0d70c1"><div class="same_button">Подробнее</div></a>
 				</div>					
 			</div>	
 		</div>
@@ -153,7 +223,7 @@
 		<div class="same_cars">
 			<div class="backgr_name">
 				<div id="name_same">Наш телеграм-канал</div>
-						<h1>Электромобили из Китая</h1>
+				<h1>Электромобили из Китая</h1>
 			</div>
 			<div id="our_telegram_chanel">В нашем телеграм-канале мы постоянно выкладываем новые предложения, различные обзоры электричек, актуальные цены, различные аксесуары для Ваших электрокаров!</div>
 				<div id="link_telchanel">
@@ -420,5 +490,9 @@
 		</div>
 		<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2354.4156223758514!2d27.500375390150733!3d53.835471266948495!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46dbd183f4119073%3A0x662f6af61a8167c2!2z0KLQpiDQodCV0J3QmNCm0JA!5e0!3m2!1sru!2sby!4v1701212880839!5m2!1sru!2sby" width="90%" height="450" style="margin-top: 40px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 	</div>
-	<!-- </div>
-	</div> -->
+    <!-- </div>
+    </div> -->
+
+    @section AfterBody{
+        <script src="js/carShortFilter.js"></script>
+    }

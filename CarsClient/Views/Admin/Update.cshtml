@@ -54,6 +54,7 @@
                             <input type="text" placeholder="Значение" class="prop_item_input" name="val@(i)" value="@Model.Properties[i-1].Value"/>
                             <input type="text" placeholder="Категория" class="prop_item_input" name="propCategory@(i)" value="@Model.Properties[i-1].Category" />
                             <input type="number" step="1" class="prop_item_input prop_item_input_priority" name="propCategoryPriority@(i)" value="@Model.Properties[i-1].Priority" />
+                            <i class="fas fa-times delete_property_icon"></i>
                         </div>
                     }
                 </div>
