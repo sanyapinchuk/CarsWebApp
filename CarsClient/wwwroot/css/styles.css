@@ -72,13 +72,14 @@ a {
 }
 
 .container_1 {
-	text-align: center;
-	/* line-height: 350%; */
+    text-align: center;
+    /* line-height: 350%; */
     width: 100%;
     text-align: left;
     display: block;
     color: white;
     font-family: 'Proxima Nova Regular';
+    font-weight: 500;
 }
 
 .container_1:hover {
