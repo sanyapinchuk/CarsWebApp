@@ -1,69 +1,14 @@
 ﻿@model CarsClient.Models.ErrorViewModel
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title> Error - it-car.by</title>
-    <meta name="description" content="You get some error">
-    <link rel="shortcut icon" href="https://it-car.by/favicon.ico" type="image/x-icon">
-    <link rel="icon" href="https://it-car.by/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="css/styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@500&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/71471d07af.js" crossorigin="anonymous"></script>
-</head>
-<body>
-    <div class="header_top">
-        <div class="header_contacts">
-            <a href="index"><img id="logotype" src="images/logo/new_logo.png" alt="no image"></a>
-            <ul id="center_up_list">
-                <li class="center_contacts"><a class="container_1 header_phone transition2" href="tel:375296349842"> <i class="fas fa-phone-alt"></i> +375 (29) 63-49-842 </a></li>
-                <li class="center_contacts"><a class="container_1 header_email transition2" href="mailto:info.itcar@gmail.com"><i class="fas fa-at"></i> info.itcar@gmail.com </a></li>
-            </ul>
-            <i class="fas fa-bars" id="open_list"></i>
-        </div>
-    </div>
+@{
+    ViewData["Title"] = "Ошибка - " + Model.Code;
+    ViewData["Description"] = "Возникла ошибка: " +  Model.Description;
+    ViewData["Keywords"] = "электромобили, купить электромобиль Минск,  электромобиль Беларусь, электромобиль Минск бу, отзывы электромобили, купить электромобили РФ, запчасти электромобиль, доставка Минск, кредит, лизинг, быстрая зарядка";
+    Layout = "_Layout";
+    ViewData["pathPrefix"] = "https://formulaev.net/";
+}
 
-    <div id="water_div"></div>
-
-    <div class="container" id="error_container">
-        <div id="error_statusCode">Ошибка - @Model.Code</div>
-        <div id="error_statusDescription">@Model.Description</div>
-    </div>
-
-    <div id="arrow_up">
-        <i class="fas fa-arrow-up" id="arrow_id"></i>
-    </div>
-    <div id="end_box">
-        <div class="end_menu" id="left_end_block">
-            <img id="end_logotype" src="images/logo/logo_main.png" alt="no image">
-            <br>УНП 693156318
-            <br>Общество с ограниченной ответственностью "Интеллект Трейдинг", 2021г.
-            <br>
-            <br>Сопровождение сделки по покупке и доставке электромобилей из Китая.
-        </div>
-        <div class="end_menu">
-            Юридический адрес:  223049, Беларусь, Минская область, Минский район, с/с Щомыслицкий, д. 16, ком. 12/1<br>
-            Телефон: <a href="tel:375296349842">+375 (29) 634-98-42</a><br>
-            Email: <a href="mailto:info.itcar@gmail.com"> info.itcar@gmail.com</a>
-            <br><br>
-            Указанные на сайте цены являются ориентировочными. Окончательную стоимость уточняйте у менеджера.
-        </div>
-    </div>
-
-    <div class="last_box">
-        <div class="last_line">
-            ООО "Интеллект Трейдинг" © 2022 — все права защищены
-        </div>
-        <div class="contact_line">
-            <a href="https://telegram.me/it_car_by"><i class="fab fa-telegram"></i></a>
-            <a href="tel:375296349842"><i class="fas fa-phone-alt"></i></a>
-            <a href="mailto:info.itcar@gmail.com"><i class="fas fa-at"></i></a>
-            <a href="../contact_us"><i class="fas fa-envelope"></i></a>
-        </div>
-    </div>
-    <script src="js/up_panel.js"></script>
-</body>
-</html>
+<div class="container" id="error_container">
+    <div id="error_statusCode">Ошибка - @Model.Code</div>
+    <div id="error_statusDescription">@Model.Description</div>
+</div>
