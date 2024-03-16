@@ -21,16 +21,16 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>01/11/2024 21:29:43</publishTime>
     </File>
     <File Include="CarsClient">
-      <publishTime>03/16/2024 23:27:49</publishTime>
+      <publishTime>03/17/2024 00:32:57</publishTime>
     </File>
     <File Include="CarsClient.deps.json">
-      <publishTime>03/16/2024 23:27:57</publishTime>
+      <publishTime>03/17/2024 00:33:02</publishTime>
     </File>
     <File Include="CarsClient.dll">
-      <publishTime>03/16/2024 23:27:49</publishTime>
+      <publishTime>03/17/2024 00:32:57</publishTime>
     </File>
     <File Include="CarsClient.pdb">
-      <publishTime>03/16/2024 23:27:49</publishTime>
+      <publishTime>03/17/2024 00:32:57</publishTime>
     </File>
     <File Include="CarsClient.runtimeconfig.json">
       <publishTime>03/10/2024 21:35:07</publishTime>
@@ -2271,7 +2271,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>03/12/2024 22:05:39</publishTime>
     </File>
     <File Include="wwwroot/sitemap.xml">
-      <publishTime>03/12/2024 22:05:39</publishTime>
+      <publishTime>03/17/2024 00:31:44</publishTime>
     </File>
     <File Include="wwwroot/temp/test.html">
       <publishTime>02/19/2024 02:15:21</publishTime>
