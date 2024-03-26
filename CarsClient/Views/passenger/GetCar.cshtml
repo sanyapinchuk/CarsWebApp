@@ -1,78 +1,77 @@
-﻿@using CarsClient;
-@model CarsClient.Models.Dto.CarFullInfoDto;
+﻿@model CarsClient.Models.Dto.CarFullInfoDto;
 
 @{
 	ViewData["Title"] = "Купить " + Model.ModelName + " из Китая в Беларусь, цена - Минск";
 	ViewData["Description"] = Model.Description + " | " + ViewData["Postfix"];
 	ViewData["activePage"] = "passengerPage";
+	ViewData["Keywords"] = "электромобили, отзывы на электромобили, цены на электромобили, электромобиль bmw, электромобиль xiaomi, электромобиль lixiang, электромобиль volkswagen, электромобиль zeekr, tesla купить Минск, гибридный автомобиль";
 	Layout = "~/Views/Shared/_Layout.cshtml";
 	ViewData["pathPrefix"] = "../";
 }
 
-	<div class="panel commercial">	
-		<h1>@Model.ModelName</h1>
-	</div>
-	<div class="car_information">	
-		<div class="all">
-			<input checked type="radio" name="respond" id="desktop">
-			<div id="slider">
+<div class="panel commercial">	
+	<h1>@Model.ModelName</h1>
+</div>
+<div class="car_information">	
+	<div class="all">
+		<input checked type="radio" name="respond" id="desktop">
+		<div id="slider">
 			@for(int i= 1; i< Model.Images.Count+1; i++)
+			{
+				if (i == 1)
 				{
-					if (i == 1)
-					{
-						<input checked type="radio" name="slider" id="switch_1">
-					}
-					else{
-						<input type="radio" name="slider" id= "switch_@i">
-					}
+					<input checked type="radio" name="slider" id="switch_1">
 				}
-				<div id="slides">
-					<div id="overflow">
-						
-						<div class="image">
-							@foreach(var item in Model.Images)
-							{
-								<article><img src="@item.Path"></article>
-							}
-						</div>
+				else{
+					<input type="radio" name="slider" id= "switch_@i">
+				}
+			}
+			<div id="slides">
+				<div id="overflow">
+					<div class="image">
+						@foreach(var item in Model.Images)
+						{
+							<article><img src="@item.Path"></article>
+						}
 					</div>
-					<div id="__left_block"></div>
-					<div id="__right_block"></div>
 				</div>
-						
-				<div id="controls">
-					@for(int i= 1; i< Model.Images.Count+1; i++)
-					{
-						<label for="switch_@i"></label>
-					}
-				</div>
-				<div id="active">
-					@for(int i= 1; i< Model.Images.Count+1; i++)
-					{
-						<label 	style= "background-image: url('@Model.Images[i-1].Path');" for="switch_@i"></label>
-					}
-				</div>		
-			</div>			
-		</div>
-		<table class="info">
-			<tr style="top:-10%;">
-				<td style="vertical-align:bottom;">
-					<div id="model">@Model.ModelName</div>
-					<div id="price"> Цена с учётом доставки: <b>$@Model.Price.ToString("N", System.Globalization.CultureInfo.CreateSpecificCulture("en-US"))</b></div>
-					<button id="make-order">Заказать</button>		
-				</td>  
-			</tr>
-		</table>
-	</div>	
+				<div id="__left_block"></div>
+				<div id="__right_block"></div>
+			</div>
+					
+			<div id="controls">
+				@for(int i= 1; i< Model.Images.Count+1; i++)
+				{
+					<label for="switch_@i"></label>
+				}
+			</div>
+			<div id="active">
+				@for(int i= 1; i< Model.Images.Count+1; i++)
+				{
+					<label style="background-image: url('@Model.Images[i-1].Path');" for="switch_@i"></label>
+				}
+			</div>		
+		</div>			
+	</div>
+	<table class="info">
+		<tr style="top:-10%;">
+			<td style="vertical-align:bottom;">
+				<div id="model">@Model.ModelName</div>
+				<div id="price"> Цена с учётом доставки: <b>$@Model.Price.ToString("N", System.Globalization.CultureInfo.CreateSpecificCulture("en-US"))</b></div>
+				<button id="make-order">Заказать</button>		
+			</td>  
+		</tr>
+	</table>
+</div>	
 
-	<div id="box_characterstics">
-		<div id="car_characterstics">	
-			<div class= "headers5">
-				Технические характеристики
-			</div>				
-			<ul>				
-				<li> Модельный год <span>@Model.ProductionYear</span></li>
-			
+<div id="box_characterstics">
+	<div id="car_characterstics">	
+		<div class= "headers5">
+			Технические характеристики
+		</div>				
+		<ul>				
+			<li>Модельный год <span>@Model.ProductionYear</span></li>
+			<li>Кузов <span>@Model.CarType</span></li>
 			@foreach(var category in Model.Categories)
 			{
 				@foreach(var item in category.Properties)
@@ -83,12 +82,11 @@
 					}
 				}
 			}
-			
-			</ul>
-			<div class="add_info" id="add_info">
+		</ul>
+		<div class="add_info" id="add_info">
 			@foreach(var category in Model.Categories)
 			{
-				if(category.Properties.Any(x=> !x.IsKeyProperty))
+				@if(category.Properties.Any(x=> !x.IsKeyProperty))
 				{
 					<div class="type_separate">@category.Category</div>
 				}
@@ -102,131 +100,154 @@
 					}
 				}
 			}
-
-			</div>
-			<div id="more_info">
-				<div id="box_more">
-					<div id="more">
-						Развернуть
-						<img src="@ViewData["pathPrefix"]../images/icons/vnis_new.svg" alt="">
-					</div>
-					<div id="less">
-						Свернуть
-						<img src="@ViewData["pathPrefix"]../images/icons/vverh_new.svg" alt="">
-					</div>
-				</div>						
-			</div>
-		</div>				
-	</div>
-			
-	<div>
-		<div class="same_cars">
-			<div class= "headers6">
-				Лучшие предложения
-			</div>
-			<div id="box_same_cars">
-				<div class="list_same_cars">
-				<div style="overflow: hidden;"><a href="car/7fc336bc-3ffc-454a-9aff-9a6fadff60ed"><img src="https://p9-dcd.byteimg.com/motor-mis-img/c6eecfca168251c6b1f27d14c829229b~tplv-f042mdwyw7-original:750:0.jpg" alt="no image"></a></div>
+		</div>
+		<div id="more_info">
+			<div id="box_more">
+				<div id="more">
+					Развернуть
+					<img src="@ViewData["pathPrefix"]../images/icons/vnis_new.svg" alt="">
+				</div>
+				<div id="less">
+					Свернуть
+					<img src="@ViewData["pathPrefix"]../images/icons/vverh_new.svg" alt="">
+				</div>
+			</div>						
+		</div>
+	</div>				
+</div>
+		
+<div>
+	<div class="same_cars">
+		<div class= "headers6">
+			Лучшие предложения
+		</div>
+		<div id="box_same_cars">
+			<div class="list_same_cars">
+				<div style="overflow: hidden;">
+					<a href="7fc336bc-3ffc-454a-9aff-9a6fadff60ed">
+						<img src="https://p9-dcd.byteimg.com/motor-mis-img/c6eecfca168251c6b1f27d14c829229b~tplv-f042mdwyw7-original:750:0.jpg" alt="no image">
+					</a>
+				</div>
 				<div id="name_same_car">Bestune NAT</div>
-					<div id="price_same_car">Белый</div>
-				<a href="car/7fc336bc-3ffc-454a-9aff-9a6fadff60ed"><div class="same_button">Подробнее</div></a>
+				<div id="price_same_car">Белый</div>
+				<a href="7fc336bc-3ffc-454a-9aff-9a6fadff60ed">
+					<div class="same_button">Подробнее</div>
+				</a>
+			</div>
+			<div class="list_same_cars">
+				<div style="overflow: hidden;">
+					<a href="5c882b8b-6ad3-4e20-a639-c0d848fd87cd">
+						<img src="https://p3.dcarimg.com/img/motor-mis-img/5ae262e8d85c35bae7d83f29ae7d2305~2508x0.jpg" alt="no image">
+					</a>
 				</div>
-				<div class="list_same_cars">
-				<div style="overflow: hidden;"><a href="car/5c882b8b-6ad3-4e20-a639-c0d848fd87cd"><img src="https://p3.dcarimg.com/img/motor-mis-img/5ae262e8d85c35bae7d83f29ae7d2305~2508x0.jpg" alt="no image"></a></div>
 				<div id="name_same_car">LI L7 MAX</div>
-					<div id="price_same_car">Белый</div>
-				<a href="car/5c882b8b-6ad3-4e20-a639-c0d848fd87cd"><div class="same_button">Подробнее</div></a>
-				</div>	
-				<div class="list_same_cars">
-				<div style="overflow: hidden;"><a href="car/1d1e2b4e-d781-479a-867d-12d57ca0c8d7"><img src="https://p3.dcarimg.com/img/motor-mis-img/5f1a139ed6016243bf353abbf0d067ee~2508x0.jpg" alt="no image"></a></div>
-				<div id="name_same_car">Zeekr 001 YOU</div>
-					<div id="price_same_car">Серый</div>
-				<a href="car/1d1e2b4e-d781-479a-867d-12d57ca0c8d7"><div class="same_button">Подробнее</div></a>
-				</div>			
-				<div class="list_same_cars">
-				<div style="overflow: hidden;"><a href="car/d2cc7769-8254-461e-b7ee-2770cd0d70c1"><img src="https://p3.dcarimg.com/img/motor-mis-img/2d355b11a1f26d3f27fc2ece627128e4~2508x0.jpg" alt="no image"></a></div>
-				<div id="name_same_car">ID.4 CROZZ PRIME</div>
-					<div id="price_same_car">Белый</div>
-				<a href="car/d2cc7769-8254-461e-b7ee-2770cd0d70c1"><div class="same_button">Подробнее</div></a>
-				</div>					
+				<div id="price_same_car">Белый</div>
+				<a href="5c882b8b-6ad3-4e20-a639-c0d848fd87cd">
+					<div class="same_button">Подробнее</div>
+				</a>
 			</div>	
+			<div class="list_same_cars">
+				<div style="overflow: hidden;">
+					<a href="1d1e2b4e-d781-479a-867d-12d57ca0c8d7">
+						<img src="https://p3.dcarimg.com/img/motor-mis-img/5f1a139ed6016243bf353abbf0d067ee~2508x0.jpg" alt="no image">
+					</a>
+				</div>
+				<div id="name_same_car">Zeekr 001 YOU</div>
+				<div id="price_same_car">Серый</div>
+				<a href="1d1e2b4e-d781-479a-867d-12d57ca0c8d7">
+					<div class="same_button">Подробнее</div>
+				</a>
+			</div>			
+			<div class="list_same_cars">
+				<div style="overflow: hidden;">
+					<a href="d2cc7769-8254-461e-b7ee-2770cd0d70c1">
+						<img src="https://p3.dcarimg.com/img/motor-mis-img/2d355b11a1f26d3f27fc2ece627128e4~2508x0.jpg" alt="no image">
+					</a>
+				</div>
+				<div id="name_same_car">ID.4 CROZZ PRIME</div>
+				<div id="price_same_car">Белый</div>
+				<a href="d2cc7769-8254-461e-b7ee-2770cd0d70c1">
+					<div class="same_button">Подробнее</div>
+				</a>
+			</div>					
+		</div>	
+	</div>
+</div>
+
+
+<div id="call_us">
+	<div style="margin: auto; width: 80%; margin-bottom: 20px; font-size: 23px; line-height: 32px ;" >
+		Для уточнения деталей и заказа электромобиля свяжитесь с нами
+		<a href="tel:375296349842"><b id="mynumber"><br>+375 (29) 634-98-42</b></a>
+		<div class="tooltip"> 
+			<div onclick="myFunction()" onmouseout="outFunc()">
+				<span class="tooltiptext" id="myTooltip">Копировать</span>
+				<img style="width: 20px;" src="@ViewData["pathPrefix"]../images/icons/copy.png" alt="">
+			</div>
 		</div>
-	</div>
+		(все мессенджеры), либо заходите в наш <a class="call_us_tg" href="https://t.me/it_car_by_channel"><br><span>телеграм-канал</span></a> 
+	</div>						
+</div>
 
-
-	<div id="call_us">
-		<div style="margin: auto; width: 80%; margin-bottom: 20px; font-size: 23px; line-height: 32px ;" >
-			Для уточнения деталей и заказа электромобиля свяжитесь с нами
-			<a href="tel:375296349842"><b id="mynumber"><br>+375 (29) 634-98-42</b></a>
-				<div class="tooltip"> 
-					<div onclick="myFunction()" onmouseout="outFunc()">
-					<span class="tooltiptext" id="myTooltip">Копировать</span>
-					<img style="width: 20px;" src="@ViewData["pathPrefix"]../images/icons/copy.png" alt="">
-					</div>
-				</div>
-				(все мессенджеры), либо заходите в наш <a class="call_us_tg" href="https://t.me/it_car_by_channel"><br><span>телеграм-канал</span></a> 
-		</div>						
-	</div>
-
-	<!-- <div class="tg_block_link">
-		<div class="container">
-			<div class="tg_block_holder">
-				<div class="left_tg">
-					<div class="left_tg_title">Присоединяйтесь к нашему телеграм-каналу</div>
-					<div class="left_tg_text">В наш телеграм-канал мы постоянно публикуем интересные и полезные статьи из мира EV, актуальные цены на различные модели электромобилей, обзоры, а также оповещаем Вас о новых поступлениях в нашем шоуруме!</div>
-				</div>
-				<div class="right_tg">
-					<div class="right_tg_btn">
-						<a href="#" class="right_tg_button">Подписаться</a>
-					</div>
+<!-- <div class="tg_block_link">
+	<div class="container">
+		<div class="tg_block_holder">
+			<div class="left_tg">
+				<div class="left_tg_title">Присоединяйтесь к нашему телеграм-каналу</div>
+				<div class="left_tg_text">В наш телеграм-канал мы постоянно публикуем интересные и полезные статьи из мира EV, актуальные цены на различные модели электромобилей, обзоры, а также оповещаем Вас о новых поступлениях в нашем шоуруме!</div>
+			</div>
+			<div class="right_tg">
+				<div class="right_tg_btn">
+					<a href="#" class="right_tg_button">Подписаться</a>
 				</div>
 			</div>
 		</div>
-	</div> -->
+	</div>
+</div> -->
 
-	<section class="payment">
-		<div class="payment_inner">
-			<div class="payment_up">
-				<div>
-					<a href="https://t.me/it_car_by_channel/916"><div class="payment_item1">
-						<p>Доставка</p>
-					</div></a>
-					<a href="https://t.me/it_car_by_channel/916"><div class="payment_item2">
-						<p>Оплата</p>
-					</div></a>
-					<a href="https://t.me/it_car_by_channel/916"><div class="payment_item3">
-						<p>Сервис</p>
-					</div></a>
-				</div>
+<section class="payment">
+	<div class="payment_inner">
+		<div class="payment_up">
+			<div>
+				<a href="https://t.me/it_car_by_channel/916"><div class="payment_item1">
+					<p>Доставка</p>
+				</div></a>
+				<a href="https://t.me/it_car_by_channel/916"><div class="payment_item2">
+					<p>Оплата</p>
+				</div></a>
+				<a href="https://t.me/it_car_by_channel/916"><div class="payment_item3">
+					<p>Сервис</p>
+				</div></a>
 			</div>
 		</div>
-	</section>
+	</div>
+</section>
 
-	<div>	
-		<div class="container">
-			<div class="headers6">
-				Свяжитесь с нами
-			</div>
-   			<form id="idform" class="form" method="POST" action="@ViewData["mailAddress"]">
-        	<div class="form-group">
-            	<input type="text" name="name" class="form-control" placeholder="Имя" required>
-            	<input type="email" name="email" class="form-control" placeholder="Электронная почта" required>
-        	</div>
-        	<div class="form-group">
-            	<input type="tel" name="phone" class="form-control" placeholder="Телефон">
-            	<input type="text" name="budget" class="form-control" placeholder="Ваш бюджет">
-        	</div>
-        	<div class="form-group">
-            	<textarea name="request" id="textar" cols="60" rows="6" placeholder="Пожалуйста, оставьте свои требования и пожелания, мы свяжемся в Вами в ближайшее время *" required></textarea>
-        	</div>
-        	<button type="reset">Очистить</button>
-        	<button type="submit">Отправить</button>
-    		</form>
+<div>	
+	<div class="container">
+		<div class="headers6">
+			Свяжитесь с нами
 		</div>
+		<form id="idform" class="form" method="POST" action="@ViewData["mailAddress"]">
+		<div class="form-group">
+			<input type="text" name="name" class="form-control" placeholder="Имя" required>
+			<input type="email" name="email" class="form-control" placeholder="Электронная почта" required>
+		</div>
+		<div class="form-group">
+			<input type="tel" name="phone" class="form-control" placeholder="Телефон">
+			<input type="text" name="budget" class="form-control" placeholder="Ваш бюджет">
+		</div>
+		<div class="form-group">
+			<textarea name="request" id="textar" cols="60" rows="6" placeholder="Пожалуйста, оставьте свои требования и пожелания, мы свяжемся в Вами в ближайшее время *" required></textarea>
+		</div>
+		<button type="reset">Очистить</button>
+		<button type="submit">Отправить</button>
+		</form>
 	</div>
-	<div class="map_main">
-		<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d973.5807877325742!2d27.50418152981076!3d53.83566256362331!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46dbd183f4119073%3A0x662f6af61a8167c2!2z0KLQpiDQodCV0J3QmNCm0JA!5e0!3m2!1sru!2sby!4v1707833167005!5m2!1sru!2sby" width="100%" height="100%" style="border:0; border-radius:15px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-	</div>
+</div>
+<div class="map_main">
+	<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d973.5807877325742!2d27.50418152981076!3d53.83566256362331!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46dbd183f4119073%3A0x662f6af61a8167c2!2z0KLQpiDQodCV0J3QmNCm0JA!5e0!3m2!1sru!2sby!4v1707833167005!5m2!1sru!2sby" width="100%" height="100%" style="border:0; border-radius:15px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</div>
 
 
 @if (Model.SameCars.Count > 0)
@@ -255,7 +276,7 @@
 			<div class="backgr_name">
 				<div id="name_same">Наш телеграм-канал</div>
 			</div>
-			<div id="our_telegram_chanel">В нашем телеграм-канале мы постоянно выкладываем новые предложения, различные обзоры электричек, актуальные цены, различные аксесуары для Ваших электрокаров!</div>
+			<div id="our_telegram_chanel">В нашем телеграм-канале мы постоянно выкладываем новые предложения, различные обзоры электричек, актуальные цены, различные аксесуары для Ваших электрокаров!
 				<div id="link_telchanel">
 					<a href="https://t.me/it_car_by_channel"><div class="same_button2">Перейти на канал</div></a>
 				</div>

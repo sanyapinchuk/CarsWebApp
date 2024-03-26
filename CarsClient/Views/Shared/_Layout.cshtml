@@ -25,9 +25,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>@ViewData["Title"] - it-car.by</title>		
         <meta name="description" content="@ViewData["Description"]">	
+        <meta name="keywords" content="@ViewData["Keywords"]">	
         @RenderSection("Headers",false)
-        <link rel="shortcut icon" href="https://it-car.by/favicon.ico" type="image/x-icon">
-	    <link rel="icon" href="https://it-car.by/favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="@ViewData["pathPrefix"]favicon.ico" type="image/x-icon" sizes="16x16">
+        <link rel="shortcut icon" href="@ViewData["pathPrefix"]favicon_32.ico" type="image/x-icon" sizes="32x32">
+        <link rel="shortcut icon" href="@ViewData["pathPrefix"]favicon_64.ico" type="image/x-icon" sizes="64x64">
 	    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200&display=swap" rel="stylesheet">
 	    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@500&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="@ViewData["pathPrefix"]css/styles.css">
@@ -39,13 +41,13 @@
 		    <div class="header_top">			
 			    <div class="header_contacts">			 
 				    <div class="logo_header">
-                    <a href="@ViewData["pathPrefix"]index"><img id="logotype" src= "@ViewData["pathPrefix"]images/logo/logo_main.png" alt="no image"></a>	
+                    <a href="@ViewData["pathPrefix"]./"><img id="logotype" src= "@ViewData["pathPrefix"]images/logo/logo_main.png" alt="no image"></a>	
 				    </div>
                     <div class="new_menu">
                         <ul>
-                            <li id="main" class="new_back @mainPage"><a href="@ViewData["pathPrefix"]index">Главная</a></li>
+                            <li id="main" class="new_back @mainPage"><a href="@ViewData["pathPrefix"]./">Главная</a></li>
                             <li id="passenger" class="new_back @passengerPage"><a href="@ViewData["pathPrefix"]passenger">Каталог</a></li>
-                            <li id="contacts" class="new_back @contact_usPage"><a href="https://t.me/it_car_by_channel">Новости</a></li>
+                            <li id="dealers" class="new_back @newsPage"><a href="@ViewData["pathPrefix"]all-news">Новости</a></li>
                             <li id="aboutus" class="new_back @aboutusPage"><a href="@ViewData["pathPrefix"]aboutus">О нас</a></li>
                             <li id="contacts" class="new_back @contact_usPage"><a href="@ViewData["pathPrefix"]contact_us">Контакты</a></li>
                         </ul>

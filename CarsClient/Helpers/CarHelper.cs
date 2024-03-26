@@ -1,4 +1,5 @@
 using CarsClient.Models;
+using Microsoft.AspNetCore.Mvc;
 using System.Runtime.CompilerServices;
 using System.Security.Policy;
 
@@ -56,5 +57,38 @@ namespace CarsClient.Helpers
 				cookies.Delete(".AspNetCore.Antiforgery.vt3n6_Bd4OM");
 			}
 		}
-	}
+
+        public static string GetQueryForCarFilter(
+            Guid[]? manufactures,
+            Guid[]? types,
+            Guid[]? powerReserves,
+            Guid[]? batteryCapacity,
+            Guid[]? driveModes,
+            int? filter_price_mn,
+            int? filter_price_max)
+        {
+            var queryString = "?";
+            if (manufactures != null && manufactures.Any())
+                queryString += "manufactures=" + string.Join("&manufactures=", manufactures) + "&";
+            if (types != null && types.Any())
+                queryString += "carTypeIds=" + string.Join("&carTypeIds=", types) + "&";
+            if (powerReserves != null && powerReserves.Any())
+                queryString += "powerReserveParamIds=" + string.Join("&powerReserveParamIds=", powerReserves) + "&";
+            if (batteryCapacity != null && batteryCapacity.Any())
+                queryString += "batteryCapacity=" + string.Join("&batteryCapacity=", batteryCapacity) + "&";
+            if (driveModes != null && driveModes.Any())
+                queryString += "driveModeIds=" + string.Join("&driveModeIds=", driveModes) + "&";
+            if (filter_price_mn != null)
+                queryString += "priceFrom=" + filter_price_mn + "&";
+            if (filter_price_max != null)
+                queryString += "priceTo=" + filter_price_max + "&";
+
+            if (!string.IsNullOrEmpty(queryString))
+                queryString = queryString.TrimEnd('&');
+            if (queryString.Length == 1)
+                queryString = "";
+
+            return queryString;
+        }
+    }
 }

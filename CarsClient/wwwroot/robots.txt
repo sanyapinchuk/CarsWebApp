@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Disallow: /node_modules/
+Disallow: /js/
+Disallow: /lib/
+Disallow: /fonts/
+Disallow: /php/
+Disallow: /*.json$
+
+Sitemap: https://formulaev.net/sitemap.xml

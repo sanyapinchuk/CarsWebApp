@@ -18,7 +18,10 @@ namespace CarsClient
             WebApiClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             var temp = "CarsApi".ToSha256();
 
-			WebApiClient.DefaultRequestHeaders.Add("secretToken", temp);
+            var accessToken = configuration["AccessToken"];
+
+            WebApiClient.DefaultRequestHeaders.Add("secretToken", temp);
+			WebApiClient.DefaultRequestHeaders.Add("access_token", accessToken);
 
             Postfix = configuration["AppDomain"];
             AppAddress = $"https://{configuration["AppDomain"]}/";

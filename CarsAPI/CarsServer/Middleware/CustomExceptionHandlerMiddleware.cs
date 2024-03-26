@@ -33,20 +33,33 @@ namespace CarsServer.Middleware
             {
                 case BadRequestException:
                     code = HttpStatusCode.BadRequest;
+                    _logger.LogWarning($"400 Client Error: {ex.Message}, StackTrace: {ex.StackTrace} ");
                     break;
-                    
+                case UnauthorizedException:
+                    code = HttpStatusCode.Unauthorized;
+                    _logger.LogError($"401 Client Error: {ex.Message}, StackTrace: {ex.StackTrace} ");
+                    break;
                 case EntityNotFoundException:
-                    code = HttpStatusCode.NotFound; 
+                    code = HttpStatusCode.NotFound;
+                    _logger.LogError($"400 Not found exception: {ex.Message}, StackTrace: {ex.StackTrace}");
                     break;
 
                 default:
-                    _logger.LogError(ex.Message);
+                    _logger.LogError($"500 Internal error: {ex.Message}, StackTrace: {ex.StackTrace}");
                     code = HttpStatusCode.InternalServerError;
                     break;
             }
             context.Response.ContentType = "application/json";
             context.Response.StatusCode = (int)code;
-            return context.Response.WriteAsync("Error: " + ex.Message);
+
+            string message;
+            var environment = context.RequestServices.GetRequiredService<IWebHostEnvironment>();
+
+            message = environment.IsProduction() 
+                ? $"Error: {ex.Message}, Status: {(int)code}" 
+                : $"Error: {ex.Message}, Status: {(int)code}, StackTrace: {ex.StackTrace}";
+
+            return context.Response.WriteAsync(message);
         }
     }
 }

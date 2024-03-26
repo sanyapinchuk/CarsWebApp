@@ -5,11 +5,20 @@ using Serilog.Events;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Host.UseSerilog((ctx, lc) =>
-				lc
-				.MinimumLevel.Error()
-				.WriteTo.File($"logs/CarsWebAppLog-.log", rollingInterval:
-					RollingInterval.Day));
+if (builder.Environment.IsProduction())
+{
+    builder.Host.UseSerilog((ctx, lc) =>
+        lc
+            .MinimumLevel.Error()
+            .WriteTo.File($"logs/CarsWebAppLog-.log", rollingInterval:
+                RollingInterval.Day));
+}
+else
+{
+    builder.Host.UseSerilog((ctx, lc) =>
+        lc
+            .WriteTo.Console());
+}
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

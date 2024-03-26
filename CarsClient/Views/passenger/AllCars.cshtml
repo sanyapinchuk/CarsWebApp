@@ -1,54 +1,294 @@
-﻿@using CarsClient;
+﻿@using CarsClient.Models.Dto
 @model IEnumerable<CarsClient.Models.Dto.CarShortInfo>
 
 @{
 	ViewData["Title"] = "Подбор электромобилей из Китая с доставкой в Минск";
     ViewData["activePage"] = "passengerPage";
 	ViewData["Description"] = "Быстрый подбор электромобилей самых известных брендов. Реальные отзывы и оценка пользователей. Доставка до 80 дней из Китая в Минск. Гарантии. Страховка. Кредит и лизинг.";
+    ViewData["Keywords"] = "электромобили, подбор электромобиля, цены на электромобили, электромобиль bmw, электромобиль xiaomi, электромобиль lixiang, электромобиль volkswagen, электромобиль zeekr, tesla купить Минск, гибридный автомобиль";
     Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="filter_block">
+    <h1 id="filter_caption">
+        Фильтр автомобилей
+    </h1>
+    <div id="filter_container">
+        <div id="filter_selects_container">
+            <div id="filter_select_manufacturer_conainter" class="filter_select_item">
+                <div class="__select2" data-state="">
+                    @if (!((SelectedFilterConfig)ViewData["SelectedFilterConfig"]).Manufactures.Any())
+                    {
+                        <div class="__select__title2" data-default="Марка">Марка</div>
+                    }
+                    else
+                    {
+                        if (((SelectedFilterConfig)ViewData["SelectedFilterConfig"]).Manufactures.Length > 2)
+                        {
+                            <div class="__select__title2" data-default="Марка">Марка, @(((SelectedFilterConfig)ViewData["SelectedFilterConfig"]).Manufactures.Length) выбрано</div>
+                        }
+                        else
+                        {
+                            <div class="__select__title2" data-default="Марка">
+                                @foreach (var item in ((SelectedFilterConfig)ViewData["SelectedFilterConfig"]).Manufactures)
+                                {
+                                    var name = ((CarFilterConfig)ViewData["config"]).CarFilerManufacturersConfigs.First(x => x.Id == item).Name;
+                                    <span class="selected_filter_values">@name</span>
+                                }
+                            </div>
+                        }
+                    }
+                    <div class="__select__content2">
+                        @foreach (var manufacturer in ((CarFilterConfig)ViewData["config"]).CarFilerManufacturersConfigs)
+                        {
+                            @if (((SelectedFilterConfig)ViewData["SelectedFilterConfig"]).Manufactures.Any(x => x == manufacturer.Id))
+                            {
+                                <input id="@manufacturer.Id" class="__select__input2" type="checkbox" checked name="manufactures" value="@manufacturer.Id"/>
+                            }
+                            else
+                            {
+                                <input id="@manufacturer.Id" class="__select__input2" type="checkbox" name="manufactures" value="@manufacturer.Id"/>
+                            }
+
+                            <label for="@manufacturer.Id" class="__select__label2">@manufacturer.Name</label>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div id="filter_select_types_conainter" class="filter_select_item">
+                <div class="__select2" data-state="">
+                    @if (!((SelectedFilterConfig)ViewData["SelectedFilterConfig"]).Types.Any())
+                    {
+                        <div class="__select__title2" data-default="Кузов">Кузов</div>
+                    }
+                    else
+                    {
+                        if (((SelectedFilterConfig)ViewData["SelectedFilterConfig"]).Types.Length > 2)
+                        {
+                            <div class="__select__title2" data-default="Кузов">Кузов, @(((SelectedFilterConfig)ViewData["SelectedFilterConfig"]).Types.Length) выбрано</div>
+                        }
+                        else
+                        {
+                            <div class="__select__title2" data-default="Кузов">
+                                @foreach (var item in ((SelectedFilterConfig)ViewData["SelectedFilterConfig"]).Types)
+                                {
+                                    var name = ((CarFilterConfig)ViewData["config"]).CarFilerTypeConfigs.First(x => x.Id == item).Name;
+                                    <span class="selected_filter_values">@name</span>
+                                }
+                            </div>
+                        }
+                    }
+                    <div class="__select__content2">
+                        @foreach (var type in ((CarFilterConfig)ViewData["config"]).CarFilerTypeConfigs)
+                        {
+                            @if (((SelectedFilterConfig)ViewData["SelectedFilterConfig"]).Types.Any(x => x == type.Id))
+                            {
+                                <input id="@type.Id" class="__select__input2" type="checkbox" checked name="types" value="@type.Id" />
+                            }
+                            else
+                            {
+                                <input id="@type.Id" class="__select__input2" type="checkbox" name="types" value="@type.Id" />
+                            }
+                            <label for="@type.Id" class="__select__label2">@type.Name</label>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div id="filter_select_powerReserves_conainter" class="filter_select_item">
+                <div class="__select2" data-state="">
+                    @if (!((SelectedFilterConfig)ViewData["SelectedFilterConfig"]).PowerReserves.Any())
+                    {
+                        <div class="__select__title2" data-default="Запас хода">Запас хода</div>
+                    }
+                    else
+                    {
+                        if (((SelectedFilterConfig)ViewData["SelectedFilterConfig"]).PowerReserves.Length > 2)
+                        {
+                            <div class="__select__title2" data-default="Запас хода">Запас хода, @(((SelectedFilterConfig)ViewData["SelectedFilterConfig"]).PowerReserves.Length) выбрано</div>
+                        }
+                        else
+                        {
+                            <div class="__select__title2" data-default="Запас хода">
+                                @foreach (var item in ((SelectedFilterConfig)ViewData["SelectedFilterConfig"]).PowerReserves)
+                                {
+                                    var name = ((CarFilterConfig)ViewData["config"]).CarFilerPowerReserveConfigs.First(x => x.Id == item).Name;
+                                    <span class="selected_filter_values">@name</span>
+                                }
+                            </div>
+                        }
+                    }
+                    <div class="__select__content2">
+                        @foreach (var powerReserve in ((CarFilterConfig)ViewData["config"]).CarFilerPowerReserveConfigs)
+                        {
+                            @if (((SelectedFilterConfig)ViewData["SelectedFilterConfig"]).PowerReserves.Any(x => x == powerReserve.Id))
+                            {
+                                <input id="@powerReserve.Id" class="__select__input2" type="checkbox" checked name="powerReserves" value="@powerReserve.Id"/>
+                            }
+                            else
+                            {
+                                <input id="@powerReserve.Id" class="__select__input2" type="checkbox" name="powerReserves" value="@powerReserve.Id"/>
+                            }
+
+                            <label for="@powerReserve.Id" class="__select__label2">@powerReserve.Name</label>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div id="filter_select_driveModes_conainter" class="filter_select_item">
+                <div class="__select2" data-state="">
+                    @if (!((SelectedFilterConfig)ViewData["SelectedFilterConfig"]).DriveModes.Any())
+                    {
+                        <div class="__select__title2" data-default="Привод">Привод</div>
+                    }
+                    else
+                    {
+                        if (((SelectedFilterConfig)ViewData["SelectedFilterConfig"]).DriveModes.Length > 2)
+                        {
+                            <div class="__select__title2" data-default="Привод">Привод, @(((SelectedFilterConfig)ViewData["SelectedFilterConfig"]).DriveModes.Length) выбрано</div>
+                        }
+                        else
+                        {
+                            <div class="__select__title2" data-default="Привод">
+                                @foreach (var item in ((SelectedFilterConfig)ViewData["SelectedFilterConfig"]).DriveModes)
+                                {
+                                    var name = ((CarFilterConfig)ViewData["config"]).CarFilerDriveModeConfigs.First(x => x.Id == item).Name;
+                                    <span class="selected_filter_values">@name</span>
+                                }
+                            </div>
+                        }
+                    }
+                    <div class="__select__content2">
+                        @foreach (var driveMode in ((CarFilterConfig)ViewData["config"]).CarFilerDriveModeConfigs)
+                        {
+                            @if (((SelectedFilterConfig)ViewData["SelectedFilterConfig"]).DriveModes.Any(x => x == driveMode.Id))
+                            {
+                                <input id="@driveMode.Id" class="__select__input2" type="checkbox" checked name="driveModes" value="@driveMode.Id"/>
+                            }
+                            else
+                            {
+                                <input id="@driveMode.Id" class="__select__input2" type="checkbox" name="driveModes" value="@driveMode.Id"/>
+                            }
+
+                            <label for="@driveMode.Id" class="__select__label2">@driveMode.Name</label>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div id="filter_select_batteryCapacity_conainter" class="filter_select_item">
+                <div class="__select2" data-state="">
+                    @if (!((SelectedFilterConfig)ViewData["SelectedFilterConfig"]).BatteryCapacity.Any())
+                    {
+                        <div class="__select__title2" data-default="Ёмкость батареи">Ёмкость батареи</div>
+                    }
+                    else
+                    {
+                        if (((SelectedFilterConfig)ViewData["SelectedFilterConfig"]).BatteryCapacity.Length > 2)
+                        {
+                            <div class="__select__title2" data-default="Ёмкость батареи">Ёмкость батареи, @(((SelectedFilterConfig)ViewData["SelectedFilterConfig"]).BatteryCapacity.Length) выбрано</div>
+                        }
+                        else
+                        {
+                            <div class="__select__title2" data-default="Ёмкость батареи">
+                                @foreach (var item in ((SelectedFilterConfig)ViewData["SelectedFilterConfig"]).BatteryCapacity)
+                                {
+                                    var name = ((CarFilterConfig)ViewData["config"]).CarFilerBatteryCapacityConfigs.First(x => x.Id == item).Name;
+                                    <span class="selected_filter_values">@name</span>
+                                }
+                            </div>
+                        }
+                    }
+                    <div class="__select__content2">
+                        @foreach (var batteryCapacity in ((CarFilterConfig)ViewData["config"]).CarFilerBatteryCapacityConfigs)
+                        {
+                            @if (((SelectedFilterConfig)ViewData["SelectedFilterConfig"]).BatteryCapacity.Any(x => x == batteryCapacity.Id))
+                            {
+                                <input id="@batteryCapacity.Id" class="__select__input2" type="checkbox" checked name="batteryCapacity" value="@batteryCapacity.Id"/>
+                            }
+                            else
+                            {
+                                <input id="@batteryCapacity.Id" class="__select__input2" type="checkbox" name="batteryCapacity" value="@batteryCapacity.Id"/>
+                            }
+
+                            <label for="@batteryCapacity.Id" class="__select__label2">@batteryCapacity.Name</label>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="filter_price_slider">
+            <div class="range__slider">
+                <div id="range"></div> 
+            </div>
+            <div class="range__values">
+                <input id="filter_price_min" type="text" value="@(((SelectedFilterConfig)ViewData["SelectedFilterConfig"]).FilterPriceMin)" />
+                <input id="filter_price_max" type="text" value="@(((SelectedFilterConfig)ViewData["SelectedFilterConfig"]).FilterPriceMax)" />
+            </div>
+            <div id="silder_lables_block">
+                <div class="slider-label" id="min-label">от 8000$</div>
+                <div class="slider-label" id="max-label">до 200 000$</div>
+            </div>
+        </div>
+        <div id="filter_control_buttons">
+            <button id="filter_clear_search">Очистить фильтр</button>
+            <button id="filter_search">Подобрать авто</button>
+        </div>
+    </div>
+</div>
+
+@if (Model.Any())
+{
+    <div id="car_list_id">
+		<div id="list_border">
+			<ul class="car_list" id="car_list">
+				@foreach (var item in Model)
+				{
+					<li>
+						<a href="car/@item.Id"><img src="@item.TitleImagePath" alt="no image"></a>
+						<div class="short_car_info">
+							<div id="name_car_list">
+								<a href="car/@item.Id">@item.ModelName</a>
+							</div>
+							<ul>
+								@foreach (var prop in item.Properties)
+								{
+									<li class="each_info">
+										<div class="car_option">
+											<div>@prop.Property</div>
+										</div>
+										<div class="option_value">@prop.Value</div>
+									</li>
+								}
+								<li class="each_info">
+									<div class="car_option">
+										<div>Состояние</div>
+									</div>
+									<div class="option_value">Новое</div>
+								</li>
+							</ul>
+							<a href="car/@item.Id"><div class="same_button_car">Подробнее</div></a>
+						</div>
+					</li>
+				}				
+			</ul> 				
+		</div>
+    </div>	
+}
+else
+{
+    <div id="car_filter_empty_seq">
+        К сожалению, электромобилей, соответствующих Вашему запросу, не обнаружено
+    </div>
 }
 
 
 
-		
-		<div id="car_list_id">
-			<div id="list_border">
-				<!-- <div class="container"> -->
-				<ul class="car_list" id="car_list">
-					@foreach (var item in Model)
-					{
-						<li>
-							<a href="car/@item.Id"><img src="@item.TitleImagePath" alt="no image"></a>
-							<div class="short_car_info">
-								<div id="name_car_list">
-								<a href="car/@item.Id">@item.ModelName</a>
-								</div>
-								<ul>
-									@foreach (var prop in item.Properties)
-									{
-										<li class="each_info">
-											<div class="car_option">
-												<div>@prop.Property</div>
-											</div>
-											<div class="option_value">@prop.Value</div>
-										</li>
-									}
-									<li class="each_info">
-										<div class="car_option">
-											<div>Состояние</div>
-										</div>
-										<div class="option_value">Новое</div>
-									</li>
-								</ul>
-								
 
-									<a href="car/@item.Id"><div class="same_button_car">Подробнее</div></a>
+@section Headers{
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.7.1/nouislider.min.css" integrity="sha512-qveKnGrvOChbSzAdtSs8p69eoLegyh+1hwOMbmpCViIwj7rn4oJjdmMvWOuyQlTOZgTlZA0N2PXA7iA8/2TUYA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wnumb/1.2.0/wNumb.min.js" integrity="sha512-igVQ7hyQVijOUlfg3OmcTZLwYJIBXU63xL9RC12xBHNpmGJAktDnzl9Iw0J4yrSaQtDxTTVlwhY730vphoVqJQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+}
 
-								
-							</div>
-						</li>
-					}				
-				</ul> 				
-			</div>
-			</div>
-		</div>	
+@section AfterBody{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.7.1/nouislider.min.js" integrity="sha512-UOJe4paV6hYWBnS0c9GnIRH8PLm2nFK22uhfAvsTIqd3uwnWsVri1OPn5fJYdLtGY3wB11LGHJ4yPU1WFJeBYQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="js/carFilter.js"></script>
+}
