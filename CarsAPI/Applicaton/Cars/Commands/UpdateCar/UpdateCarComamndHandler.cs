@@ -78,6 +78,7 @@ namespace Applicaton.Cars.Commands.UpdateCar
             car.Price = request.CarInfo.Price;
             car.Description = request.CarInfo.Description;
             car.PageTitle = request.CarInfo.PageTitle;
+            car.PageDescription = request.CarInfo.PageDescription;
 
             await _repositoryManager.CarRepository.UpdateCarAsync(car);
 
