@@ -30,6 +30,7 @@ namespace Applicaton.Cars.Commands.CreateCar
                 Price = request.CreateCarDto.Price,
                 ProductionYear = request.CreateCarDto.ProductionYear,
                 Description = request.CreateCarDto.Description,
+                PageTitle = request.CreateCarDto.PageTitle
             };
             //set model
             var modelId = (await _repositoryManager.ModelRepository.GetByCondition(m => m.Name == request.CreateCarDto.ModelName))?.Id;

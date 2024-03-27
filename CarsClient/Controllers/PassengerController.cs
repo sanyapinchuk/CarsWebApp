@@ -101,7 +101,7 @@ namespace CarsClient.Controllers
                 {
                     Id = carApi.Id,
                     CarType = carApi.CarType,
-                    Description = carApi.Description,
+                    PageTitle = carApi.PageTitle,
                     Images = carApi.Images,
                     ModelName = carApi.ModelName,
                     Price = carApi.Price,
