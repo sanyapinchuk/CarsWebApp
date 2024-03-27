@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Persistence.Data;
@@ -11,9 +12,10 @@ using Persistence.Data;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20240326232848_AddPageTitleColumnToCars")]
+    partial class AddPageTitleColumnToCars
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -55,7 +57,7 @@ namespace Persistence.Migrations
 
                     b.HasIndex("ModelId");
 
-                    b.ToTable("Cars", (string)null);
+                    b.ToTable("Cars");
                 });
 
             modelBuilder.Entity("Domain.Car_Image", b =>
@@ -84,7 +86,7 @@ namespace Persistence.Migrations
 
                     b.HasIndex("ImageId");
 
-                    b.ToTable("Car_Images", (string)null);
+                    b.ToTable("Car_Images");
                 });
 
             modelBuilder.Entity("Domain.Car_PropValue", b =>
@@ -108,7 +110,7 @@ namespace Persistence.Migrations
 
                     b.HasIndex("PropValueId");
 
-                    b.ToTable("Car_PropValues", (string)null);
+                    b.ToTable("Car_PropValues");
                 });
 
             modelBuilder.Entity("Domain.CarType", b =>
@@ -127,7 +129,7 @@ namespace Persistence.Migrations
                     b.HasIndex("Id")
                         .IsUnique();
 
-                    b.ToTable("CarTypes", (string)null);
+                    b.ToTable("CarTypes");
                 });
 
             modelBuilder.Entity("Domain.Image", b =>
@@ -145,7 +147,7 @@ namespace Persistence.Migrations
                     b.HasIndex("Id")
                         .IsUnique();
 
-                    b.ToTable("Images", (string)null);
+                    b.ToTable("Images");
                 });
 
             modelBuilder.Entity("Domain.Model", b =>
@@ -169,7 +171,7 @@ namespace Persistence.Migrations
                     b.HasIndex("Id")
                         .IsUnique();
 
-                    b.ToTable("Models", (string)null);
+                    b.ToTable("Models");
                 });
 
             modelBuilder.Entity("Domain.News", b =>
@@ -198,7 +200,7 @@ namespace Persistence.Migrations
                     b.HasIndex("Id")
                         .IsUnique();
 
-                    b.ToTable("News", (string)null);
+                    b.ToTable("News");
                 });
 
             modelBuilder.Entity("Domain.PropCategory", b =>
@@ -219,7 +221,7 @@ namespace Persistence.Migrations
                     b.HasIndex("Id")
                         .IsUnique();
 
-                    b.ToTable("PropCategories", (string)null);
+                    b.ToTable("PropCategories");
                 });
 
             modelBuilder.Entity("Domain.Property", b =>
@@ -248,7 +250,7 @@ namespace Persistence.Migrations
 
                     b.HasIndex("PropCategoryId");
 
-                    b.ToTable("Properties", (string)null);
+                    b.ToTable("Properties");
                 });
 
             modelBuilder.Entity("Domain.PropValue", b =>
@@ -272,7 +274,7 @@ namespace Persistence.Migrations
 
                     b.HasIndex("PropertyId");
 
-                    b.ToTable("PropValues", (string)null);
+                    b.ToTable("PropValues");
                 });
 
             modelBuilder.Entity("Domain.Car", b =>
