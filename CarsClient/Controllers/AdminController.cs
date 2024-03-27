@@ -68,6 +68,7 @@ namespace CarsClient.Controllers
 					CarType = carApi.CarType,
 					Description = carApi.Description,
                     PageTitle = carApi.PageTitle,
+                    PageDescription = carApi.PageDescription,
 					Images = carApi.Images,
 					ModelName = carApi.ModelName,
 					Price = carApi.Price,
@@ -153,6 +154,7 @@ namespace CarsClient.Controllers
             var color = form["color"];
             var description = form["description"];
             var pageTitle = form["pageTitle"];
+            var pageDescription = form["pageDescription"];
             var cartype = form["cartype"];
             var productionYear = form["productionYear"];
             var mainImage = form["mainImage"];
@@ -216,6 +218,7 @@ namespace CarsClient.Controllers
                 CarType = cartype,
                 Description = description,
                 PageTitle = pageTitle,
+                PageDescription = pageDescription,
                 Images = images,
                 ModelName = model,
                 ProductionYear = int.Parse(productionYear),
@@ -258,6 +261,7 @@ namespace CarsClient.Controllers
 			var color = form["color"];
 			var description = form["description"];
 			var pageTitle = form["pageTitle"];
+			var pageDescription = form["pageDescription"];
 			var cartype = form["cartype"];
 			var productionYear = form["productionYear"];
 			var mainImage = form["mainImage"];
@@ -321,6 +325,7 @@ namespace CarsClient.Controllers
 				CarType = cartype,
 				Description = description,
                 PageTitle = pageTitle,
+                PageDescription = pageDescription,
 				Images = images,
 				ModelName = model,
 				ProductionYear = int.Parse(productionYear),
