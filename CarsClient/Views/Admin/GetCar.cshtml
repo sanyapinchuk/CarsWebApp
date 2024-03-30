@@ -60,7 +60,7 @@
 			<tr style="top:-10%;">
 				<td style="vertical-align:bottom;">
 					<div id="model">@Model.ModelName</div>
-					<div id="price"> Цена с учётом доставки: <b>$@Model.Price.ToString("N", System.Globalization.CultureInfo.CreateSpecificCulture("en-US"))</b></div>	
+					<div id="price"> Цена с учётом доставки: <b>$@Model.Price.ToString("N0", System.Globalization.CultureInfo.InvariantCulture)</b></div>	
 				</td>  
 			</tr>
 		</table>
