@@ -120,18 +120,38 @@ document.querySelector("#water_div").onclick = function(){
 document.querySelector("#open_list").onclick = function(){
     let menu = document.getElementsByClassName('new_menu')[0];
     let myBody = document.getElementsByTagName('body')[0];
+    let headerTop = document.getElementsByClassName('header_top')[0];
+    let headerContacts = document.getElementsByClassName('header_contacts')[0];
     let waterDiv = document.getElementById('water_div');
+    let menuItems = document.getElementsByClassName('new_back ');
     if ((menu.style.display == 'none') || (menu.style.display == ''))
     {
+        menu.style.position = 'fixed';
+        menu.style.display = 'block';
+        menu.style.window = '85%';
+        menu.style.top = '90px';
+        menu.style.left = '50px';
         myBody.style.overflow = 'hidden';
-        menu.style.display = 'block';        
         waterDiv.style.display = 'inline-block';
+        for (let i = 0; i < menuItems.length; i++) {    
+            menuItems[i].style.display = 'block'
+        }
+        headerTop.style.position = 'absolute';
+        headerTop.style.backgroundColor = '#fafafa';
+        headerTop.style.height = '100%';
+        headerTop.style.width = '85%';
+        headerContacts.style.width = '117.647%';
     }
     else
     {
         myBody.style.overflow = 'visible';
         menu.style.display = 'none';    
         waterDiv.style.display = 'none';
+        headerTop.style.position = 'relative';
+        headerTop.style.backgroundColor = 'none';
+        headerTop.style.height = '85px';
+        headerTop.style.width = 'auto';
+        headerContacts.style.width = '100%';
     }
     }
 

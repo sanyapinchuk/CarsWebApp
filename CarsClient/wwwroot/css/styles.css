@@ -15,7 +15,7 @@
 }
 
 .container {
-    margin: 0 80px;
+    /* margin: 0 80px; */
 }
 
 /* .container2 {
@@ -30,7 +30,6 @@ body {
     margin: 0px;
     font-family: 'Proxima Nova Regular';
     background-color: white;
-    user-select:none;
 }
 
 a {
@@ -76,7 +75,7 @@ a {
 
 .new_menu li a:hover {
     color: #EF7A13 !important;
-    transition: linear 0.5s;
+    transition: linear 0.2s;
 }
 
 .new_menu a {
@@ -333,11 +332,14 @@ body{
 }
 
 .active {
-    box-shadow: 16px -8px 16px -1px rgb(101 101 101 / 21%) inset;
-    transition: all 0.6s;
+    color: #EF7A13;
+    transition: all 0.3s;
+}
+.active>a {
+    color: #EF7A13;
 }
 
-@media (min-width: 877px) {
+@media (min-width: 1100px) {
 
     .popmenu {
         display: block;
@@ -362,10 +364,12 @@ body{
     #open_list {
         display: none;
     }
-
+    .active>a {
+        color: #EF7A13;
+    }
     .active {
-        box-shadow: -14px -18px 16px -1px rgba(101, 101, 101, 0.21) inset;
-        transition: all 0.6s;
+        color: #EF7A13;
+        transition: all 0.3s;
     }
 
     #your_company {
@@ -469,8 +473,6 @@ body{
 
 #all-body {
     background-color: white;
-    text-align: center;
-    width: 100%;
 }
 
 #bg_img {
@@ -1244,7 +1246,7 @@ td {
     -moz-box-shadow: 0px 0px 32px 0px rgba(80,80,80, 0.22);
     box-shadow: 0px 0px 32px 0px rgba(80,80,80, 0.22); */
     padding-bottom: 25px;
-    margin-bottom: 80px;
+    margin-bottom: 40px;
 }
 
 #team_people, .team_people {
@@ -1429,7 +1431,7 @@ td {
     background-image: url(../images/background/lixiang.png);
     width: 100%;
     background-size: cover;
-    padding: 80px 0;
+    padding: 80px 20px 60px 20px;
     margin-bottom: 80px;
     background-repeat: no-repeat;
     background-position: center;
@@ -1440,7 +1442,6 @@ td {
     font-family: 'Proxima Nova Regular';
     font-size: 165%;
     font-weight: 700;
-    width: 550px;
     margin-bottom: 20px;
 }
 
@@ -1449,7 +1450,6 @@ td {
     font-family: 'Proxima Nova Regular';
     font-weight: 300;
     font-size: 18px;
-    width: 550px;
 }
 
 .tg_block_holder {
@@ -1460,7 +1460,6 @@ td {
 }
 
 .right_tg_btn {
-    width: 500px;
     margin-top: 20px;
 }
 
@@ -1578,7 +1577,7 @@ td {
 }
 
 .list_same_cars {
-    width: 240px;
+    width: 300px;
     margin: 20px;
     /* border: 1px solid #737373; */
     border-radius: 10px;
@@ -1591,7 +1590,6 @@ td {
     .list_same_cars img {
         border-radius: 10px;
         width: 100%;
-        height: 155px;
         object-fit: cover;
         transition: all 1s;
         overflow: hidden;
@@ -2567,7 +2565,7 @@ option {
     color: black;
     font-size: 38px;
     /* padding-top: 20px; */
-    margin-top: 80px;
+    margin-top: 40px;
     margin-left: 10px;
     margin-right: 10px;
     margin-bottom: 20px;
@@ -2599,6 +2597,7 @@ option {
         font-size: 40px;
     }
 }
+
 
 .action_list {
     display: flex;
@@ -3175,43 +3174,39 @@ option {
 } */
 
 .statistica {
-    margin-top: 100px;
+    width: 80%;
+    margin: auto;
 }
 
 .statistica_title {
     font-family: 'Proxima Nova Bold';
     font-size: 23px;
-    width: 450px;
 }
 
 .statistica_number {
-    display: flex;
-    width: 450px;
-    justify-content: center;
+    display: block;
+    justify-content: left;
     margin-top: 35px;
+    flex-wrap: wrap;
 }
 
 .statistica_img img {
-    float: right;
     align-items: center;
-
+    width: 100%;
 }
 
 .statistica_holder {
     display: flex;
+    flex-wrap: wrap;
 }
-@media screen and (max-width: 1000px) {
+.statistica_info{
+    width: 35%;
+    min-width: 300px;
+}
 
-    
-    .statistica_holder {
-        display: flex;
-        flex-direction: column;
-    }
-    #water_div{
-        display:none;
-    }
-    
-
+.statistica_img{
+    width: 60%;
+    min-width: 300px;
 }
 
 @media screen and (max-width: 1100px){
@@ -3228,7 +3223,6 @@ option {
 } */
 
 .statistica_button {
-    float: left;
     /* border: 1px #212120; */
     background-color: #4F4F4F;
     color: white;
@@ -3256,13 +3250,16 @@ option {
     }
 
 .number_item {
-    margin-right: 40px;
+    margin-left: 40px;
     text-align: left;
     font-size: 25px;
     color: #EF7A13;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
 }
 
-.number_item span {
+.number_item span:last-child {
     display: block;
     font-size: 18px;
     color: black;
@@ -4238,26 +4235,17 @@ option {
 
 .about_inner {
     display: flex;
-    width: 110%;
     justify-content: space-evenly;
     flex-wrap: wrap;
     align-items: center;
 }
 
-@media (max-width: 877px) {
-    #about_item1 {
-        display: none;
-    }
-
-    #about_item2 {
-        display: none;
-    }
-}
     .about_item {
         width: 40%;
         color: black;
         margin: 5%;
         margin-bottom: 3%;
+        min-width: 300px;
     }
 
 
@@ -4277,6 +4265,7 @@ option {
 
     .help_deliv {
         margin-bottom: 60px;
+        margin-top: 50px;
     }
 
 .help_inner {
@@ -4292,25 +4281,28 @@ option {
     }
 }
 
-    .help_item {
-       /* width: 40%;*/
-        color: black;
-        margin: 55px;
-    }
+.help_item {
+    width: 45%;
+    color: black;
+    margin: 20px;
+}
 
-        .help_item h2 {
-            font-family: 'Proxima Nova Bold';
-            /* font-weight: 800; */
-            font-size: 32px;
-            margin-bottom: 30px;
-        }
+.help_item h2 {
+    font-family: 'Proxima Nova Bold';
+    /* font-weight: 800; */
+    font-size: 32px;
+    margin-bottom: 30px;
+    text-align: center;
+}
 
-        .help_item p {
-            width: 450px;
-            font-family: 'Proxima Nova Regular';
-            font-weight: 300;
-            font-size: 18px;
-        }
+.help_item p {
+    font-family: 'Proxima Nova Regular';
+    font-weight: 300;
+    font-size: 18px;
+}
+.help_item img{
+    width: 100%;    
+}
 
 .help_button {
     /*float: left;*/
@@ -4376,7 +4368,7 @@ option {
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    margin: 20px;
+    margin: 10px;
     position: relative;
 }
 
@@ -4387,7 +4379,7 @@ option {
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    margin: 20px;
+    margin: 10px;
     position: relative;
 }
 
@@ -4398,7 +4390,7 @@ option {
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    margin: 20px;
+    margin: 10px;
     position: relative;
 }
 
@@ -4489,3 +4481,20 @@ option {
                 color: #EF7A13;
                 transition: all 0.9s ease;
             }
+
+.about_item>img{
+    width: 100%;
+}
+
+@media (max-width : 954px) {
+
+    .statistica_img {
+        display: none;
+    }
+}
+.telegram_inner>a{
+    margin: 20px;
+}
+.help_inner>.help_item{
+    min-width: 300px;
+}
