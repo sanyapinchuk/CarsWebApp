@@ -2,8 +2,8 @@
 @model CarsClient.Models.Dto.CarFullInfoDto;
 
 @{
-	ViewData["Title"] = Model.ModelName + " купить в Минске недорого – Цена с учетом доставки";
-	ViewData["Description"] = Model.Description + " | " + ViewData["Postfix"];
+    ViewData["Title"] = Model.PageTitle;
+	ViewData["Description"] = Model.PageDescription;
 	ViewData["activePage"] = "passengerPage";
 	Layout = "~/Views/Shared/_Layout_Admin.cshtml";
 	ViewData["pathPrefix"] = "../../";
