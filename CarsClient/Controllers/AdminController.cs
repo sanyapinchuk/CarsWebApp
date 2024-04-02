@@ -2,6 +2,7 @@
 using CarsClient.Models.Dto;
 using IdentityModel.Client;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.CodeAnalysis.Operations;
@@ -66,6 +67,8 @@ namespace CarsClient.Controllers
 					Id = carApi.Id,
 					CarType = carApi.CarType,
 					Description = carApi.Description,
+                    PageTitle = carApi.PageTitle,
+                    PageDescription = carApi.PageDescription,
 					Images = carApi.Images,
 					ModelName = carApi.ModelName,
 					Price = carApi.Price,
@@ -150,6 +153,8 @@ namespace CarsClient.Controllers
             var price = form["price"];
             var color = form["color"];
             var description = form["description"];
+            var pageTitle = form["pageTitle"];
+            var pageDescription = form["pageDescription"];
             var cartype = form["cartype"];
             var productionYear = form["productionYear"];
             var mainImage = form["mainImage"];
@@ -212,6 +217,8 @@ namespace CarsClient.Controllers
                 Price = int.Parse(price),
                 CarType = cartype,
                 Description = description,
+                PageTitle = pageTitle,
+                PageDescription = pageDescription,
                 Images = images,
                 ModelName = model,
                 ProductionYear = int.Parse(productionYear),
@@ -253,6 +260,8 @@ namespace CarsClient.Controllers
 			var price = form["price"];
 			var color = form["color"];
 			var description = form["description"];
+			var pageTitle = form["pageTitle"];
+			var pageDescription = form["pageDescription"];
 			var cartype = form["cartype"];
 			var productionYear = form["productionYear"];
 			var mainImage = form["mainImage"];
@@ -315,6 +324,8 @@ namespace CarsClient.Controllers
 				Price = int.Parse(price),
 				CarType = cartype,
 				Description = description,
+                PageTitle = pageTitle,
+                PageDescription = pageDescription,
 				Images = images,
 				ModelName = model,
 				ProductionYear = int.Parse(productionYear),
