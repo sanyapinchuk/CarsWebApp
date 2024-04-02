@@ -80,7 +80,13 @@ namespace Applicaton.Common.Helpers
             },
             CarFilerManufacturersConfigs = new CarFilerManufacturersConfig[]
             {
-                new()
+	            new()
+	            {
+		            Id = Guid.Parse("3122e75f-53c1-4447-8187-0f6cfbd97453"),
+		            Name = "Volkswagen",
+		            Query = x=>x.Model.Name.ToLower().Contains("volkswagen")
+	            },
+				new()
                 {
                     Id = Guid.Parse("9f6dcbf6-e56e-42f6-8994-5dfda84552aa"),
                     Name = "Zeekr",

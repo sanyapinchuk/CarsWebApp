@@ -51,7 +51,6 @@ a {
         right: 0;
         z-index: 1000;
         width: 100%;
-        margin-bottom:30px;
         /* padding-top: 30px; */
     }
 
@@ -69,8 +68,8 @@ a {
 
 .new_menu li {
     display: inline-block;
-    margin-top: 20px;
-    margin-right: 28px;
+    margin-right: 18px;
+    margin-left: 18px;
 }
 
 .new_menu li a:hover {
@@ -87,7 +86,6 @@ a {
 #logotype {
     height: 25px;
     margin-left: 50px;
-    margin-top: 30px;
     /* text-align: center;
     position: absolute; */
 }
@@ -101,7 +99,8 @@ a {
     width: 193px; */
     margin-right: 20px;
     /* float: right; */
-    font-size: 20px;
+    font-size: 18px;
+    font-weight: 200;
 }
 
 .center_contacts {
@@ -124,8 +123,10 @@ a {
     width: 100%;
     text-align: left;
     display: block;
-    font-family: 'Proxima Nova Bold';
+    font-family: 'Proxima Nova Regular';
+    font-weight: 400;
     color: black;
+    transition: 0.3s all !important;
 }
 
 .container_1:hover {
@@ -141,6 +142,7 @@ a {
 
     .container_1 i {
         padding-left: 10px;
+        padding-right: 6px;
     }
 
 .transition2:hover {
@@ -329,6 +331,7 @@ body{
     z-index: 50;
     height: 100%;
     display: none;
+    opacity: 0.5;
 }
 
 .active {
@@ -339,7 +342,7 @@ body{
     color: #EF7A13;
 }
 
-@media (min-width: 1100px) {
+@media (min-width: 1130px) {
 
     .popmenu {
         display: block;
@@ -594,9 +597,10 @@ body{
     color: black;
     /* width: 270px; */
     width: 350px;
-    display: flex;
+    display: block;
     flex-direction: column;
     justify-content: space-between;
+    height: 615px;
 }
 
 figure {
@@ -607,7 +611,7 @@ figure {
 .car_list img {
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
-    /*height: 160px;*/
+    height: 233px;
     width: 270px;
     width: 100%;
     object-fit: cover;
@@ -760,7 +764,6 @@ figure {
     text-align: center;
     color: white;
     background-color: black;
-    margin-top:10%;
 }
 
 .end_menu {
@@ -832,7 +835,7 @@ figure {
 
 .car_information {
     /* background-color: #fff; */
-    margin-top: 20px;
+    margin-top: 40px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
@@ -1261,7 +1264,6 @@ td {
     -moz-box-shadow: 0px 0px 32px 0px rgba(80,80,80, 0.22);
     box-shadow: 0px 0px 32px 0px rgba(80,80,80, 0.22); */
     padding-bottom: 25px;
-    margin-bottom: 50px;
 }
 
 #video_info, .video_info {
@@ -1431,7 +1433,7 @@ td {
     background-image: url(../images/background/lixiang.png);
     width: 100%;
     background-size: cover;
-    padding: 80px 20px 60px 20px;
+    padding: 80px 60px 60px 60px;
     margin-bottom: 80px;
     background-repeat: no-repeat;
     background-position: center;
@@ -1454,15 +1456,16 @@ td {
 
 .tg_block_holder {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     flex-wrap: nowrap;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
-.right_tg_btn {
-    margin-top: 20px;
+.right_tg{
+    margin: auto;
+    margin-top: 40px;
 }
-
 .right_tg_button {
     background-color: #EF7A13;
     color: white;
@@ -1472,9 +1475,12 @@ td {
     border-radius: 20px;
     width: 100%;
     margin: auto;
-    margin-top: 25px;   
-    margin-bottom: 25px;   
+    margin-top: 25px;
+    margin-bottom: 25px;
     padding: 10px;
+    width: 200px;
+    display: block;
+    text-align: center;
 }
 
 .right_tg_button:hover {
@@ -1642,6 +1648,7 @@ td {
     margin: auto;
     margin-top: 25px;
     padding: 10px;
+    width: 200px;
 }
 
     .same_button:hover {
@@ -1665,8 +1672,7 @@ td {
         border-radius: 20px;
         width: 90%;
         margin: auto;
-        margin-top: 100px;
-        margin-bottom: 100px;
+        margin-bottom: 20px;
         padding: 10px;
     }
     
@@ -1831,6 +1837,7 @@ td {
 }*/
 .car_list > li > a {
     display: inline;
+    width: 100%;
 }
 
 @media (min-width: 877px) { /*
@@ -2553,7 +2560,7 @@ option {
     color: black;
     font-size: 38px;
     padding-top: 40px;
-    margin-top: 80px;
+    margin-top: 50px;
     margin-left: 10px;
     margin-right: 10px;
     margin-bottom: 40px;
@@ -3209,7 +3216,7 @@ option {
     min-width: 300px;
 }
 
-@media screen and (max-width: 1100px){
+@media screen and (max-width: 1130px){
     .center_up_list {
         display: none;
     }
@@ -3228,13 +3235,13 @@ option {
     color: white;
     border-radius: 20px;
     width: 60%;
-    margin: auto;
     margin-top: 35px;
     padding: 10px;
     text-align: center;
     font-family: 'Proxima Nova Regular';
     font-weight: 200;
-    margin-bottom: 100px;
+    margin-bottom: 40px;
+    max-width: 240px;
 }
 
     .statistica_button:hover {
@@ -3250,7 +3257,7 @@ option {
     }
 
 .number_item {
-    margin-left: 40px;
+    margin-bottom: 15px;
     text-align: left;
     font-size: 25px;
     color: #EF7A13;
@@ -3843,7 +3850,7 @@ option {
     flex-shrink: 0;
     height: 40px;
     padding: 0 16px;
-    
+    width: 100%;
     transition: all 0.2s ease-out;
   
     cursor: pointer;
@@ -3906,6 +3913,7 @@ option {
     line-height: 46px;
     letter-spacing: 0em;
     text-align: center;
+    padding: 0 20px 0 20px;
 }
 #filter_selects_container{
     display: flex;
@@ -4160,13 +4168,13 @@ option {
     line-height: 46px;
     letter-spacing: 0em;
     text-align: center;
-}
+}/*
 @media (max-width: 600px) {
     #main_back {
         margin-top: 100%;
         margin-bottom: 0;
     }
-}
+}*/
 #_select_types_container{
     display: flex;
     flex-direction: column;
@@ -4292,7 +4300,6 @@ option {
     /* font-weight: 800; */
     font-size: 32px;
     margin-bottom: 30px;
-    text-align: center;
 }
 
 .help_item p {
@@ -4313,8 +4320,8 @@ option {
     font-size: 18px;
     font-weight: 300;
     border-radius: 20px;
-    width: 70%;
-    margin: auto;
+    width: 50%;
+    max-width: 220px;
     margin-top: 30px;
     /* margin-bottom: 25px;    */
     padding: 10px;
@@ -4423,7 +4430,7 @@ option {
     }
     
 }
-@media screen and (max-width: 1100px) {
+@media screen and (max-width: 1130px) {
     payment_item1 {
         text-align:center;
     }
@@ -4440,19 +4447,29 @@ option {
 
     .contact_inner {
         display: flex;
-        justify-content: center;
+        justify-content: space-evenly;
         flex-wrap: wrap;
         align-items: center;
     }
 
     .contact_item {
-        width: 40%;
+        min-width: 40%;
         color: black;
         margin: 55px;
     }
 
+    #contact_item_map{
+        margin: 30px 40px 30px 40px;
+        max-width: 800px !important;
+        min-width: 40%;
+    }
+
+    #contact_item_text{
+       margin: 10px 0 10px 80px;
+    }
+
+
         .contact_item iframe {
-            width: 600px;
             height: 350px;
         }
 
@@ -4461,7 +4478,6 @@ option {
             font-weight: 800;
             font-size: 28px;
             margin-bottom: 8px;
-            margin-left: 130px;
         }
 
         .contact_item p {
@@ -4469,7 +4485,6 @@ option {
             font-weight: 300;
             font-size: 22px;
             margin-bottom: 20px;
-            margin-left: 130px;
         }
 
             .contact_item p:hover {
@@ -4491,10 +4506,62 @@ option {
     .statistica_img {
         display: none;
     }
+    .statistica_info{
+        width: 100%;
+        text-align: center;
+    }
+    .statistica_button{
+        margin: auto;
+        margin-top: 35px;
+        margin-bottom: 40px;
+    }
+}
+.left_tg{
+    width: 40%;
+    min-width: 300px;
+    margin: auto;
 }
 .telegram_inner>a{
     margin: 20px;
 }
 .help_inner>.help_item{
     min-width: 300px;
+}
+.short_car_info{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    height: 382px;
+}
+
+.short_car_info>div, 
+.short_car_info>a,
+.short_car_info>ul{
+    width: 100%;
+}
+
+.center_contacts>i{
+    margin-right: 10px;
+}
+@media (min-width: 877px){
+    .header_top{
+        position: sticky;
+    }
+}
+
+@media (max-width: 822px){
+    #contact_item_text{
+        text-align: center;
+    }
+    #contact_item_text{
+        margin: 10px 10px 10px 10px;
+    }
+}
+
+@media (max-width: 1116px){
+    .info{
+        margin-top: 60px;
+    }
 }
