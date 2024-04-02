@@ -7,30 +7,30 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <TimeStampOfAssociatedLegacyPublishXmlFile />
     <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAuTqGf+3DHEKZp1QvcTR5dAAAAAACAAAAAAAQZgAAAAEAACAAAABetAKGIIUYlELY4LaY7a6cl9rCcZgBnyHT+EmggIhApQAAAAAOgAAAAAIAACAAAAAPzzDVkW/7Z0kfArBnR6xbfovOQ9aIgGuSX7n45CtA2SAAAADqVKYkeAo5NsnLMlL3IRzppYOkxvAW/yMh4M89Ct+Dh0AAAAD2NcR+DTtkoL4rt9Ti9PJLGJX58bHK+A1VbImqobNUjMHpmPi0GqTZSAQRuHvqIJdL+bUDpV+9uv+o/+lOx3f1</EncryptedPassword>
     <_PublishTargetUrl>ftp://85.209.148.48/var/NetClientApp/</_PublishTargetUrl>
-    <History>False|2024-03-12T19:25:14.6807385Z;False|2024-03-12T22:20:10.0150087+03:00;False|2024-03-12T22:16:47.5274576+03:00;False|2024-03-12T22:12:51.7850812+03:00;False|2024-03-11T01:44:42.6592634+03:00;False|2024-03-11T01:37:46.6989945+03:00;False|2024-03-10T21:39:20.5455573+03:00;False|2024-02-19T01:23:16.3699812+03:00;True|2024-01-16T03:29:12.3699681+03:00;True|2024-01-12T00:41:28.4502152+03:00;False|2024-01-12T00:26:57.0252423+03:00;False|2024-01-11T23:53:02.6096212+03:00;True|2024-01-11T22:53:21.2716645+03:00;False|2023-12-13T02:29:24.4802646+03:00;False|2023-12-10T20:27:27.2612061+03:00;False|2023-12-10T20:24:52.6692191+03:00;</History>
+    <History>True|2024-03-30T19:57:56.7843464Z;False|2024-03-28T00:27:11.4610794+03:00;True|2024-03-27T02:51:19.3899343+03:00;True|2024-03-25T03:17:38.2158184+03:00;False|2024-03-12T22:25:14.6807385+03:00;False|2024-03-12T22:20:10.0150087+03:00;False|2024-03-12T22:16:47.5274576+03:00;False|2024-03-12T22:12:51.7850812+03:00;False|2024-03-11T01:44:42.6592634+03:00;False|2024-03-11T01:37:46.6989945+03:00;False|2024-03-10T21:39:20.5455573+03:00;False|2024-02-19T01:23:16.3699812+03:00;True|2024-01-16T03:29:12.3699681+03:00;True|2024-01-12T00:41:28.4502152+03:00;False|2024-01-12T00:26:57.0252423+03:00;False|2024-01-11T23:53:02.6096212+03:00;True|2024-01-11T22:53:21.2716645+03:00;False|2023-12-13T02:29:24.4802646+03:00;False|2023-12-10T20:27:27.2612061+03:00;False|2023-12-10T20:24:52.6692191+03:00;</History>
     <LastFailureDetails />
   </PropertyGroup>
   <ItemGroup>
     <File Include="appsettings.Development.json">
-      <publishTime>02/15/2024 23:47:19</publishTime>
+      <publishTime>03/31/2024 00:35:18</publishTime>
     </File>
     <File Include="appsettings.json">
-      <publishTime>03/12/2024 22:04:00</publishTime>
+      <publishTime>03/28/2024 00:41:18</publishTime>
     </File>
     <File Include="appsettings.Production.json">
       <publishTime>01/11/2024 21:29:43</publishTime>
     </File>
     <File Include="CarsClient">
-      <publishTime>03/12/2024 22:26:59</publishTime>
+      <publishTime>03/31/2024 00:37:41</publishTime>
     </File>
     <File Include="CarsClient.deps.json">
-      <publishTime>03/12/2024 22:27:00</publishTime>
+      <publishTime>03/31/2024 00:37:50</publishTime>
     </File>
     <File Include="CarsClient.dll">
-      <publishTime>03/12/2024 22:26:59</publishTime>
+      <publishTime>03/31/2024 00:37:41</publishTime>
     </File>
     <File Include="CarsClient.pdb">
-      <publishTime>03/12/2024 22:26:59</publishTime>
+      <publishTime>03/31/2024 00:37:41</publishTime>
     </File>
     <File Include="CarsClient.runtimeconfig.json">
       <publishTime>03/10/2024 21:35:07</publishTime>
@@ -1578,7 +1578,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>10/20/2023 02:29:14</publishTime>
     </File>
     <File Include="wwwroot/css/styles.css">
-      <publishTime>03/12/2024 22:05:39</publishTime>
+      <publishTime>03/28/2024 00:41:16</publishTime>
     </File>
     <File Include="wwwroot/favicon.ico">
       <publishTime>02/19/2024 02:15:19</publishTime>
@@ -1917,16 +1917,16 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>02/19/2024 02:15:20</publishTime>
     </File>
     <File Include="wwwroot/images/logo/new_logo.png">
-      <publishTime>02/19/2024 02:15:20</publishTime>
+      <publishTime>03/28/2024 00:41:16</publishTime>
     </File>
     <File Include="wwwroot/images/logo/tg.png">
       <publishTime>02/21/2022 01:25:17</publishTime>
     </File>
     <File Include="wwwroot/images/news/1.jpg">
-      <publishTime>02/19/2024 02:15:20</publishTime>
+      <publishTime>03/28/2024 00:41:16</publishTime>
     </File>
     <File Include="wwwroot/images/news/1.mp4">
-      <publishTime>02/19/2024 02:15:20</publishTime>
+      <publishTime>03/28/2024 00:41:16</publishTime>
     </File>
     <File Include="wwwroot/images/news/10_facts/Picture1.png">
       <publishTime>03/12/2024 21:14:28</publishTime>
@@ -1959,19 +1959,19 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>03/12/2024 21:14:28</publishTime>
     </File>
     <File Include="wwwroot/images/news/2.jpg">
-      <publishTime>02/19/2024 02:15:20</publishTime>
+      <publishTime>03/28/2024 00:41:16</publishTime>
     </File>
     <File Include="wwwroot/images/news/2.mp4">
-      <publishTime>02/19/2024 02:15:20</publishTime>
+      <publishTime>03/28/2024 00:41:16</publishTime>
     </File>
     <File Include="wwwroot/images/news/3.jpg">
-      <publishTime>02/19/2024 02:15:20</publishTime>
+      <publishTime>03/28/2024 00:41:16</publishTime>
     </File>
     <File Include="wwwroot/images/news/3.mp4">
-      <publishTime>02/19/2024 02:15:21</publishTime>
+      <publishTime>03/28/2024 00:41:17</publishTime>
     </File>
     <File Include="wwwroot/images/news/4.jpg">
-      <publishTime>02/19/2024 02:15:21</publishTime>
+      <publishTime>03/28/2024 00:41:17</publishTime>
     </File>
     <File Include="wwwroot/images/news/battery_life/1.png">
       <publishTime>07/08/2022 00:13:41</publishTime>
@@ -2031,16 +2031,16 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>06/03/2022 21:38:12</publishTime>
     </File>
     <File Include="wwwroot/images/news/photo_2023-08-16_13-06-45.jpg">
-      <publishTime>02/19/2024 02:15:21</publishTime>
+      <publishTime>03/28/2024 00:41:17</publishTime>
     </File>
     <File Include="wwwroot/images/news/photo_2023-08-16_13-15-43.jpg">
-      <publishTime>02/19/2024 02:15:21</publishTime>
+      <publishTime>03/28/2024 00:41:17</publishTime>
     </File>
     <File Include="wwwroot/images/news/photo_2023-09-04_11-05-13.jpg">
-      <publishTime>02/19/2024 02:15:21</publishTime>
+      <publishTime>03/28/2024 00:41:17</publishTime>
     </File>
     <File Include="wwwroot/images/news/salon.jpg">
-      <publishTime>02/19/2024 02:15:21</publishTime>
+      <publishTime>03/28/2024 00:41:17</publishTime>
     </File>
     <File Include="wwwroot/images/team/anya.JPG">
       <publishTime>02/20/2022 20:40:23</publishTime>
@@ -2082,7 +2082,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>01/12/2022 18:49:13</publishTime>
     </File>
     <File Include="wwwroot/js/up_panel.js">
-      <publishTime>02/19/2024 02:15:21</publishTime>
+      <publishTime>03/28/2024 00:41:17</publishTime>
     </File>
     <File Include="wwwroot/lib/bootstrap/dist/css/bootstrap-grid.css">
       <publishTime>06/06/2022 00:23:15</publishTime>
@@ -2271,7 +2271,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>03/12/2024 22:05:39</publishTime>
     </File>
     <File Include="wwwroot/sitemap.xml">
-      <publishTime>03/12/2024 22:05:39</publishTime>
+      <publishTime>03/17/2024 00:31:44</publishTime>
     </File>
     <File Include="wwwroot/temp/test.html">
       <publishTime>02/19/2024 02:15:21</publishTime>

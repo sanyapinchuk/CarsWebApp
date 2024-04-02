@@ -28,8 +28,8 @@ namespace CarsClient.Helpers
 				f6 += $"#switch_{i}:checked ~ #active label:nth-child({i}), ";
 			}
 			var path = "{background: url(../" + prefix;																/*was 0*/
-			f3 = f3.Substring(0, f3.Length - 2) + path + "images/icons/left_arrow.svg) no-repeat;float: left;margin: -300px 0 0 -55px; display: block;height: 51px;width: 51px;} ";
-			f4 = f4.Substring(0, f4.Length - 2) + path + "images/icons/right_arrow.svg) no-repeat; float: right;margin: -300px -55px 0 0;display: block;width: 51px;height: 51px;background-position: center;background-origin: cover;} ";
+			f3 = f3.Substring(0, f3.Length - 2) + path + "images/icons/left_arrow.svg) no-repeat;float: left;margin: -50% 0 0 -55px; display: block;height: 51px;width: 51px;} ";
+			f4 = f4.Substring(0, f4.Length - 2) + path + "images/icons/right_arrow.svg) no-repeat; float: right;margin: -50% -55px 0 0;display: block;width: 51px;height: 51px;background-position: center;background-origin: cover;} ";
 			f6 = f6.Substring(0, f6.Length - 2) + "{opacity: 1;} ";
 
 			var styles = new List<string>();

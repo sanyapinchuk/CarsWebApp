@@ -59,8 +59,8 @@ if (!app.Environment.IsDevelopment())
 	app.UseHsts();
 }
 
-app.UseStatusCodePagesWithRedirects("/Error?statusCode={0}");
 app.UseCustomExceptionHandler();
+app.UseStatusCodePagesWithReExecute("/Error", "?statusCode={0}");
 
 
 app.UseHttpsRedirection();

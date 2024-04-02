@@ -10,6 +10,8 @@ namespace Shared.Dto
     {
         public int Price { get; set; }
 		public string Description { get; set; }
+		public string PageDescription { get; set; }
+		public string PageTitle { get; set; }
 		public string ModelName { get; set; }
         public string CarType { get; set; }
         public int ProductionYear { get; set; }

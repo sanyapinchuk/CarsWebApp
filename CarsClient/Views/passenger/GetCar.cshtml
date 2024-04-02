@@ -1,17 +1,14 @@
 ﻿@model CarsClient.Models.Dto.CarFullInfoDto;
 
 @{
-	ViewData["Title"] = "Купить " + Model.ModelName + " из Китая в Беларусь, цена - Минск";
-	ViewData["Description"] = Model.Description + " | " + ViewData["Postfix"];
+    ViewData["Title"] = Model.PageTitle;
+    ViewData["Description"] = Model.PageDescription;
 	ViewData["activePage"] = "passengerPage";
 	ViewData["Keywords"] = "электромобили, отзывы на электромобили, цены на электромобили, электромобиль bmw, электромобиль xiaomi, электромобиль lixiang, электромобиль volkswagen, электромобиль zeekr, tesla купить Минск, гибридный автомобиль";
 	Layout = "~/Views/Shared/_Layout.cshtml";
 	ViewData["pathPrefix"] = "../";
 }
 
-<div class="panel commercial">	
-	<h1>@Model.ModelName</h1>
-</div>
 <div class="car_information">	
 	<div class="all">
 		<input checked type="radio" name="respond" id="desktop">
@@ -39,12 +36,16 @@
 				<div id="__right_block"></div>
 			</div>
 					
-			<div id="controls">
-				@for(int i= 1; i< Model.Images.Count+1; i++)
-				{
-					<label for="switch_@i"></label>
-				}
-			</div>
+			
+            <div id="controls">
+                @if (Model.Images.Count > 1)
+                {
+                    @for (int i = 1; i < Model.Images.Count + 1; i++)
+                    {
+                        <label for="switch_@i"></label>
+                    }
+                }
+            </div>
 			<div id="active">
 				@for(int i= 1; i< Model.Images.Count+1; i++)
 				{
@@ -53,15 +54,11 @@
 			</div>		
 		</div>			
 	</div>
-	<table class="info">
-		<tr style="top:-10%;">
-			<td style="vertical-align:bottom;">
-				<div id="model">@Model.ModelName</div>
-				<div id="price"> Цена с учётом доставки: <b>$@Model.Price.ToString("N", System.Globalization.CultureInfo.CreateSpecificCulture("en-US"))</b></div>
-				<button id="make-order">Заказать</button>		
-			</td>  
-		</tr>
-	</table>
+    <div class="info">
+        <div id="model">@Model.ModelName</div>
+        <div id="price"> Цена с учётом доставки: <b>$@Model.Price.ToString("N0", System.Globalization.CultureInfo.InvariantCulture)</b></div>
+        <button id="make-order">Заказать</button>	
+    </div>
 </div>	
 
 <div id="box_characterstics">

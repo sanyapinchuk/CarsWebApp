@@ -39,6 +39,7 @@ namespace CarsClient.Controllers
                     break;
             }
             errorModel.Description = message;
+            Response.StatusCode = statusCode;
 
             return View(errorModel);
         }

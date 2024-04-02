@@ -17,6 +17,10 @@ namespace Applicaton.Cars.Queries.GetCarFullInfo
                 mem => mem.MapFrom(car => car.ProductionYear))
                 .ForMember(carDto => carDto.Description,
                 mem => mem.MapFrom(car => car.Description))
+                .ForMember(carDto => carDto.PageTitle,
+                mem => mem.MapFrom(car => car.PageTitle))
+                .ForMember(carDto => carDto.PageDescription,
+                mem => mem.MapFrom(car => car.PageDescription))
                 .ForMember(carDto => carDto.CarType,
                 mem => mem.MapFrom(car => car.Model.CarType.Name))
                 .ForMember(carDto => carDto.ModelName,
