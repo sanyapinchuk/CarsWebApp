@@ -510,7 +510,7 @@ body{
     height: 50vh;/*500px*/
     object-fit: cover;
     width: 100%;
-    background-image: url("../images/background/main_new.jpg");
+    background-image: url("../images/background/xiaomi_new.jpg");
     font-size: 3vw;/*45px*/
     color: #E8E8E8;
     text-align: right;
@@ -529,7 +529,7 @@ body{
         /*display: none;*/
         height: 50vh;
         width: 100%;
-        background-image: url("../images/background/main_new.jpg");
+        background-image: url("../images/background/xiaomi_new.jpg");
         font-size: 3vw;
         color: #E8E8E8;
         text-align: right;
@@ -762,23 +762,35 @@ figure {
 
 #end_box {
     text-align: center;
-    color: white;
-    background-color: black;
+    color: black;
+    background-color: #ebebeb;
+    padding-bottom: 20px;
 }
 
 .end_menu {
     display: inline-block;
-    width: 360px;
+    width: 480px;
     font-size: 14px;
     font-weight: lighter;
-    margin-top: 10px;
+    margin-top: 20px;
     margin-bottom: 10px;
     padding-left: 50px;
     padding-right: 50px;
 }
 
 .end_menu a {
-    color: white;
+    color: #EF7A13;
+}
+
+.end_menu i {
+    color: #EF7A13;
+    margin-right: 18px;
+    font-size: 25px;
+}
+
+.end_menu i:hover {
+    color: #4f4f4f;
+    transition: linear 0.35s;
 }
 
 #end_logotype {
@@ -790,9 +802,9 @@ figure {
 .last_box {
     height: 60px;
     width: 100%;
-    color: white;
+    color: rgb(255, 255, 255);
     font-weight: 400;
-    background-color: #4F4F4F;
+    background-color: #e8bbbb;
     position: relative;
     display: flex;
     flex-wrap: nowrap;
@@ -803,25 +815,30 @@ figure {
 .last_line {
     text-align: center;
     position: relative;
-    margin-left: 10%;
+    margin-top: 15px;
     text-align: center;
     font-weight: lighter;
-    font-size: 13px;
+    font-size: 14px;
     flex-shrink: 1;
 }
 
 .contact_line {
     float: right;
-    margin-right: 15px;
+    margin-right: 100px;
     position: relative;
     flex-shrink: 0;
     margin-left: 10px;
 }
 
-    .contact_line i {
-        color: #D0D0D0;
-        margin-right: 3px;
+    /* .contact_line i {
+        color: #EF7A13;
+        margin-right: 15px;
+        font-size: 25px;
     }
+
+    .contact_line i:hover {
+        color: #803838;
+    } */
 
 
 #__left_block {
@@ -1034,7 +1051,7 @@ td {
     /* background-color: #fff; */
     /* padding-bottom: 30px; */
     padding-top: 40px;
-    margin-bottom: 110px;
+    margin-bottom: 50px;
 }
 
 #car_characterstics {
@@ -1054,21 +1071,20 @@ td {
 }
 
 /* #car_characterstics:hover {
-    background-color: #ffffff;
-
+    background-color: #8d5b5b;
 } */
 
-/* .backgr_name {
+.backgr_name {
     background-color: #4F4F4F;
     border-radius: 20px;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
     width: 100%;
-    color: black;
+    color: rgb(255, 255, 255);
     padding: 5px;
     padding-left: 10px;
     padding-right: 10px;
-} */
+}
 
 #tech_ch {
     font-size: 25px;
@@ -1435,6 +1451,7 @@ td {
     background-size: cover;
     padding: 80px 60px 60px 60px;
     margin-bottom: 80px;
+    margin-top: 80px;
     background-repeat: no-repeat;
     background-position: center;
 }
@@ -1607,6 +1624,7 @@ td {
 
 #name_same_car {
     margin-top: 8px;
+    font-size: 18px;
 }
 
 #price_same_car {
@@ -1906,6 +1924,7 @@ td {
     display: inline-block;
     position: relative;
     flex-shrink: 0;
+    font-weight: bold;
 }
 
 .option_value {
@@ -2522,11 +2541,20 @@ option {
     }
 
 #left_end_block {
-    border-right: 1px solid gray;
-    padding-right: 50px;
+    border-right: 1px solid #EF7A13;
+    padding-right: 80px;
 }
 
 @media (max-width : 741px) {
+    #left_end_block {
+        border-right: none;
+    }
+    .end_menu {
+        width: 360px;
+    }
+}
+
+@media (max-width : 980px) {
     #left_end_block {
         border-right: none;
     }
@@ -3183,6 +3211,7 @@ option {
 .statistica {
     width: 80%;
     margin: auto;
+    margin-top: 80px;
 }
 
 .statistica_title {
@@ -3387,7 +3416,7 @@ option {
 .one_news {
     margin: 20px;
     width: 400px;
-    background-color: #E5E5E5;
+    background-color: #f7f7f7;
     text-align: center;
     border-radius: 15px;
     overflow: hidden;
@@ -3395,7 +3424,8 @@ option {
 }
 
     .one_news:hover {
-        background-color: #f2f2f2;
+        box-shadow: 0 0 15px 8px #e4e4e4;
+        background-color: white;
     }
 
 .news_title {
@@ -3431,10 +3461,11 @@ option {
     font-size: 16px;
     font-weight: 600;
     transition: all 0.2s;
+    color: #EF7A13;
 }
 
     .news_more_info:hover {
-        color: #C0A97A;
+        color: #4f4f4f;
     }
 
 #publication_title {
@@ -3453,6 +3484,8 @@ option {
 }
 
 #all_page_news {
+    font-family: 'Proxima Nova Regular';
+    color: black;
     width: 94%;
     max-width: 730px;
     margin: auto;
@@ -3477,13 +3510,13 @@ option {
 }
 
 #publication_description {
-    font-family: CustomSerif,Georgia,Cambria,'Times New Roman',serif;
+    font-family: 'Proxima Nova Regular';
     font-style: normal;
-    font-size: 18px;
+    font-size: 20px;
     line-height: 1.58;
     padding: 0;
     margin: 0;
-    color: rgba(0,0,0,.8);
+    color: black;
 }
 
 .vid_figure {
@@ -3722,6 +3755,10 @@ option {
     font-size: 12px;
 }
 
+#mynumber {
+    color: #EE7A13;
+}
+
 #eddit_button {
     position: absolute;
     right: 0;
@@ -3933,6 +3970,7 @@ option {
     display: block;
     margin: auto;
     margin-top: 30px;
+    margin-bottom: 80px;
 }
 #filter_block{
     margin-top: 30px;
@@ -4351,14 +4389,11 @@ option {
         margin-bottom: 60px;
     }
 
-    .telegram_item img {
-        margin: 10px;
+    .telegram_inner img:hover {
+        opacity: 0.6;
+        transition: 1.2s ease;
     }
 
-        .telegram_item img:hover {
-            opacity: 0.6;
-            transition: 1.2s ease;
-        }
 .payment_inner {
     display: flex;
     justify-content: center;
@@ -4375,7 +4410,7 @@ option {
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    margin: 10px;
+    margin: 25px;
     position: relative;
 }
 
@@ -4386,7 +4421,7 @@ option {
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    margin: 10px;
+    margin: 25px;
     position: relative;
 }
 
@@ -4397,7 +4432,7 @@ option {
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    margin: 10px;
+    margin: 25px;
     position: relative;
 }
 
@@ -4433,7 +4468,7 @@ option {
     
 }
 @media screen and (max-width: 1130px) {
-    payment_item1 {
+    .payment_item1 {
         text-align:center;
     }
 }
@@ -4444,7 +4479,7 @@ option {
     }
 
     .who_we2 {
-        margin-top: 120px;
+        margin-top: 60px;
     }
 
     .contact_inner {
@@ -4526,6 +4561,7 @@ option {
 .telegram_inner>a{
     margin: 20px;
 }
+
 .help_inner>.help_item{
     min-width: 300px;
 }

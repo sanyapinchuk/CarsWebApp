@@ -1,5 +1,5 @@
 @{
-    string mainPage = "", passengerPage = "", newsPage = "", contact_usPage = "", aboutusPage = "";
+    string mainPage = "", passengerPage = "", newsPage = "", contact_usPage = "", aboutusPage = "", paymentPage= "", deliveryPage="", servicePage= "";
     switch (ViewData["activePage"]){
         case "mainPage":
             mainPage = "active";
@@ -15,6 +15,15 @@
             break;
         case "aboutusPage":
             aboutusPage = "active";
+            break;
+        case "paymentPage":
+            paymentPage = "active";
+            break; 
+        case "deliveryPage":
+            deliveryPage = "active";
+            break;
+        case "servicePage":
+            servicePage = "active";
             break;
     }
 }
@@ -50,11 +59,12 @@
                             <li id="dealers" class="new_back @newsPage"><a href="@ViewData["pathPrefix"]all-news">Новости</a></li>
                             <li id="aboutus" class="new_back @aboutusPage"><a href="@ViewData["pathPrefix"]aboutus">О нас</a></li>
                             <li id="contacts" class="new_back @contact_usPage"><a href="@ViewData["pathPrefix"]contact_us">Контакты</a></li>
+                            <li id="contacts"><a href="https://xiaomi.formulaev.net/">Xiaomi SU 7</a></li>
                         </ul>
                     </div>    
                     
                     <ul id="center_up_list">
-                    <li class="center_contacts"><a class="container_1 header_phone transition2" href="tel:375296349842"><i class="fas fa-phone"></i>+375 (29) 634-98-42</a></li>
+                    <li class="center_contacts"><a class="container_1 header_phone transition2" href="tel:375296349842"><i class="fas fa-phone fa-rotate-90"></i>+375 (29) 634-98-42</a></li>
                     <li class="center_contacts"><a class="container_1 header_email transition2" href="mailto:info.itcar@gmail.com"><i class="fas fa-envelope"></i>info.itcar@gmail.com</a></li>
 				    </ul>
 				    <i class="fas fa-bars" id="open_list"></i>		
@@ -75,28 +85,26 @@
             <div id="end_box">
                 <div class="end_menu" id="left_end_block">
                     <img id="end_logotype" src= "@ViewData["pathPrefix"]images/logo/logo_main.png" alt="no image">
-                    <br>УНП 693156318  
+                    <br>УНП 693156318
                     <br>Общество с ограниченной ответственностью «Интеллект Трейдинг», 2021-2024 г.
                     <br>
-                    <br>Сопровождение сделки по покупке и доставке электромобилей из Китая.
+                    <br><br>
+                    <br>Юридический адрес: 223056, Беларусь, Минская область, г. Минск, ТЦ «Сеница», Сеницкий сельсовет, 84
                 </div>
                 <div class="end_menu">	
-                    Юридический адрес:  223056, Беларусь, Минская область, г. Минск, ТЦ «Сеница», Сеницкий сельсовет, 84<br>
-                    Телефон: <a href="tel:375296349842">+375 (29) 634-98-42</a><br>
-                    Email: <a href="mailto:info.itcar@gmail.com"> info.formulaev@gmail.com</a>
+                    Обращаем ваше внимание на то, что, вся информация на сайте носит рекламный характер и не является публичной офертой. Стоимость каждого автомобиля является индивидуальной. Окончательная стоимость отражается в заключенном договоре. Изображения автомобилей на сайте представлены для ознакомления и могут отличаться от реализуемых автомобилей<br>
                     <br><br>
-                      Указанные на сайте цены являются ориентировочными. Окончательную стоимость уточняйте у менеджера.				
+                      Более подробную и актуальную информацию можно получить у менеджеров по телефону: <a href="tel:375296349842"><b>+375 (29) 634-98-42</b></a>			
                 </div>
-            </div>
-            <div class="last_box">
-                <div class="last_line">
-                    ООО «Интеллект Трейдинг» © 2023 — все права защищены
-                </div>
-                <div class="contact_line">				
+                <div class="end_menu">		
+                    <a href="tel:375296349842"><i class="fas fa-phone fa-rotate-90"></i></a>	
                     <a href="https://telegram.me/it_car_by"><i class="fab fa-telegram"></i></a>
-                    <a href="tel:375296349842"><i class="fas fa-phone-alt"></i></a>
-                    <a href="mailto:info.itcar@gmail.com"><i class="fas fa-at"></i></a>
-                    <a href="../contact_us"><i class="fas fa-envelope"></i></a>
+                    <a href="https://www.instagram.com/formulaev_net/"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.tiktok.com/@@formulaev.net?_t=8l7VknBfGhJ&_r=1"><i class="fab fa-tiktok"></i></a>
+                    <a href="https://www.youtube.com/@@formulaev_net"><i class="fab fa-youtube"></i></a>
+                </div>
+                <div class="last_line">
+                    © 2021-2024 ООО «Интеллект Трейдинг» — все права защищены
                 </div>
             </div>
             <script src="@ViewData["pathPrefix"]js/up_panel.js"></script>

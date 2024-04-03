@@ -52,5 +52,26 @@ namespace CarsClient.Controllers
             return View();
         }
 
+        [Route("payment")]
+        public IActionResult Payment()
+        {
+            ViewData["mailAddress"] = _configuration["mailAddress"];
+            return View();
+        }
+
+        [Route("delivery")]
+        public IActionResult Delivery()
+        {
+            ViewData["mailAddress"] = _configuration["mailAddress"];
+            return View();
+        }
+
+        [Route("service")]
+        public IActionResult Service()
+        {
+            ViewData["mailAddress"] = _configuration["mailAddress"];
+            return View();
+        }
+
     }
 }
