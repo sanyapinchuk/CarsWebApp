@@ -7,30 +7,30 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <TimeStampOfAssociatedLegacyPublishXmlFile />
     <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAuTqGf+3DHEKZp1QvcTR5dAAAAAACAAAAAAAQZgAAAAEAACAAAABetAKGIIUYlELY4LaY7a6cl9rCcZgBnyHT+EmggIhApQAAAAAOgAAAAAIAACAAAAAPzzDVkW/7Z0kfArBnR6xbfovOQ9aIgGuSX7n45CtA2SAAAADqVKYkeAo5NsnLMlL3IRzppYOkxvAW/yMh4M89Ct+Dh0AAAAD2NcR+DTtkoL4rt9Ti9PJLGJX58bHK+A1VbImqobNUjMHpmPi0GqTZSAQRuHvqIJdL+bUDpV+9uv+o/+lOx3f1</EncryptedPassword>
     <_PublishTargetUrl>ftp://85.209.148.48/var/NetClientApp/</_PublishTargetUrl>
-    <History>True|2024-03-30T19:57:56.7843464Z;False|2024-03-28T00:27:11.4610794+03:00;True|2024-03-27T02:51:19.3899343+03:00;True|2024-03-25T03:17:38.2158184+03:00;False|2024-03-12T22:25:14.6807385+03:00;False|2024-03-12T22:20:10.0150087+03:00;False|2024-03-12T22:16:47.5274576+03:00;False|2024-03-12T22:12:51.7850812+03:00;False|2024-03-11T01:44:42.6592634+03:00;False|2024-03-11T01:37:46.6989945+03:00;False|2024-03-10T21:39:20.5455573+03:00;False|2024-02-19T01:23:16.3699812+03:00;True|2024-01-16T03:29:12.3699681+03:00;True|2024-01-12T00:41:28.4502152+03:00;False|2024-01-12T00:26:57.0252423+03:00;False|2024-01-11T23:53:02.6096212+03:00;True|2024-01-11T22:53:21.2716645+03:00;False|2023-12-13T02:29:24.4802646+03:00;False|2023-12-10T20:27:27.2612061+03:00;False|2023-12-10T20:24:52.6692191+03:00;</History>
+    <History>True|2024-04-04T22:11:00.0159685Z;True|2024-04-05T00:56:13.7446625+03:00;True|2024-03-30T22:57:56.7843464+03:00;False|2024-03-28T00:27:11.4610794+03:00;True|2024-03-27T02:51:19.3899343+03:00;True|2024-03-25T03:17:38.2158184+03:00;False|2024-03-12T22:25:14.6807385+03:00;False|2024-03-12T22:20:10.0150087+03:00;False|2024-03-12T22:16:47.5274576+03:00;False|2024-03-12T22:12:51.7850812+03:00;False|2024-03-11T01:44:42.6592634+03:00;False|2024-03-11T01:37:46.6989945+03:00;False|2024-03-10T21:39:20.5455573+03:00;False|2024-02-19T01:23:16.3699812+03:00;True|2024-01-16T03:29:12.3699681+03:00;True|2024-01-12T00:41:28.4502152+03:00;False|2024-01-12T00:26:57.0252423+03:00;False|2024-01-11T23:53:02.6096212+03:00;True|2024-01-11T22:53:21.2716645+03:00;False|2023-12-13T02:29:24.4802646+03:00;False|2023-12-10T20:27:27.2612061+03:00;False|2023-12-10T20:24:52.6692191+03:00;</History>
     <LastFailureDetails />
   </PropertyGroup>
   <ItemGroup>
     <File Include="appsettings.Development.json">
-      <publishTime>03/31/2024 00:35:18</publishTime>
+      <publishTime>04/05/2024 00:49:20</publishTime>
     </File>
     <File Include="appsettings.json">
-      <publishTime>03/28/2024 00:41:18</publishTime>
+      <publishTime>04/05/2024 00:49:14</publishTime>
     </File>
     <File Include="appsettings.Production.json">
       <publishTime>01/11/2024 21:29:43</publishTime>
     </File>
     <File Include="CarsClient">
-      <publishTime>03/31/2024 00:37:41</publishTime>
+      <publishTime>04/05/2024 01:05:18</publishTime>
     </File>
     <File Include="CarsClient.deps.json">
-      <publishTime>03/31/2024 00:37:50</publishTime>
+      <publishTime>04/05/2024 01:05:19</publishTime>
     </File>
     <File Include="CarsClient.dll">
-      <publishTime>03/31/2024 00:37:41</publishTime>
+      <publishTime>04/05/2024 01:05:18</publishTime>
     </File>
     <File Include="CarsClient.pdb">
-      <publishTime>03/31/2024 00:37:41</publishTime>
+      <publishTime>04/05/2024 01:05:18</publishTime>
     </File>
     <File Include="CarsClient.runtimeconfig.json">
       <publishTime>03/10/2024 21:35:07</publishTime>
@@ -1578,7 +1578,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>10/20/2023 02:29:14</publishTime>
     </File>
     <File Include="wwwroot/css/styles.css">
-      <publishTime>03/28/2024 00:41:16</publishTime>
+      <publishTime>04/05/2024 00:39:49</publishTime>
+    </File>
+    <File Include="wwwroot/css/stylesV2.css">
+      <publishTime>04/05/2024 00:39:49</publishTime>
     </File>
     <File Include="wwwroot/favicon.ico">
       <publishTime>02/19/2024 02:15:19</publishTime>
@@ -1622,11 +1625,20 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="wwwroot/images/background/cars1.jpg">
       <publishTime>02/14/2022 00:58:19</publishTime>
     </File>
+    <File Include="wwwroot/images/background/company.png">
+      <publishTime>04/05/2024 00:39:50</publishTime>
+    </File>
     <File Include="wwwroot/images/background/contact.jpg">
       <publishTime>01/11/2022 01:43:32</publishTime>
     </File>
     <File Include="wwwroot/images/background/contact0.jpg">
       <publishTime>07/30/2021 16:17:25</publishTime>
+    </File>
+    <File Include="wwwroot/images/background/help_deliv.png">
+      <publishTime>04/05/2024 00:39:50</publishTime>
+    </File>
+    <File Include="wwwroot/images/background/lixiang.png">
+      <publishTime>04/05/2024 00:39:50</publishTime>
     </File>
     <File Include="wwwroot/images/background/main — копия.jpg">
       <publishTime>02/13/2022 19:24:33</publishTime>
@@ -1639,6 +1651,12 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     </File>
     <File Include="wwwroot/images/background/main_new1.jpg">
       <publishTime>02/19/2024 02:15:19</publishTime>
+    </File>
+    <File Include="wwwroot/images/background/showroom.png">
+      <publishTime>04/05/2024 00:39:50</publishTime>
+    </File>
+    <File Include="wwwroot/images/background/xiaomi_new.jpg">
+      <publishTime>04/05/2024 00:39:50</publishTime>
     </File>
     <File Include="wwwroot/images/cars/arrow/21-1.png">
       <publishTime>08/08/2021 01:21:14</publishTime>
@@ -1743,7 +1761,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>02/13/2022 23:27:03</publishTime>
     </File>
     <File Include="wwwroot/images/icons/clock.png">
-      <publishTime>06/02/2022 20:14:46</publishTime>
+      <publishTime>04/04/2024 23:24:11</publishTime>
     </File>
     <File Include="wwwroot/images/icons/color.png">
       <publishTime>02/14/2022 10:32:44</publishTime>
@@ -1790,17 +1808,26 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="wwwroot/images/icons/gearbox.svg">
       <publishTime>08/19/2021 19:47:30</publishTime>
     </File>
+    <File Include="wwwroot/images/icons/Hetchbek.png">
+      <publishTime>04/05/2024 00:39:50</publishTime>
+    </File>
     <File Include="wwwroot/images/icons/inter.png">
       <publishTime>05/16/2022 18:35:11</publishTime>
     </File>
+    <File Include="wwwroot/images/icons/Krossover.png">
+      <publishTime>04/05/2024 00:39:50</publishTime>
+    </File>
     <File Include="wwwroot/images/icons/left_arrow.svg">
-      <publishTime>01/10/2022 18:06:39</publishTime>
+      <publishTime>04/04/2024 23:24:11</publishTime>
     </File>
     <File Include="wwwroot/images/icons/less_money.png">
       <publishTime>02/13/2022 23:51:48</publishTime>
     </File>
     <File Include="wwwroot/images/icons/location-sign.png">
       <publishTime>02/19/2024 02:15:20</publishTime>
+    </File>
+    <File Include="wwwroot/images/icons/Miniven.png">
+      <publishTime>04/05/2024 00:39:50</publishTime>
     </File>
     <File Include="wwwroot/images/icons/money.png">
       <publishTime>02/13/2022 22:06:18</publishTime>
@@ -1842,7 +1869,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>02/13/2022 22:08:27</publishTime>
     </File>
     <File Include="wwwroot/images/icons/right_arrow.svg">
-      <publishTime>01/10/2022 17:41:49</publishTime>
+      <publishTime>04/04/2024 23:24:11</publishTime>
     </File>
     <File Include="wwwroot/images/icons/road.png">
       <publishTime>02/15/2022 16:25:38</publishTime>
@@ -1852,6 +1879,9 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     </File>
     <File Include="wwwroot/images/icons/safe.png">
       <publishTime>02/13/2022 23:52:58</publishTime>
+    </File>
+    <File Include="wwwroot/images/icons/Sedan.png">
+      <publishTime>04/05/2024 00:39:50</publishTime>
     </File>
     <File Include="wwwroot/images/icons/sender.png">
       <publishTime>04/16/2022 19:43:37</publishTime>
@@ -1878,7 +1908,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>08/19/2021 19:53:55</publishTime>
     </File>
     <File Include="wwwroot/images/icons/up-arrow.png">
-      <publishTime>06/03/2022 00:16:15</publishTime>
+      <publishTime>04/04/2024 23:24:11</publishTime>
     </File>
     <File Include="wwwroot/images/icons/vnis.svg">
       <publishTime>08/19/2021 20:05:19</publishTime>
@@ -1890,13 +1920,13 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>08/19/2021 20:15:14</publishTime>
     </File>
     <File Include="wwwroot/images/icons/vnis_new.svg">
-      <publishTime>08/19/2021 20:28:10</publishTime>
+      <publishTime>04/04/2024 23:24:11</publishTime>
     </File>
     <File Include="wwwroot/images/icons/vverh.svg">
       <publishTime>08/19/2021 20:24:01</publishTime>
     </File>
     <File Include="wwwroot/images/icons/vverh_new.svg">
-      <publishTime>08/19/2021 20:29:08</publishTime>
+      <publishTime>04/04/2024 23:24:11</publishTime>
     </File>
     <File Include="wwwroot/images/icons/warehouse.png">
       <publishTime>02/19/2024 02:15:20</publishTime>
@@ -2009,6 +2039,21 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="wwwroot/images/news/byd_vs_tesla/title.png">
       <publishTime>06/02/2022 19:32:49</publishTime>
     </File>
+    <File Include="wwwroot/images/news/comment.png">
+      <publishTime>04/05/2024 00:39:50</publishTime>
+    </File>
+    <File Include="wwwroot/images/news/delivery.png">
+      <publishTime>04/05/2024 00:39:50</publishTime>
+    </File>
+    <File Include="wwwroot/images/news/difference_xiaomi/1.jpg">
+      <publishTime>04/05/2024 00:39:50</publishTime>
+    </File>
+    <File Include="wwwroot/images/news/difference_xiaomi/2.jpg">
+      <publishTime>04/05/2024 00:39:50</publishTime>
+    </File>
+    <File Include="wwwroot/images/news/difference_xiaomi/su7_7.jpg">
+      <publishTime>04/05/2024 00:39:50</publishTime>
+    </File>
     <File Include="wwwroot/images/news/how_choose_car/2.png">
       <publishTime>06/03/2022 21:38:20</publishTime>
     </File>
@@ -2030,6 +2075,18 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="wwwroot/images/news/how_choose_car/title.png">
       <publishTime>06/03/2022 21:38:12</publishTime>
     </File>
+    <File Include="wwwroot/images/news/IMG_1616.PNG">
+      <publishTime>04/05/2024 00:39:50</publishTime>
+    </File>
+    <File Include="wwwroot/images/news/lixiang.png">
+      <publishTime>04/05/2024 00:39:50</publishTime>
+    </File>
+    <File Include="wwwroot/images/news/nat.png">
+      <publishTime>04/05/2024 00:39:50</publishTime>
+    </File>
+    <File Include="wwwroot/images/news/payment.png">
+      <publishTime>04/05/2024 00:39:50</publishTime>
+    </File>
     <File Include="wwwroot/images/news/photo_2023-08-16_13-06-45.jpg">
       <publishTime>03/28/2024 00:41:17</publishTime>
     </File>
@@ -2042,8 +2099,62 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="wwwroot/images/news/salon.jpg">
       <publishTime>03/28/2024 00:41:17</publishTime>
     </File>
+    <File Include="wwwroot/images/news/service.png">
+      <publishTime>04/05/2024 00:39:50</publishTime>
+    </File>
+    <File Include="wwwroot/images/news/voyah.png">
+      <publishTime>04/05/2024 00:39:50</publishTime>
+    </File>
+    <File Include="wwwroot/images/news/VW.png">
+      <publishTime>04/05/2024 00:39:50</publishTime>
+    </File>
+    <File Include="wwwroot/images/news/xiaomi.png">
+      <publishTime>04/05/2024 00:39:50</publishTime>
+    </File>
+    <File Include="wwwroot/images/news/xiaomi_first/1.jpg">
+      <publishTime>04/05/2024 00:39:50</publishTime>
+    </File>
+    <File Include="wwwroot/images/news/xiaomi_first/2.jpg">
+      <publishTime>04/05/2024 00:39:50</publishTime>
+    </File>
+    <File Include="wwwroot/images/news/xiaomi_first/3.jpg">
+      <publishTime>04/05/2024 00:39:50</publishTime>
+    </File>
+    <File Include="wwwroot/images/news/xiaomi_su7/1.jpg">
+      <publishTime>04/05/2024 00:39:50</publishTime>
+    </File>
+    <File Include="wwwroot/images/news/xiaomi_su7/2.jpg">
+      <publishTime>04/05/2024 00:39:50</publishTime>
+    </File>
+    <File Include="wwwroot/images/news/xiaomi_su7/3.jpg">
+      <publishTime>04/05/2024 00:39:50</publishTime>
+    </File>
+    <File Include="wwwroot/images/news/xiaomi_su7/4.jpg">
+      <publishTime>04/05/2024 00:39:50</publishTime>
+    </File>
+    <File Include="wwwroot/images/news/xiaomi_su7/5.jpg">
+      <publishTime>04/05/2024 00:39:50</publishTime>
+    </File>
+    <File Include="wwwroot/images/news/xiaomi_su7/6.jpg">
+      <publishTime>04/05/2024 00:39:50</publishTime>
+    </File>
+    <File Include="wwwroot/images/news/xiaomi_su7/7.jpg">
+      <publishTime>04/05/2024 00:39:50</publishTime>
+    </File>
+    <File Include="wwwroot/images/news/xiaomi_su7/8.jpg">
+      <publishTime>04/05/2024 00:39:50</publishTime>
+    </File>
+    <File Include="wwwroot/images/news/xiaomi_su7/9.jpg">
+      <publishTime>04/05/2024 00:39:50</publishTime>
+    </File>
+    <File Include="wwwroot/images/news/xpeng.png">
+      <publishTime>04/05/2024 00:39:50</publishTime>
+    </File>
     <File Include="wwwroot/images/team/anya.JPG">
       <publishTime>02/20/2022 20:40:23</publishTime>
+    </File>
+    <File Include="wwwroot/images/team/chun.jpg">
+      <publishTime>04/05/2024 00:39:50</publishTime>
     </File>
     <File Include="wwwroot/images/team/darya.jpg">
       <publishTime>02/19/2024 02:15:21</publishTime>
@@ -2082,7 +2193,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>01/12/2022 18:49:13</publishTime>
     </File>
     <File Include="wwwroot/js/up_panel.js">
-      <publishTime>03/28/2024 00:41:17</publishTime>
+      <publishTime>04/05/2024 00:39:50</publishTime>
     </File>
     <File Include="wwwroot/lib/bootstrap/dist/css/bootstrap-grid.css">
       <publishTime>06/06/2022 00:23:15</publishTime>
