@@ -2,8 +2,8 @@
 @model CarsClient.Models.Dto.CarFullInfoDto;
 
 @{
-	ViewData["Title"] = Model.ModelName + " купить в Минске недорого – Цена с учетом доставки";
-	ViewData["Description"] = Model.Description + " | " + ViewData["Postfix"];
+    ViewData["Title"] = Model.PageTitle;
+	ViewData["Description"] = Model.PageDescription;
 	ViewData["activePage"] = "passengerPage";
 	Layout = "~/Views/Shared/_Layout_Admin.cshtml";
 	ViewData["pathPrefix"] = "../../";
@@ -53,18 +53,15 @@
 					{
 						<label 	style= "background-image: url('@Model.Images[i-1].Path');" for="switch_@i"></label>
 					}
-				</div>		
-			</div>			
+				</div>
+			</div>
 		</div>
-		<table class="info">
-			<tr style="top:-10%;">
-				<td style="vertical-align:bottom;">
-					<div id="model">@Model.ModelName</div>
-					<div id="price"> Цена с учётом доставки: <b>$@Model.Price.ToString("N0", System.Globalization.CultureInfo.InvariantCulture)</b></div>	
-				</td>  
-			</tr>
-		</table>
-	</div>	
+        <div class="info">
+            <div id="model">@Model.ModelName</div>
+            <div id="price"> Цена с учётом доставки: <b>$@Model.Price.ToString("N", System.Globalization.CultureInfo.CreateSpecificCulture("en-US"))</b></div>
+            <button id="make-order">Заказать</button>	
+        </div>
+	</div>
 	<div id="box_characterstics">
 		<div id="car_characterstics">
 			<div class= "backgr_name">

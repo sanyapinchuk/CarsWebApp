@@ -23,39 +23,41 @@
 				<li>
 					<i class="far fa-trash-alt delete_car_icon" data-carId="@item.Id"></i>
 					<a href="car/@item.Id"><img src="@item.TitleImagePath" alt="no image"></a>
-					<div class="short_car_info">
-						<div id="name_car_list">
-							<a href="car/@item.Id">@item.ModelName</a>
-						</div>
-						<ul>
-							@foreach (var prop in item.Properties)
-							{
-								<li class="each_info">
-									<div class="car_option">
-										<img src="@ViewData["pathPrefix"]images/icons/road.png">
-										<div>@prop.Property</div>
-									</div>
-									<div class="option_value">@prop.Value</div>
-								</li>
-							}
-							<li class="each_info">
-								<div class="car_option">
-									<img src="@ViewData["pathPrefix"]images/icons/condition.svg">
-									<div>Состояние</div>
-								</div>
-								<div class="option_value">Новое</div>
-							</li>
-						</ul>
-						<div class="short_price">
+                    <div class="short_car_info">
+                        <div>
+                            <div id="name_car_list">
+                                <a href="car/@item.Id">@item.ModelName</a>
+                            </div>
+                            <ul>
+                                @foreach (var prop in item.Properties)
+                                {
+                                    <li class="each_info">
+                                        <div class="car_option">
+                                            <img src="@ViewData["pathPrefix"]images/icons/road.png">
+                                            <div>@prop.Property</div>
+                                        </div>
+                                        <div class="option_value">@prop.Value</div>
+                                    </li>
+                                }
+                                <li class="each_info">
+                                    <div class="car_option">
+                                        <img src="@ViewData["pathPrefix"]images/icons/condition.svg">
+                                        <div>Состояние</div>
+                                    </div>
+                                    <div class="option_value">Новое</div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="short_price">
 
-							<a href="car/@item.Id" class="a_price">
-								<div style="width: 100%;">
-									Подробнее
-								</div>
-							</a>
+                            <a href="car/@item.Id" class="a_price">
+                                <div style="width: 100%;">
+                                    Подробнее
+                                </div>
+                            </a>
 
-						</div>
-					</div>
+                        </div>
+                    </div>
 				</li>
 			}
 		</ul>

@@ -6,27 +6,66 @@
 	Layout = "_Layout";
 }
 
-<div class="panel contact">
-    <h1>Контакты</h1>
-</div>
-<p id="cont_us_p">Свяжитесь с нами</p>
+
+	<section class="contact_page">
+		<div class="container">
+			<h1 class="headers3">
+				Контакты
+			</h1>
+			<div class="contact_inner">
+				<div class="contact_item" id="contact_item_map">
+					<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2196.7221130178327!2d27.502300476542782!3d53.83595536651224!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46dbd173855d3217%3A0x35f20a3bfa1259a6!2sFormula%20EV!5e0!3m2!1sru!2sby!4v1712149692449!5m2!1sru!2sby" width="100%" height="100%" style="border:0; border-radius:15px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+				</div>
+			<div class="contact_item" id="contact_item_text">
+					<h2>Телефон:</h2>
+					<p><a href="tel:+375296208739">+375 (29) 634-98-42</a></p>
+					<h2>Электронная почта:</h2>
+					<p><a href="mailto:info@zubr-auto.by">info.itacar@gmail.com</a></p>
+					<h2>Адрес:</h2>
+					<p>г. Минск, ТЦ "Сеница"</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<div class="tg_block_link">
+		<div class="container">
+			<div class="tg_block_holder">
+				<div class="left_tg">
+					<div class="left_tg_title">Присоединяйтесь к нашему телеграм-каналу</div>
+					<div class="left_tg_text">Новости | Горячие предложения | Инженерные разборы | Оценки реальных пользователей</div>
+				</div>
+				<div class="right_tg">
+					<div class="right_tg_btn">
+						<a href="https://t.me/it_car_by_channel" class="right_tg_button">Подписаться</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<div>	
+
 <div class="container">
+	<div class="headers">
+		Свяжитесь с нами
+	</div>
     <form id="idform" class="form" method="POST" action="@ViewData["mailAddress"]">
         <div class="form-group">
-            <input type="text" name="name" class="form-control" placeholder="Имя" required>
-            <input type="email" name="email" class="form-control" placeholder="Электронная почта" required>
+            <input type="text" name="name" class="form-control" placeholder="Имя">
+            <input type="email" name="email" class="form-control" placeholder="Электронная почта">
         </div>
         <div class="form-group">
-            <input type="tel" name="phone" class="form-control" placeholder="Телефон">
+            <input type="tel" name="phone" class="form-control" placeholder="Телефон" required>
             <input type="text" name="budget" class="form-control" placeholder="Ваш бюджет">
         </div>
         <div class="form-group">
-            <textarea name="request" id="textar" cols="60" rows="6" placeholder="Пожалуйста, оставьте свои требования и пожелания, мы свяжемся в Вами в ближайшее время *" required></textarea>
+            <textarea name="request" id="textar" cols="60" rows="6" placeholder="Пожалуйста, оставьте свои требования и пожелания, мы свяжемся в Вами в ближайшее время *"></textarea>
         </div>
-        <button type="reset">Очистить</button>
-        <button type="submit">Отправить</button>
+        <div id="form_controls_buttons">
+            <button type="reset">Очистить</button>
+            <button type="submit">Отправить</button>
+        </div>
     </form>
 </div>
-<!-- <div style="position:relative;overflow:hidden;top:4px;margin-top: 40px;">
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d588.2644181631154!2d27.399733629255124!3d53.859622398755626!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46dbd131103885bb%3A0x61871072c5c119b8!2z0J7QntCeICLQmNC90YLQtdC70LvQtdC60YIg0KLRgNC10LnQtNC40L3QsyI!5e0!3m2!1sru!2sby!4v1644768414493!5m2!1sru!2sby" width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-</div> -->
+</div>

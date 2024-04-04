@@ -30,7 +30,8 @@ namespace CarsClient.Controllers
             {
                 var config = await responseConfig.Content.ReadFromJsonAsync<CarFilterConfig>();
                 ViewData["config"] = config;
-                return View();
+                ViewData["mailAddress"] = _configuration["mailAddress"];
+				return View();
             }
             else
             {
@@ -40,6 +41,34 @@ namespace CarsClient.Controllers
 
         [Route("contact_us")]
         public IActionResult Contact_us()
+        {
+            ViewData["mailAddress"] = _configuration["mailAddress"];
+            return View();
+        }
+        
+        [Route("aboutus")]
+        public IActionResult AboutUs()
+        {
+            ViewData["mailAddress"] = _configuration["mailAddress"];
+            return View();
+        }
+
+        [Route("payment")]
+        public IActionResult Payment()
+        {
+            ViewData["mailAddress"] = _configuration["mailAddress"];
+            return View();
+        }
+
+        [Route("delivery")]
+        public IActionResult Delivery()
+        {
+            ViewData["mailAddress"] = _configuration["mailAddress"];
+            return View();
+        }
+
+        [Route("service")]
+        public IActionResult Service()
         {
             ViewData["mailAddress"] = _configuration["mailAddress"];
             return View();

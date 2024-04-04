@@ -1,4 +1,4 @@
-@using CarsClient.Models.Dto
+﻿@using CarsClient.Models.Dto
 
 @{
 	ViewData["Title"] = "Купить электромобиль в Минске из Китая | Низкие цены";
@@ -30,14 +30,15 @@
 	}
 	
 
-<div id="wrap_main_back">
-    <div id="main_back">
-        <!-- <h1 style=" margin-left: 40px; margin-top: 11px; margin-bottom: 90px; margin-right: 40px;">Электромобили</h1> -->
-        <!-- <h2 style=" margin-top: 35px; margin-bottom: 40px; margin-left: 40px; margin-right: 40px;">из Китая</h2> -->
-    </div>
-</div>
-<h1 id="filter_short_caption">
-	Подобрать автомобиль
+	<div id="wrap_main_back">
+		<div id="main_back">
+		</div>
+	</div>
+
+
+	<div>
+		<h1 id="filter_short_caption">
+	Автомобиль в 3 шага
 </h1>
     <div id="filter_container">
         <div id="filter_short_select_types_conainter" class="filter_select_item">
@@ -86,414 +87,131 @@
             <button id="filter_search">Подобрать авто</button>
         </div>
     </div>
-    <div class="headers">
-        Как мы работаем?
-    </div>
-        @{
-		/*
-		 @foreach (var type in ((CarFilterConfig)ViewData["config"]).CarFilerTypeConfigs)
-		   {
-		       <div class="filter_types_item">
-		           <label class="image-checkbox" id="checkboxLabel">
-		               <input type="checkbox" id="filterType" onchange="changeBackgroundColor()" value="@type.Id">
-		               <img src="@type.ImageUrl" alt="Image type">
-		           </label>
-		           <div class="filter_types_caption">
-		               @type.Name
-		           </div>
-		       </div>
-		   }
-		 
-		 */
-    }
-   
-    
-	<div id="we-are">
-		<div class="one-of-we">
-			<img src="images/icons/1.png" alt="">
-			<div>
-				Тщательно и заботливо подбираем авто каждому клиенту
-			</div>
-		</div>
-		<!-- <div class="gray_vert_line"></div> -->
-		<div class="one-of-we">
-			<img src="images/icons/contract.png" alt="">
-			<div>
-				Заключаем договор
-			</div>
-		</div>
-		<!-- <div class="gray_vert_line"></div> -->
-		<div class="one-of-we">
-			<img src="images/icons/2.png" alt="">
-			<div>
-				Доставляем авто из Китая в Минск
-			</div>
-		</div>
-		<!-- <div class="gray_vert_line"></div> -->
-		<div class="one-of-we">
-			<img src="images/icons/3.png" alt="">
-			<div>
-				Оформляем авто под ключ
-			</div>
-		</div>
-		<!-- <div class="gray_vert_line"></div> -->
-		<div class="one-of-we">
-			<img src="images/icons/5.png" alt="">
-			<div>
-				Занимаемся послепродажным обслуживанием авто
-			</div>
-		</div>
-	</div>
-	<div style="background-color: #ffffff; width: 100%; padding-bottom: 50px; margin-top: 50px; padding-top: 50px;">
+
 		<div class="same_cars">
-			<div class= "backgr_name">
-				<div id="name_same">Лучшие предложения</div>
+			<div class= "headers">
+				Лучшие предложения
 			</div>
 			<div id="box_same_cars">
 				<div class="list_same_cars">
-				<div style="overflow: hidden;"><a href="car/7fc336bc-3ffc-454a-9aff-9a6fadff60ed"><img src="https://p9-dcd.byteimg.com/motor-mis-img/c6eecfca168251c6b1f27d14c829229b~tplv-f042mdwyw7-original:750:0.jpg" alt="no image"></a></div>
-				<div id="name_same_car">Bestune NAT</div>
-					<div id="price_same_car">Белый</div>
-				<a href="car/7fc336bc-3ffc-454a-9aff-9a6fadff60ed"><div class="same_button">Подробнее</div></a>
+				<div style="overflow: hidden;"><a href="car/7898db90-52a4-42ce-a534-7c86087eda00"><img src="https://p3.dcarimg.com/img/tos-cn-i-dcdx/b4cef3f693ea4b87b1cdc642951d040b~1200x0.png" alt="no image"></a></div>
+				<div id="name_same_car">Xiaomi SU 7 Max 2024</div>
+					<div id="price_same_car">47 300$</div>
+				<a href="car/7898db90-52a4-42ce-a534-7c86087eda00"><div class="same_button">Подробнее</div></a>
 				</div>
+
 				<div class="list_same_cars">
-				<div style="overflow: hidden;"><a href="car/5c882b8b-6ad3-4e20-a639-c0d848fd87cd"><img src="https://p3.dcarimg.com/img/motor-mis-img/5ae262e8d85c35bae7d83f29ae7d2305~2508x0.jpg" alt="no image"></a></div>
-				<div id="name_same_car">LI L7 MAX</div>
-					<div id="price_same_car">Белый</div>
+				<div style="overflow: hidden;"><a href="car/5c882b8b-6ad3-4e20-a639-c0d848fd87cd"><img src="https://p3.dcarimg.com/img/tos-cn-i-dcdx/e983d29025d946f8be51013a0911fafa~1200x0.webp" alt="no image"></a></div>
+				<div id="name_same_car">LI L7 MAX 2024</div>
+					<div id="price_same_car">55 000$</div>
 				<a href="car/5c882b8b-6ad3-4e20-a639-c0d848fd87cd"><div class="same_button">Подробнее</div></a>
 				</div>	
+
 				<div class="list_same_cars">
-				<div style="overflow: hidden;"><a href="car/1d1e2b4e-d781-479a-867d-12d57ca0c8d7"><img src="https://p3.dcarimg.com/img/motor-mis-img/5f1a139ed6016243bf353abbf0d067ee~2508x0.jpg" alt="no image"></a></div>
-				<div id="name_same_car">Zeekr 001 YOU</div>
-					<div id="price_same_car">Серый</div>
+				<div style="overflow: hidden;"><a href="car/7fc336bc-3ffc-454a-9aff-9a6fadff60ed"><img src="https://p3.dcarimg.com/img/motor-mis-img/b2d9da368314fca2f5e6af6550648131~1200x0.png" alt="no image"></a></div>
+				<div id="name_same_car">Bestune NAT 2024</div>
+					<div id="price_same_car">19 000$</div>
+				<a href="car/7fc336bc-3ffc-454a-9aff-9a6fadff60ed"><div class="same_button">Подробнее</div></a>
+				</div>
+
+				<div class="list_same_cars">
+				<div style="overflow: hidden;"><a href="car/1d1e2b4e-d781-479a-867d-12d57ca0c8d7"><img src="https://p3.dcarimg.com/img/tos-cn-i-dcdx/8e2a56ea30194ae1906f6c4dac0bfb1a~1200x0.webp" alt="no image"></a></div>
+				<div id="name_same_car">Zeekr 001 YOU 2024</div>
+					<div id="price_same_car">50 300$</div>
 				<a href="car/1d1e2b4e-d781-479a-867d-12d57ca0c8d7"><div class="same_button">Подробнее</div></a>
-				</div>			
+				</div>	
+
 				<div class="list_same_cars">
-				<div style="overflow: hidden;"><a href="car/d2cc7769-8254-461e-b7ee-2770cd0d70c1"><img src="https://p3.dcarimg.com/img/motor-mis-img/2d355b11a1f26d3f27fc2ece627128e4~2508x0.jpg" alt="no image"></a></div>
-				<div id="name_same_car">ID.4 CROZZ PRIME</div>
-					<div id="price_same_car">Белый</div>
+				<div style="overflow: hidden;"><a href="car/d68c03f5-5735-43a7-a81e-4ed8a3297a99"><img src="https://p3.dcarimg.com/img/tos-cn-i-dcdx/f828fd08acb64fe29d18ff5b4c4a9182~1200x0.png" alt="no image"></a></div>
+				<div id="name_same_car">Arcfox Alpha T5 2024</div>
+					<div id="price_same_car">31 000$</div>
+				<a href="car/d68c03f5-5735-43a7-a81e-4ed8a3297a99"><div class="same_button">Подробнее</div></a>
+				</div>
+				
+				<div class="list_same_cars">
+				<div style="overflow: hidden;"><a href="car/d2cc7769-8254-461e-b7ee-2770cd0d70c1"><img src="https://p3.dcarimg.com/img/motor-mis-img/29a9386687d14154243143d907b1a5cf~1200x0.webp" alt="no image"></a></div>
+				<div id="name_same_car">Volkswagen ID.4 Croxx Prime 2024</div>
+					<div id="price_same_car">34 000$</div>
 				<a href="car/d2cc7769-8254-461e-b7ee-2770cd0d70c1"><div class="same_button">Подробнее</div></a>
 				</div>					
 			</div>	
 		</div>
 	</div>
 
-	<div class="info_main">
-		<div>Компания <b>«Formula EV»</b> – это компания будущего. Мы занимаемся поиском и доставкой электромобилей из Китая. В нашу работу входит не только доставка, а также подбор качественных и надежных моделей электромобилей, организация их транспортировки и доставки, а также предоставление гарантий на продукцию. Мы стремимся быть лидерами в области экологически чистого транспорта и постоянно развиваемся, внедряя новые технологии и улучшая качество наших услуг. Наша команда профессионалов всегда готова помочь нашим клиентам и ответить на все вопросы, связанные с приобретением электромобиля. Электромобили – это наше будущее. Они не только экологически чисты, но и экономичны в использовании. Мы стремимся сделать электромобили доступными для всех, чтобы каждый мог внести свой вклад в сохранение окружающей среды и экономию на топливе. Мы гордимся тем, что наша работа помогает сделать мир лучше и заботиться о будущих поколениях. </div>
-	</div>
+		<section class="payment">
+		<div class="payment_inner">
+            <a href="@ViewData["pathPrefix"]delivery"><div class="payment_item1">
+                <p>Доставка</p>
+            </div></a>
+            <a href="@ViewData["pathPrefix"]payment"><div class="payment_item2">
+                <p>Оплата</p>
+            </div></a>
+            <a href="@ViewData["pathPrefix"]service"><div class="payment_item3">
+                <p>Сервис</p>
+            </div></a>
+		</div>
+	</section>
 
-	<div class="headers">
-		Наш блог Formula EV в Telegram
-	</div>
-	<div id="we-are">
-		<div class="one-of-we2">
-			<div class="tg_news">
-				<a href="https://t.me/it_car_by_channel/791?single"><img src="images/news/1.jpg" alt=""></a>
-			</div>
-			<div>
-				<a href="https://t.me/it_car_by_channel/791?single"><div class="tg_link">Новый Volkswagen ID.4 Crozz Prime уже в Минске</div></a>
-			</div>
-		</div>
-		<div class="one-of-we2">
-			<div class="tg_news">
-				<a href="https://t.me/it_car_by_channel/775"><img src="images/news/2.jpg" alt=""></a>
-			</div>
-			<div>
-				<a href="https://t.me/it_car_by_channel/775"><div class="tg_link">Успешная перепрошивка Volkswagen ID.4</div></a>
-			</div>
-		</div>
-		<div class="one-of-we2">
-			<div class="tg_news">
-				<a href="https://t.me/it_car_by_channel/728"><img src="images/news/3.jpg" alt=""></a>
-			</div>
-			<div>
-				<a href="https://t.me/it_car_by_channel/728"><div class="tg_link">Поступление зимней резины для любой модели</div></a>
-			</div>
-		</div>
-		<div class="one-of-we2">
-			<div class="tg_news">
-				<a href="https://t.me/it_car_by_channel/789"><img src="images/news/4.jpg" alt=""></a>
-			</div>
-			<div>
-				<a href="https://t.me/it_car_by_channel/789"><div class="tg_link">Выдача Tesla Model Y Dual Motor 2023</div></a>
-			</div>
-		</div>
-	</div>
-
-		<div style="background-color: #ffffff; width: 100%; padding-top: 50px; padding-bottom: 10px;">
-		<div class="same_cars">
-			<div class="backgr_name">
-				<div id="name_same">Наш телеграм-канал</div>
-				<h1>Электромобили из Китая</h1>
-			</div>
-			<div id="our_telegram_chanel">В нашем телеграм-канале мы постоянно выкладываем новые предложения, различные обзоры электричек, актуальные цены, различные аксесуары для Ваших электрокаров!</div>
-				<div id="link_telchanel">
-					<a href="https://t.me/it_car_by_channel"><div class="same_button2">Перейти на канал</div></a>
+	<section class="help_deliv">
+		<div class="container">
+			<div class="help_inner">
+				<div class="help_item">
+					<h2>Поможем привезти <br> Ваш электромобиль!</h2>
+					<p>
+					ООО «Интеллект Трейдинг» - импортер подержанных электромобилей.
+					Ваш авто - наша доставка. Организуем логистику внутри Китая, заберем от Вашего продавца, затаможим и доставим в Минск!					</p>
+					<a href="@ViewData["pathPrefix"]delivery"><div class="help_button">Подробнее</div></a>
+				</div>
+				<div class="help_item">
+					<img src="images/background/help_deliv.png" alt="" >
 				</div>
 			</div>
 		</div>
-	</div>
+	</section>
 
-	<div class="reviews">
-		<div class="headers2">
-			Видеоотзывы наших покупателей
-		</div>
-		<div class="video_info">
-			Отзывы покупателей – это сердце нашего бизнеса! Мы ценим каждого клиента и стремимся обеспечить высочайшее качество услуг, а также непревзойденный уровень обслуживания. Отзывы наших клиентов – это источник вдохновения для нас, помогающий совершенствоваться и расти. Мы гордимся тем, что наши электромобили приносят удовлетворение и радость нашим клиентам. Отзывы, которые мы получаем, помогают нам понимать потребности и ожидания наших покупателей еще лучше.
-		</div>
-		<div class="info_reviews">
-			<div class="one-of-we2">
-				<div class="video_reviews">
-					<video style="width: 300px; height: 300px;" src="images/news/3.mp4" controls></video>
-				</div>
-				<!-- <div>
-					<div class="video_link">Занимаемся послепродажным обслуживанием авто</div>
-				</div> -->
+	<section class="telegram">
+			<div class="headers">
+				Наш блог в Telegram канале
 			</div>
-			<div class="one-of-we2">
-				<div class="video_reviews">
-					<video style="width: 300px; height: 300px;" src="images/news/1.mp4" controls></video>
-				</div>
-				<!-- <div>
-					<div class="video_link">Занимаемся послепродажным обслуживанием авто</div>
-				</div> -->
-			</div>
-			<div class="one-of-we2">
-				<div class="video_reviews">
-					<video style="width: 300px; height: 300px;" src="images/news/2.mp4" controls></video>
-				</div>
-				<!-- <div>
-					<div class="video_link">Занимаемся послепродажным обслуживанием авто</div>
-				</div> -->
-			</div>
-		</div>
-	</div>
-
-		<!-- <div class="one-of-we2">
-				<img src="images/news/1.jpg" alt="">
-					<div>
-						Тщательно и заботливо подбираем авто каждому клиенту
-					</div>
-			</div>
-			<div class="one-of-we2">
-				<img src="images/news/1.jpg" alt="">
-					<div>
-						Тщательно и заботливо подбираем авто каждому клиенту
-					</div>
-			</div>
-			<div class="one-of-we2">
-				<img src="images/news/1.jpg" alt="">
-					<div>
-						Тщательно и заботливо подбираем авто каждому клиенту
-					</div>
-			</div>
-			<div class="one-of-we2">
-				<img src="images/news/1.jpg" alt="">
-					<div>
-						Тщательно и заботливо подбираем авто каждому клиенту
-					</div>
-			</div> -->
+        <div class="telegram_inner">
+            <a href="https://t.me/it_car_by_channel/916"><img src="images/news/xiaomi.png" alt=""></a>
+            <a href="https://t.me/it_car_by_channel/828"><img src="images/news/voyah.png" alt=""></a>
+            <a href="https://t.me/it_car_by_channel/913"><img src="images/news/comment.png" alt=""></a>
+            <a href="https://t.me/it_car_by_channel/838"><img src="images/news/lixiang.png" alt=""></a>
+            <a href="https://t.me/it_car_by_channel/869"><img src="images/news/nat.png" alt=""></a>
+            <a href="https://t.me/it_car_by_channel/1016"><img src="images/news/xpeng.png" alt=""></a>
+        </div>
+	</section>
 	
-
-		<!-- <div class="line-separate"></div> -->
-
-
-
-		<!-- <div class="info_telechanel">
-			<div>Компания «Formula EV» – это компания будущего. Мы занимаемся поиском и доставкой электромобилей из Китая. В нашу работу входит не только доставка электромобилей, а также подбор качественных и надежных моделей электромобилей, организация их транспортировки и доставки, а также предоставление гарантий на продукцию. Мы стремимся быть лидерами в области экологически чистого транспорта и постоянно развиваемся, внедряя новые технологии и улучшая качество наших услуг. Наша команда профессионалов всегда готова помочь нашим клиентам и ответить на все вопросы, связанные с приобретением электромобиля. Электромобили – это наше будущее. Они не только экологически чисты, но и экономичны в использовании. Наша компания стремится сделать электромобили доступными для всех, чтобы каждый мог внести свой вклад в сохранение окружающей среды и экономию на топливе. Мы гордимся тем, что наша работа помогает сделать мир лучше и заботиться о будущих поколениях. </div>
-		</div>
-
-		<div class="telechanel_photo">
-			<div>Компания «Formula EV» – это компания будущего. Мы занимаемся поиском и доставкой электромобилей из Китая. В нашу работу входит не только доставка электромобилей, а также подбор качественных и надежных моделей электромобилей, организация их транспортировки и доставки, а также предоставление гарантий на продукцию. Мы стремимся быть лидерами в области экологически чистого транспорта и постоянно развиваемся, внедряя новые технологии и улучшая качество наших услуг. Наша команда профессионалов всегда готова помочь нашим клиентам и ответить на все вопросы, связанные с приобретением электромобиля. Электромобили – это наше будущее. Они не только экологически чисты, но и экономичны в использовании. Наша компания стремится сделать электромобили доступными для всех, чтобы каждый мог внести свой вклад в сохранение окружающей среды и экономию на топливе. Мы гордимся тем, что наша работа помогает сделать мир лучше и заботиться о будущих поколениях. </div>
-		</div> -->
-	<!-- <div class="line-separate"></div> -->
-
-	<div style="background-color: #ebebeb; padding-top: 1px;">
-		<div class="headers">
-			Как заказать авто?
-		</div>
-		<ul class="action_list">
-			<li class="list_sequence">
-				<div class="number_list">1</div>
-				<div class="photo_action">
-					<img src="images/icons/car.png" alt="">
-				</div>
-				<div class="description_photo">Подобрать подходящий автомобиль на нашем сайте или в нашем-телеграм канале</div>
-			</li>
-			<li class="list_sequence">
-				<div class="number_list">2</div>
-				<div class="photo_action">
-					<img src="images/icons/agreement.png" alt="">
-				</div>
-				<div class="description_photo">Заключить Договор, внести предоплату 50%</div>
-			</li>
-			<li class="list_sequence">
-				<div class="number_list">3</div>
-				<div class="photo_action">
-					<img src="images/icons/warehouse.png" class="photo_action" alt="">
-				</div>
-				<div class="description_photo">Автомобиль прибывает на таможенный склад в Индустриальный парк Великий Камень</div>
-			</li>
-			<li class="list_sequence">
-				<div class="number_list">4</div>
-				<div class="photo_action">
-					<img src="images/icons/car-insurance.png" class="photo_action" alt="">
-				</div>
-				<div class="description_photo">Воспользоваться дополнительным сервисом IT-CAR. BY по прохождению таможни, либо растаможить самостоятельно</div>
-			</li>
-		</ul>
-	</div>
-	
-	<div style="background-color: #4F4F4F; width: 100%; padding-bottom: 40px; padding-top: 40px;">
-		<div class="headers2">
-			Сколько в конечном счете будет стоить авто?
-		</div>
-		<ol class="square">
-			<li>На сайте указаны цены CPT. *Цена CPT включает в себя конечную стоимость автомобиля с учётом экспортного оформления, а также затраты на доставку, погрузку/разгрузку и склад. Т.е. цены, которые Вы видите, это цена автомобиля по факту прибытия  в Беларусь </li>
-			<li>Растаможка авто: оплатить пошлину (в зависимости от типа авто: электрокары - 0%, авто ДВС - рассчитывается на каждый автомобиль индивидуально), оплатить таможенный сбор, оплатить утилизационный сбор, поставить на учет в ГАИ, либо воспользоваться дополнительной услугой IT-CAR. BY авто под ключ - 500$)</li>
-		</ol>
-	</div>
-
-	<!-- <div class="headers">
-		Преимущества работы с нами
-	</div>
-	<ul id="why_us">
-		<li>
-			<div class="number_list2">1</div>
-			<div class="photo_action2">
-				<img src="images/icons/openprice.png" alt="">
+	<div>	
+		<div class="container">
+			<div class="headers">
+				Свяжитесь с нами
 			</div>
-			<div class="description_photo2">Открытая ценовая политика: как для Покупателей, так и для Партнеров - Вы знаете каждый шаг</div>
-		</li>
-		<li>
-			<div class="number_list2">2</div>
-			<div class="photo_action2">
-				<img src="images/icons/delivery.png" alt="">
-			</div>
-			<div class="description_photo2">Доставка: Мы работаем с крупнейшей международной логистической компанией: China Merchants Group. Объемы перевозок и их постоянство позволяют сократить расходы и доставить Ваш автомобиль как можно скорее</div>
-		</li>
-		<li>
-			<div class="number_list2">3</div>
-			<div class="photo_action2">
-				<img src="images/icons/safe.png" alt="">
-			</div>
-			<div class="description_photo2">Все авто страхуются на время перевозки</div>
-		</li>
-		<li>
-			<div class="number_list2">4</div>
-			<div class="photo_action2">
-				<img src="images/icons/sender.png" alt="">
-			</div>
-			<div class="description_photo2">Наш Поставщик является одним из крупнейших  автодилеров Китая и входит в ТОП лучших. Имеет более 200 автоцентров по всему Китаю</div>
-		</li>
-		<li>
-			<div class="number_list2">5</div>
-			<div class="photo_action2">
-				<img src="images/icons/less_money.png" class="photo_action" alt="">
-			</div>
-			<div class="description_photo2">Снижение рисков: оплачивая лишь 50% Ваши риски значительно снижаются, вторые 50% Вы оплачиваете только когда сами лично потрогаете авто и убедитесь, что все в порядке</div>
-		</li>
-		<li>
-			<div class="number_list2">6</div>
-			<div class="photo_action2">
-				<img src="images/icons/certificate.png" class="photo_action" alt="">
-			</div>
-			<div class="description_photo2">Гарантии: Поставщик предоставляет Сертификат заводского соответствия готовых автомобилей КНР, что означает, авто соответствует всем международным стандартам</div>
-		</li>
-		<li>
-			<div class="number_list2">7</div>
-			<div class="photo_action2">
-				<img src="images/icons/diagnosis.png" class="photo_action" alt="">
-			</div>
-			<div class="description_photo2">Диагностика: авто диагностируется и высылается Вам полная информация об автомобиле</div>
-		</li>
-		<li>
-			<div class="number_list2">8</div>
-			<div class="photo_action2">
-				<img src="images/icons/car-ok.png" class="photo_action" alt="">
-			</div>
-			<div class="description_photo2">Проверка перед отправкой: в Китае работает наш сотрудник, который проверяет авто перед отправкой, также он высылает Вам фото/видео всего процесса, Вы будете видеть все своими глазами</div>
-		</li>
-		<li>
-			<div class="number_list2">9</div>
-			<div class="photo_action2">
-				<img src="images/icons/call-center.png" class="photo_action" alt="">
-			</div>
-			<div class="description_photo2">Связь с нами 24/7: мы не похожи на стандартные офисы с 9 до 17, мы на связи для Вас 24/7</div>
-		</li>
-	</ul> -->
-	<!-- <div class="line-separate"></div> -->
-
-	<div style="background-color: #ffffff; width: 100%; padding-bottom: 40px; padding-top: 40px;">
-		<div class="same_cars">
-			<div class= "backgr_name">
-				<div class="name_same">Наша команда</div>
-			</div>
-			<div id="team_block">
-				<div class="team_photos">	
-					<img src="images/team/anya.JPG" alt="">
-					<div class="team_text">
-						<div class="team_name">Анна Пинчук </div>
-						<div class="team_description">Клиентский сервис, логистика</div>
-					</div>
-				</div>
-				<div class="team_photos">
-					<img src="images/team/suyang.JPG" alt="">
-					<div class="team_text">
-						<div class="team_name">Линь Суян</div>
-						<div class="team_description">Работа с Поставщиками, закупками</div>
-					</div>
-				</div>
-				<div class="team_photos">
-					<img src="images/team/darya.jpg" alt="">
-					<div class="team_text">
-						<div class="team_name">Дарья Кончиц</div>
-						<div class="team_description">Работа с клиентами, дизайнер</div>
-					</div>
-				</div>
-			</div>
+   			<form id="idform" class="form" method="POST" action="@ViewData["mailAddress"]">
+        	<div class="form-group">
+            	<input type="text" name="name" class="form-control" placeholder="Имя">
+            	<input type="email" name="email" class="form-control" placeholder="Электронная почта">
+        	</div>
+        	<div class="form-group">
+            	<input type="tel" name="phone" class="form-control" placeholder="Телефон" required>
+            	<input type="text" name="budget" class="form-control" placeholder="Ваш бюджет">
+        	</div>
+            <div class="form-group">
+                <textarea name="request" id="textar" cols="60" rows="6" placeholder="Пожалуйста, оставьте свои требования и пожелания, мы свяжемся в Вами в ближайшее время *"></textarea>
+            </div>
+            <div id="form_controls_buttons">
+                <button type="reset">Очистить</button>
+                <button type="submit">Отправить</button>
+            </div>
+    		</form>
 		</div>
 	</div>
-	
-	<div class="infa">
-		<div class="headers3">
-			Данные для связи
-		</div>
-		<div id="infa_main">
-			<div class="one-of-we">
-				<img src="images/icons/phone-call.png" alt="">
-				<div id="infa_cell1">Телефон</div>
-				<a href="tel:375296349842"><div id="infa_cell2">+375 (29) 634-98-42</div></a>
-			</div>
-			<div class="gray_vert_line"></div>
-			<div class="one-of-we">
-				<img src="images/icons/composed.png" alt="">
-				<div id="infa_cell1">Почта</div>
-				<a href="mailto:info.itcar@gmail.com"><div id="infa_cell2">info.itcar@gmail.com</div></a>
-			</div>
-			<div class="gray_vert_line"></div>
-			<div class="one-of-we">
-				<img src="images/icons/location-sign.png" alt="">
-				<div id="infa_cell1">Адрес</div>
-				<a href="https://goo.gl/maps/iWmL2pj47pDhHYwj6"><div id="infa_cell2">г. Минск, ТЦ «Сеница»</div></a>
-			</div>
-		</div>
+	<div class="map_main">
+		<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2196.7221130178327!2d27.502300476542782!3d53.83595536651224!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46dbd173855d3217%3A0x35f20a3bfa1259a6!2sFormula%20EV!5e0!3m2!1sru!2sby!4v1712149692449!5m2!1sru!2sby" width="100%" height="100%" style="border:0; border-radius:15px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 	</div>
-
-	<div class="contact_main">
-		<div class="headers">
-			Мы открылись!
-		</div>
-		<div class="info_salon">
-			<div class="salon_photo"><img src="images/news/salon.jpg"></div>
-			<div class="contact_text">
-				Наши двери уже открылись для всех, кто стремится к передовым технологиям и уважению к нашей планете. В нашем шоуруме вы найдете эксклюзивный выбор электромобилей, сочетающих в себе высокую производительность, стильный дизайн и энергоэффективность. Мы приглашаем вас погрузиться в мир будущего, где чистая энергия и умные технологии сочетаются с роскошью и комфортом. Наша команда профессионалов всегда готова помочь вам выбрать идеальное решение, соответствующее вашим потребностям и желаниям. Следите за обновлениями - скоро вы сможете насладиться лучшим выбором электромобилей. Готовьтесь к впечатляющему путешествию в мир новаторских возможностей на колесах!			</div>
-		</div>
-		<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2354.4156223758514!2d27.500375390150733!3d53.835471266948495!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46dbd183f4119073%3A0x662f6af61a8167c2!2z0KLQpiDQodCV0J3QmNCm0JA!5e0!3m2!1sru!2sby!4v1701212880839!5m2!1sru!2sby" width="90%" height="450" style="margin-top: 40px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-	</div>
-    <!-- </div>
-    </div> -->
 
     @section AfterBody{
         <script src="js/carShortFilter.js"></script>
     }
+	

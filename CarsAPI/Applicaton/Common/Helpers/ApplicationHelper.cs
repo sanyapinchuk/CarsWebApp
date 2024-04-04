@@ -80,7 +80,19 @@ namespace Applicaton.Common.Helpers
             },
             CarFilerManufacturersConfigs = new CarFilerManufacturersConfig[]
             {
-                new()
+	            new()
+	            {
+		            Id = Guid.Parse("3122e75f-53c1-4447-8187-0f6cfbd97453"),
+		            Name = "Volkswagen",
+		            Query = x=>x.Model.Name.ToLower().Contains("volkswagen")
+	            },
+	            new()
+	            {
+		            Id = Guid.Parse("f48eb000-6389-4c61-bf90-245d7c584c66"),
+		            Name = "Xiaomi",
+		            Query = x=>x.Model.Name.ToLower().Contains("xiaomi")
+	            },
+				new()
                 {
                     Id = Guid.Parse("9f6dcbf6-e56e-42f6-8994-5dfda84552aa"),
                     Name = "Zeekr",
@@ -103,7 +115,55 @@ namespace Applicaton.Common.Helpers
 	                Id = Guid.Parse("24c13d62-3a52-4111-a0f2-49d5f0d6a7eb"),
 	                Name = "LI",
 	                Query = x=>x.Model.Name.ToLower().Contains("li")
-				}
+				},
+                new()
+                {
+	                Id = Guid.Parse("d4eb4c50-d31c-49aa-8f27-15c24f1caeb9"),
+	                Name = "Arcfox",
+	                Query = x=>x.Model.Name.ToLower().Contains("arcfox")
+                },
+                new()
+                {
+	                Id = Guid.Parse("1d97c633-4a4a-4390-9ce7-166a25628c80"),
+	                Name = "Avatr",
+	                Query = x=>x.Model.Name.ToLower().Contains("avatr")
+                },
+                new()
+                {
+	                Id = Guid.Parse("6c0220d2-8af2-40ad-9dca-89366af285b9"),
+	                Name = "Xpeng",
+	                Query = x=>x.Model.Name.ToLower().Contains("xpeng")
+                },
+                new()
+                {
+	                Id = Guid.Parse("6bcf0344-98bf-4bc3-9047-24e138239eed"),
+	                Name = "Tank",
+	                Query = x=>x.Model.Name.ToLower().Contains("tank")
+                },
+                new()
+                {
+	                Id = Guid.Parse("40263463-ea59-4fc2-99fa-5db380f18042"),
+	                Name = "Bestune",
+	                Query = x=>x.Model.Name.ToLower().Contains("bestune")
+                },
+                new()
+                {
+	                Id = Guid.Parse("157ec26b-6fed-4e25-8a9f-c6ac4784b814"),
+	                Name = "IM Motors",
+	                Query = x=>x.Model.Name.ToLower().Contains("im motor")
+                },
+                new()
+                {
+	                Id = Guid.Parse("9b90f3b3-8fad-425e-af88-b826df8aff9c"),
+	                Name = "GAC",
+	                Query = x=>x.Model.Name.ToLower().Contains("gac")
+                },
+                new()
+                {
+	                Id = Guid.Parse("d26b1771-45f4-4a5d-bdff-ea47dd8e3a81"),
+	                Name = "KIA",
+	                Query = x=>x.Model.Name.ToLower().Contains("kia")
+                }
 			},
             CarFilerBatteryCapacityConfigs = new CarFilerBatteryCapacityConfig[]
             {

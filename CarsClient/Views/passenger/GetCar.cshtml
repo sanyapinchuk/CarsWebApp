@@ -1,94 +1,89 @@
 ﻿@model CarsClient.Models.Dto.CarFullInfoDto;
 
 @{
-	ViewData["Title"] = "Купить " + Model.ModelName + " из Китая в Беларусь, цена - Минск";
-	ViewData["Description"] = Model.Description + " | " + ViewData["Postfix"];
+    ViewData["Title"] = Model.PageTitle;
+    ViewData["Description"] = Model.PageDescription;
 	ViewData["activePage"] = "passengerPage";
 	ViewData["Keywords"] = "электромобили, отзывы на электромобили, цены на электромобили, электромобиль bmw, электромобиль xiaomi, электромобиль lixiang, электромобиль volkswagen, электромобиль zeekr, tesla купить Минск, гибридный автомобиль";
 	Layout = "~/Views/Shared/_Layout.cshtml";
 	ViewData["pathPrefix"] = "../";
 }
 
-	<div class="panel commercial">	
-		<h1>@Model.ModelName</h1>
-	</div>
-	<div class="car_information">	
-		<div class="all">
-			<input checked type="radio" name="respond" id="desktop">
-			<div id="slider">
+<div class="car_information">	
+	<div class="all">
+		<input checked type="radio" name="respond" id="desktop">
+		<div id="slider">
 			@for(int i= 1; i< Model.Images.Count+1; i++)
+			{
+				if (i == 1)
 				{
-					if (i == 1)
-					{
-						<input checked type="radio" name="slider" id="switch_1">
-					}
-					else{
-						<input type="radio" name="slider" id= "switch_@i">
-					}
+					<input checked type="radio" name="slider" id="switch_1">
 				}
-				<div id="slides">
-					<div id="overflow">
-						
-						<div class="image">
-							@foreach(var item in Model.Images)
-							{
-								<article><img src="@item.Path"></article>
-							}
-						</div>
+				else{
+					<input type="radio" name="slider" id= "switch_@i">
+				}
+			}
+			<div id="slides">
+				<div id="overflow">
+					<div class="image">
+						@foreach(var item in Model.Images)
+						{
+							<article><img src="@item.Path"></article>
+						}
 					</div>
-					<div id="__left_block"></div>
-					<div id="__right_block"></div>
 				</div>
-						
-				<div id="controls">
-					@for(int i= 1; i< Model.Images.Count+1; i++)
-					{
-						<label for="switch_@i"></label>
-					}
-				</div>
-				<div id="active">
-					@for(int i= 1; i< Model.Images.Count+1; i++)
-					{
-						<label 	style= "background-image: url('@Model.Images[i-1].Path');" for="switch_@i"></label>
-					}
-				</div>		
-			</div>			
-		</div>
-		<table class="info">
-			<tr style="top:-10%;">
-				<td style="vertical-align:bottom;">
-					<div id="model">@Model.ModelName</div>
-					<div id="price"> Цена с учётом доставки: <b>$@Model.Price.ToString("N0", System.Globalization.CultureInfo.InvariantCulture)</b></div>
-					<button id="make-order">Заказать</button>		
-				</td>  
-			</tr>
-		</table>
-	</div>	
-	<div id="box_characterstics">
-		<div id="car_characterstics">
-			<div class= "backgr_name">
-				<div id="tech_ch">Технические характеристики</div>
-			</div>					
-			<ul>				
-				<li> <img src="@ViewData["pathPrefix"]../images/icons/calendar.png">Модельный год <span>@Model.ProductionYear</span></li>
-                <li> <img src="@ViewData["pathPrefix"]../images/icons/car_type.png">Кузов <span>@Model.CarType</span></li>
+				<div id="__left_block"></div>
+				<div id="__right_block"></div>
+			</div>
+					
+			
+            <div id="controls">
+                @if (Model.Images.Count > 1)
+                {
+                    @for (int i = 1; i < Model.Images.Count + 1; i++)
+                    {
+                        <label for="switch_@i"></label>
+                    }
+                }
+            </div>
+			<div id="active">
+				@for(int i= 1; i< Model.Images.Count+1; i++)
+				{
+					<label style="background-image: url('@Model.Images[i-1].Path');" for="switch_@i"></label>
+				}
+			</div>		
+		</div>			
+	</div>
+    <div class="info">
+        <div id="model">@Model.ModelName</div>
+        <div id="price"> Цена с учётом доставки: <b>$@Model.Price.ToString("N0", System.Globalization.CultureInfo.InvariantCulture)</b></div>
+        <button id="make-order">Заказать</button>		
+    </div>
+</div>	
 
+<div id="box_characterstics">
+	<div id="car_characterstics">
+		<div class="backgr_name">
+			<div id="tech_ch">Технические характеристики</div>
+		</div>		
+		<ul>				
+			<li>Модельный год <span>@Model.ProductionYear</span></li>
+			<li>Кузов <span>@Model.CarType</span></li>
 			@foreach(var category in Model.Categories)
 			{
 				@foreach(var item in category.Properties)
 				{
 					if (item.IsKeyProperty)
 					{
-						<li> <img src="@ViewData["pathPrefix"]../images/icons/property.png">@item.Property <span>@item.Value</span></li>
+						<li> @item.Property <span>@item.Value</span></li>
 					}
 				}
 			}
-			
-			</ul>
-			<div class="add_info" id="add_info">
+		</ul>
+		<div class="add_info" id="add_info">
 			@foreach(var category in Model.Categories)
 			{
-				if(category.Properties.Any(x=> !x.IsKeyProperty))
+				@if(category.Properties.Any(x=> !x.IsKeyProperty))
 				{
 					<div class="type_separate">@category.Category</div>
 				}
@@ -102,37 +97,130 @@
 					}
 				}
 			}
+		</div>
+		<div id="more_info">
+			<div id="box_more">
+				<div id="more">
+					Развернуть
+					<img src="@ViewData["pathPrefix"]../images/icons/vnis_new.svg" alt="">
+				</div>
+				<div id="less">
+					Свернуть
+					<img src="@ViewData["pathPrefix"]../images/icons/vverh_new.svg" alt="">
+				</div>
+			</div>						
+		</div>
+	</div>				
+</div>
 
-			</div>
-			<div id="more_info">
-				<div id="box_more">
-					<div id="more">
-						Развернуть
-						<img src="@ViewData["pathPrefix"]../images/icons/vnis_new.svg" alt="">
-					</div>
-					<div id="less">
-						Свернуть
-						<img src="@ViewData["pathPrefix"]../images/icons/vverh_new.svg" alt="">
-					</div>
-				</div>						
-			</div>
-		</div>				
+	<section class="payment">
+		<div class="payment_inner">
+            <a href="@ViewData["pathPrefix"]delivery"><div class="payment_item1">
+                <p>Доставка</p>
+            </div></a>
+            <a href="@ViewData["pathPrefix"]payment"><div class="payment_item2">
+                <p>Оплата</p>
+            </div></a>
+            <a href="@ViewData["pathPrefix"]service"><div class="payment_item3">
+                <p>Сервис</p>
+            </div></a>
+		</div>
+	</section>
+		
+<div>	
+	<div class="container">
+		<div class="headers6">
+			Получить бесплатную консультацию
+		</div>
+		<form id="idform" class="form" method="POST" action="@ViewData["mailAddress"]">
+		<div class="form-group">
+			<input type="text" name="name" class="form-control" placeholder="Имя">
+			<input type="email" name="email" class="form-control" placeholder="Электронная почта">
+		</div>
+		<div class="form-group">
+			<input type="tel" name="phone" class="form-control" placeholder="Телефон" required>
+			<input type="text" name="budget" class="form-control" placeholder="Ваш бюджет">
+		</div>
+		<div class="form-group">
+			<textarea name="request" id="textar" cols="60" rows="6" placeholder="Пожалуйста, оставьте свои требования и пожелания, мы свяжемся в Вами в ближайшее время *"></textarea>
+		</div>
+        <div id="form_controls_buttons">
+            <button type="reset">Очистить</button>
+            <button type="submit">Отправить</button>
+        </div>
+		</form>
 	</div>
-			
-			
-	<div id="call_us">
-		<div style="margin: auto; width: 80%; margin-top: 20px; margin-bottom: 20px; font-size: 23px; line-height: 32px ;" >
-			Для уточнения деталей и заказа авто свяжитесь с нами
-			<a href="tel:375296349842"><b id="mynumber">+375 (29) 634-98-42</b></a>
-				<div class="tooltip"> 
-					<div onclick="myFunction()" onmouseout="outFunc()">
-					<span class="tooltiptext" id="myTooltip">Копировать</span>
-					<img style="width: 20px;" src="@ViewData["pathPrefix"]../images/icons/copy.png" alt="">
+</div>
+
+	<div class="tg_block_link">
+		<div class="container">
+			<div class="tg_block_holder">
+				<div class="left_tg">
+					<div class="left_tg_title">Присоединяйтесь к нашему телеграм-каналу</div>
+					<div class="left_tg_text">Новости | Горячие предложения | Инженерные разборы | Оценки реальных пользователей</div>
+				</div>
+				<div class="right_tg">
+					<div class="right_tg_btn">
+						<a href="https://t.me/it_car_by_channel" class="right_tg_button">Подписаться</a>
 					</div>
 				</div>
-				(все мессенджеры), либо заходите в наш <a class="call_us_tg" href="https://t.me/it_car_by_channel">телеграм-канал</a> 
-		</div>						
+			</div>
+		</div>
 	</div>
+
+<div>
+
+		<div class="same_cars">
+			<div class= "headers">
+				Лучшие предложения
+			</div>
+			<div id="box_same_cars">
+				<div class="list_same_cars">
+				<div style="overflow: hidden;"><a href="7898db90-52a4-42ce-a534-7c86087eda00"><img src="https://p3.dcarimg.com/img/tos-cn-i-dcdx/b4cef3f693ea4b87b1cdc642951d040b~1200x0.png" alt="no image"></a></div>
+				<div id="name_same_car">Xiaomi SU 7 Max 2024</div>
+					<div id="price_same_car">47 300$</div>
+				<a href="7898db90-52a4-42ce-a534-7c86087eda00"><div class="same_button">Подробнее</div></a>
+				</div>
+
+				<div class="list_same_cars">
+				<div style="overflow: hidden;"><a href="5c882b8b-6ad3-4e20-a639-c0d848fd87cd"><img src="https://p3.dcarimg.com/img/tos-cn-i-dcdx/e983d29025d946f8be51013a0911fafa~1200x0.webp" alt="no image"></a></div>
+				<div id="name_same_car">LI L7 MAX 2024</div>
+					<div id="price_same_car">55 000$</div>
+				<a href="5c882b8b-6ad3-4e20-a639-c0d848fd87cd"><div class="same_button">Подробнее</div></a>
+				</div>	
+
+				<div class="list_same_cars">
+				<div style="overflow: hidden;"><a href="7fc336bc-3ffc-454a-9aff-9a6fadff60ed"><img src="https://p3.dcarimg.com/img/motor-mis-img/b2d9da368314fca2f5e6af6550648131~1200x0.png" alt="no image"></a></div>
+				<div id="name_same_car">Bestune NAT 2024</div>
+					<div id="price_same_car">19 000$</div>
+				<a href="7fc336bc-3ffc-454a-9aff-9a6fadff60ed"><div class="same_button">Подробнее</div></a>
+				</div>
+
+				<div class="list_same_cars">
+				<div style="overflow: hidden;"><a href="1d1e2b4e-d781-479a-867d-12d57ca0c8d7"><img src="https://p3.dcarimg.com/img/tos-cn-i-dcdx/8e2a56ea30194ae1906f6c4dac0bfb1a~1200x0.webp" alt="no image"></a></div>
+				<div id="name_same_car">Zeekr 001 YOU 2024</div>
+					<div id="price_same_car">50 300$</div>
+				<a href="1d1e2b4e-d781-479a-867d-12d57ca0c8d7"><div class="same_button">Подробнее</div></a>
+				</div>	
+
+				<div class="list_same_cars">
+				<div style="overflow: hidden;"><a href="d68c03f5-5735-43a7-a81e-4ed8a3297a99"><img src="https://p3.dcarimg.com/img/tos-cn-i-dcdx/f828fd08acb64fe29d18ff5b4c4a9182~1200x0.png" alt="no image"></a></div>
+				<div id="name_same_car">Arcfox Alpha T5 2024</div>
+					<div id="price_same_car">31 000$</div>
+				<a href="d68c03f5-5735-43a7-a81e-4ed8a3297a99"><div class="same_button">Подробнее</div></a>
+				</div>
+				
+				<div class="list_same_cars">
+				<div style="overflow: hidden;"><a href="d2cc7769-8254-461e-b7ee-2770cd0d70c1"><img src="https://p3.dcarimg.com/img/motor-mis-img/29a9386687d14154243143d907b1a5cf~1200x0.webp" alt="no image"></a></div>
+				<div id="name_same_car">Volkswagen ID.4 Croxx Prime 2024</div>
+					<div id="price_same_car">34 000$</div>
+				<a href="d2cc7769-8254-461e-b7ee-2770cd0d70c1"><div class="same_button">Подробнее</div></a>
+				</div>					
+			</div>	
+		</div>
+	</div>
+
+
 @if (Model.SameCars.Count > 0)
 {
 	<div style=" width: 100%; padding-bottom: 40px;"> 
@@ -154,34 +242,6 @@
 	</div>
 }
 
-	<div style="background-color: #ffffff; width: 100%; padding-top: 50px; padding-bottom: 10px;">
-		<div class="same_cars">
-			<div class="backgr_name">
-				<div id="name_same">Наш телеграм-канал</div>
-			</div>
-			<div id="our_telegram_chanel">В нашем телеграм-канале мы постоянно выкладываем новые предложения, различные обзоры электричек, актуальные цены, различные аксесуары для Ваших электрокаров!
-				<div id="link_telchanel">
-					<a href="https://t.me/it_car_by_channel"><div class="same_button2">Перейти на канал</div></a>
-				</div>
-			</div>
-		</div>
-	</div>
-	
-	<!-- <div style="width: 100%; padding-bottom: 40px; margin-top: 40px;">
-		<div class="same_cars">
-			<div class= "backgr_name">
-				<div id="name_same">На телеграм-канал</div>
-			</div>
-			<div id="our_telegram_chanel">
-				Еще больше авто в нашем телеграм-канале
-			</div>
-			<div id="link_telchanel">
-				<a href="https://t.me/it_car_by_channel">https://t.me/it_car_by_channel</a>
-			</div>
-					
-		</div>
-	</div> -->
-
 @section AfterBody{
 	<div id="pop-order">
 		<div id="order-all"></div>
@@ -194,11 +254,11 @@
 						Оставить заявку
 					</div>
 					<div class="form-group">						
-						<input type="text" name="name" class="order-control" placeholder="Имя *" required>
-						<input type="email" name="email" class="order-control" placeholder="Электронная почта *" required>
+						<input type="text" name="name" class="order-control" placeholder="Имя *">
+						<input type="email" name="email" class="order-control" placeholder="Электронная почта *">
 					</div>
 					<div class="form-group">
-						<input type="tel" name="phone" class="order-control" placeholder="Телефон">
+						<input type="tel" name="phone" class="order-control" placeholder="Телефон" required>
 					</div>
 					<button type="submit" style="cursor: pointer;">Отправить</button>
 				</form>	
