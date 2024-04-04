@@ -3016,7 +3016,6 @@ option {
     border-radius: 15px;
     overflow: hidden;
     transition: all 0.4s;
-    height: 500px;
 }
 
     .one_news:hover {
@@ -3032,7 +3031,6 @@ option {
 
 .news_title_img {
     width: 100%;
-    height: 250px;
 }
 
 .news_description {
@@ -3055,7 +3053,6 @@ option {
     justify-content: space-between;
     flex-direction: column;
     flex-wrap: nowrap;
-    height: 220px;
 }
 
 #news_clock_img {
