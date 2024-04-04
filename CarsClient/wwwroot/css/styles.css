@@ -320,13 +320,13 @@ ul {
     }
 } 
 
-@media (min-width: 1279px) {
+@media (min-width: 1278px) {
     #open_list {
         display: none;
     }
 }
 
-@media (min-width: 1279px) {
+@media (min-width: 1278px) {
     #center_up_list {
         display: inline-block;
         width: 250px;
@@ -628,6 +628,8 @@ figure {
     background-color: #ffffff;
     border-radius: 20px;
     border: 1px solid #4f4f4f;
+    font-size: 16px;
+    padding-left: 10px;
 }
 
 .form-control:hover {
@@ -649,6 +651,8 @@ figure {
     max-width: 615px;
     width: 90%;
     border-radius: 20px;
+    font-size: 16px;
+    padding-left: 10px;
 }
 
     #textar:focus {
@@ -663,19 +667,18 @@ figure {
         transition: linear 1.5;
     }
 
-#idform > button {
+#idform button {
     width: 240px;
     background-color: #EF7A13;
     border-radius: 25px;
     border: 1px solid #EF7A13;
-    margin-right: 40px;
     margin-top: 10px;
     height: 40px;
     font-size: 16px;
     color: white;
 }
 
-#idform > button:hover {
+#idform button:hover {
     background-color: #4F4F4F;
     border: 1px solid #4F4F4F;
     color: white;
@@ -2841,7 +2844,7 @@ option {
     min-width: 300px;
 }
 
-@media screen and (max-width: 1279px){
+@media screen and (max-width: 1278px){
     .center_up_list {
         display: none;
     }
@@ -3013,6 +3016,7 @@ option {
     border-radius: 15px;
     overflow: hidden;
     transition: all 0.4s;
+    height: 500px;
 }
 
     .one_news:hover {
@@ -3028,21 +3032,30 @@ option {
 
 .news_title_img {
     width: 100%;
+    height: 250px;
 }
 
 .news_description {
     margin-bottom: 20px;
     font-size: 15px;
+    text-align: start;
+    text-indent: 20px;
 }
 
 .news_down_block {
     display: flex;
     justify-content: space-between;
     font-size: 12px;
+    width: 100%;
 }
 
 .news_info {
     margin: 15px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    height: 220px;
 }
 
 #news_clock_img {
@@ -4159,7 +4172,7 @@ option {
 .center_contacts>i{
     margin-right: 10px;
 }
-@media (min-width: 877px){
+@media (min-width: 1278px){
     .header_top{
         position: sticky;
     }
@@ -4178,4 +4191,13 @@ option {
     .info{
         margin-top: 60px;
     }
+}
+
+#form_controls_buttons {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 750px;
+    margin: auto;
 }

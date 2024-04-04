@@ -30,7 +30,8 @@ namespace CarsClient.Controllers
             {
                 var config = await responseConfig.Content.ReadFromJsonAsync<CarFilterConfig>();
                 ViewData["config"] = config;
-                return View();
+                ViewData["mailAddress"] = _configuration["mailAddress"];
+				return View();
             }
             else
             {
